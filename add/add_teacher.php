@@ -62,6 +62,9 @@
         <label for="mail">Mail:</label>
         <input type="email" id="mail" name="mail" required><br><br>
 
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+
         <label for="picture">Picture:</label>
         <input type="file" id="picture" name="picture"><br><br>
 
@@ -120,6 +123,7 @@
         $department_id = $_POST["department_id"];
         $position = $_POST["position"];
         $mail = $_POST["mail"];
+        $password = password_hash($_POST["password"], PASSWORD_DEFAULT); // Hash the password
         $courses = $_POST["courses"];
 
         // Check if the teacher with the given mobile number already exists
@@ -129,7 +133,7 @@
         if ($result_check_teacher->num_rows > 0) {
             echo "<p>Teacher with the given mobile number already exists!</p>";
         } else {
-            $sql_insert_teacher = "INSERT INTO Teachers (name, mobile, department_id, position, mail) VALUES ('$name', '$mobile', $department_id, '$position', '$mail')";
+            $sql_insert_teacher = "INSERT INTO Teachers (name, mobile, department_id, position, mail, password) VALUES ('$name', '$mobile', $department_id, '$position', '$mail', '$password')";
 
             if ($conn->query($sql_insert_teacher) === TRUE) {
                 $teacher_id = $conn->insert_id;
