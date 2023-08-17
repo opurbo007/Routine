@@ -1,72 +1,81 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Department, Semester, and Course List</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <title>Course Management</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
+
 <body>
-    <h2>Select Department, Semester, and Course:</h2>
-    <form id="selectForm">
-        <label for="department">Select Department:</label>
-        <select id="department" name="department">
-            <option value="" disabled selected>Select a department</option>
-        </select>
+  <h2>Course Management</h2>
 
-        <label for="semester">Select Semester:</label>
-        <select id="semester" name="semester" disabled>
-            <option value="" disabled selected>Select a semester</option>
-        </select>
+  <!-- Search Form -->
+  <form method="get">
+    <label for="search">Search:</label>
+    <input type="text" id="search" name="search">
+    <input type="submit" value="Search">
+  </form>
 
-        <label for="course">Select Course:</label>
-        <select id="course" name="course" disabled>
-            <option value="" disabled selected>Select a course</option>
-        </select>
-    </form>
+  <!-- Course List -->
+  <table>
+    <tr>
+      <th>Course Code</th>
+      <th>Course Name</th>
+      <th>Credits</th>
+      <th>Department</th> <!-- New column for Department -->
+      <th>Semester</th> <!-- New column for Semester -->
+      <th>Actions</th>
+    </tr>
+    <?php
+    // Include your database connection code here
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "routine";
 
-    <script>
-    // Populate the departments dropdown
-    $.getJSON('get_departments.php', function(data) {
-        var departments = $('#department');
-        $.each(data, function(key, value) {
-            departments.append('<option value="' + value.department_id + '">' + value.department_name + '</option>');
-        });
-    });
+    // Create a database connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
 
-    // Update semester dropdown when department is selected
-    $('#department').on('change', function() {
-        var departmentId = $(this).val();
-        if (departmentId) {
-            $.post('get_semesters.php', { department_id: departmentId }, function(data) {
-                var options = '<option value="" disabled selected>Select a semester</option>';
-                $.each(data, function(key, value) {
-                    options += '<option value="' + value.semester_id + '">' + value.semester_name + '</option>';
-                });
-                $('#semester').prop('disabled', false).html(options);
-            }, 'json');
-        } else {
-            $('#semester').prop('disabled', true).html('<option value="" disabled selected>Select a department first</option>');
-            $('#course').prop('disabled', true).html('<option value="" disabled selected>Select a course</option>');
-        }
-    });
+    // Check if the connection was successful
+    if ($conn->connect_error) {
+      die("Connection failed: " . $conn->connect_error);
+    }
 
-    // Update course dropdown when semester is selected
-    $('#semester').on('change', function() {
-        var semesterId = $(this).val();
-        if (semesterId) {
-            $('#course').prop('disabled', false).html('<option value="" disabled selected>Select a course</option>');
+    // Retrieve courses with department and semester information from the database based on search query
+    $search = $_GET['search'] ?? '';
+    $sql = "SELECT Course.*, department_name, semester_name FROM Course
+            INNER JOIN department ON Course.department_id = department.department_id
+            INNER JOIN Semester ON Course.semester_id = Semester.semester_id
+            WHERE course_code LIKE '%$search%'
+            OR course_name LIKE '%$search%'
+            OR department_name LIKE '%$search%'
+            OR semester_name LIKE '%$search%'";
+    $result = $conn->query($sql);
 
-            // Fetch courses for the selected semester
-            $.getJSON('get_courses.php', { semester_id: semesterId }, function(data) {
-                var courses = $('#course');
-                $.each(data, function(key, value) {
-                    courses.append('<option value="' + value.course_id + '">' + value.course_name + ' (Credits: ' + value.credits + ')' + '</option>');
-                });
-            });
-        } else {
-            $('#course').prop('disabled', true).html('<option value="" disabled selected>Select a course</option>');
-        }
-    });
-</script>
+    if ($result->num_rows > 0) {
+      while ($row = $result->fetch_assoc()) {
+        echo "<tr>
+                          <td>{$row['course_code']}</td>
+                          <td>{$row['course_name']}</td>
+                          <td>{$row['credits']}</td>
+                          <td>{$row['department_name']}</td>
+                          <td>{$row['semester_name']}</td>
+                          <td>
+                              <a href='edit_course.php?id={$row['course_id']}'>Edit</a> |
+                              <a href='delete_course.php?id={$row['course_id']}'>Delete</a>
+                          </td>
+                      </tr>";
+      }
+    } else {
+      echo "<tr><td colspan='6'>No courses found.</td></tr>";
+    }
 
+    // Close the database connection
+    $conn->close();
+    ?>
+  </table>
+
+  <p><a href="add_course.php">Add New Course</a></p>
 </body>
+
 </html>
