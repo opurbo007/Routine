@@ -12,7 +12,7 @@ if ($conn->connect_error) {
 if (isset($_GET['timetable_id'])) {
   $timetable_id = $_GET['timetable_id'];
 
-  $sql_delete_timetable = "DELETE FROM Timetable WHERE timetable_id=$timetable_id";
+  $sql_delete_timetable = "DELETE FROM timeslot WHERE timetable_id=$timetable_id";
 
   if ($conn->query($sql_delete_timetable) === TRUE) {
     echo "Timetable entry deleted successfully!";

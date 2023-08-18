@@ -23,13 +23,12 @@
     $start_minute = $_POST["start_minute"];
     $end_hour = $_POST["end_hour"];
     $end_minute = $_POST["end_minute"];
-    $day = $_POST["day"];
     $class_type = $_POST["class_type"];
 
     $start_time = sprintf("%02d:%02d:00", $start_hour, $start_minute);
     $end_time = sprintf("%02d:%02d:00", $end_hour, $end_minute);
 
-    $sql_update_timetable = "UPDATE Timetable SET start_time='$start_time', end_time='$end_time', day='$day', class_type='$class_type' WHERE timetable_id=$timetable_id";
+    $sql_update_timetable = "UPDATE timeslot SET start_time='$start_time', end_time='$end_time', class_type='$class_type' WHERE timetable_id=$timetable_id";
 
     if ($conn->query($sql_update_timetable) === TRUE) {
       echo "<p>Timetable entry updated successfully!</p>";
@@ -41,7 +40,7 @@
   if (isset($_GET['timetable_id'])) {
     $timetable_id = $_GET['timetable_id'];
 
-    $sql_select_timetable = "SELECT * FROM Timetable WHERE timetable_id=$timetable_id";
+    $sql_select_timetable = "SELECT * FROM timeslot WHERE timetable_id=$timetable_id";
     $result_timetable = $conn->query($sql_select_timetable);
 
     if ($result_timetable->num_rows > 0) {
@@ -52,7 +51,6 @@
       $start_minute = intval($start_time_parts[1]);
       $end_hour = intval($end_time_parts[0]);
       $end_minute = intval($end_time_parts[1]);
-      $day = $row['day'];
       $class_type = $row['class_type'];
       ?>
       <h2>Edit Timetable Entry</h2>
@@ -67,23 +65,6 @@
         <input type="number" id="end_hour" name="end_hour" min="0" max="23" value="<?php echo $end_hour; ?>" required> :
         <input type="number" id="end_minute" name="end_minute" min="0" max="59" value="<?php echo $end_minute; ?>"
           required><br>
-        <label for="day">Day:</label>
-        <select id="day" name="day" required>
-          <option value="Monday" <?php if ($day == 'Monday')
-            echo 'selected'; ?>>Monday</option>
-          <option value="Tuesday" <?php if ($day == 'Tuesday')
-            echo 'selected'; ?>>Tuesday</option>
-          <option value="Wednesday" <?php if ($day == 'Wednesday')
-            echo 'selected'; ?>>Wednesday</option>
-          <option value="Thursday" <?php if ($day == 'Thursday')
-            echo 'selected'; ?>>Thursday</option>
-          <option value="Friday" <?php if ($day == 'Friday')
-            echo 'selected'; ?>>Friday</option>
-          <option value="Saturday" <?php if ($day == 'Saturday')
-            echo 'selected'; ?>>Saturday</option>
-          <option value="Sunday" <?php if ($day == 'Sunday')
-            echo 'selected'; ?>>Sunday</option>
-        </select><br>
         <label for="class_type">Class Type:</label>
         <select id="class_type" name="class_type" required>
           <option value="theory" <?php if ($class_type == 'theory')

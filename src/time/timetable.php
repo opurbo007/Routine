@@ -8,19 +8,14 @@
 
 <body>
   <h2>Timetable</h2>
-  <a href="../add/add_timetable.php">Add Timetable Entry</a>
+  <a href="../../add/add_timetable.php">Add Timetable Entry</a>
 
   <form action="" method="get">
-    <label for="search_day">Search by Day:</label>
-    <select id="search_day" name="search_day">
-      <option value="">All Days</option>
-      <option value="Monday">Monday</option>
-      <option value="Tuesday">Tuesday</option>
-      <option value="Wednesday">Wednesday</option>
-      <option value="Thursday">Thursday</option>
-      <option value="Friday">Friday</option>
-      <option value="Saturday">Saturday</option>
-      <option value="Sunday">Sunday</option>
+    <label for="search_class_type">Search by Class Type:</label>
+    <select id="search_class_type" name="search_class_type">
+      <option value="">All Class Types</option>
+      <option value="theory">Theory</option>
+      <option value="lab">Lab</option>
     </select>
     <input type="submit" value="Search">
   </form>
@@ -30,7 +25,6 @@
       <tr>
         <th>Start Time</th>
         <th>End Time</th>
-        <th>Day</th>
         <th>Class Type</th>
         <th>Actions</th>
       </tr>
@@ -47,12 +41,12 @@
         die("Connection failed: " . $conn->connect_error);
       }
 
-      $search_day = $_GET['search_day'] ?? '';
+      $search_class_type = $_GET['search_class_type'] ?? '';
 
-      $sql_timetable = "SELECT * FROM Timetable";
+      $sql_timetable = "SELECT * FROM timeslot";
 
-      if (!empty($search_day)) {
-        $sql_timetable .= " WHERE day = '$search_day'";
+      if (!empty($search_class_type)) {
+        $sql_timetable .= " WHERE class_type = '$search_class_type'";
       }
 
       $result_timetable = $conn->query($sql_timetable);
@@ -62,13 +56,11 @@
           $timetable_id = $row['timetable_id'];
           $start_time = $row['start_time'];
           $end_time = $row['end_time'];
-          $day = $row['day'];
           $class_type = $row['class_type'];
 
           echo "<tr>";
           echo "<td>$start_time</td>";
           echo "<td>$end_time</td>";
-          echo "<td>$day</td>";
           echo "<td>$class_type</td>";
           echo "<td>
                             <a href='edit_timetable.php?timetable_id=$timetable_id'>Edit</a>
@@ -77,7 +69,7 @@
           echo "</tr>";
         }
       } else {
-        echo "<tr><td colspan='5'>No timetable entries found.</td></tr>";
+        echo "<tr><td colspan='4'>No timetable entries found.</td></tr>";
       }
 
       $conn->close();
