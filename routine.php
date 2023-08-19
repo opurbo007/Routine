@@ -4,9 +4,19 @@
 <head>
   <title>Generated Routine</title>
   <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
     table {
       border-collapse: collapse;
       width: 100%;
+      margin-bottom: 30px;
     }
 
     th,
@@ -37,7 +47,15 @@
   $selectedBatch = $_POST['batch'];
   $selectedSemester = $_POST['semester'];
 
-  $routineQuery = "SELECT course.course_code, course.course_name, day,  start_time, end_time, room_number, name FROM routine
+  // Fetch the distinct time slots from the timeslot table
+  $timeSlotQuery = "SELECT DISTINCT start_time, end_time FROM timeslot";
+  $timeSlotResult = $connection->query($timeSlotQuery);
+  $timeSlots = array();
+  while ($row = $timeSlotResult->fetch_assoc()) {
+    $timeSlots[] = $row;
+  }
+
+  $routineQuery = "SELECT course.course_code, course.course_name, day, start_time, end_time, room_number, name FROM routine
                    INNER JOIN course ON routine.course_id = course.course_id
                    INNER JOIN room ON routine.room_id = room.room_id
                    INNER JOIN teachers ON routine.teacher_id = teachers.teacher_id
@@ -49,17 +67,54 @@
   $routineResult = $routineStmt->get_result();
 
   echo "<table>";
-  echo "<tr><th>Course Code</th><th>Course Name</th><th>Day</th><th>Time</th><th>Room</th><th>Teacher</th></tr>";
+  echo "<tr><th >Day & Time</th>";
 
-  while ($row = $routineResult->fetch_assoc()) {
+  $timeSlotsToShow = array(); // Store time slots that have at least one class scheduled
+  
+  foreach ($timeSlots as $timeSlot) {
+    $found = false;
+    while ($row = $routineResult->fetch_assoc()) {
+      if ($row['start_time'] == $timeSlot['start_time'] && $row['end_time'] == $timeSlot['end_time']) {
+        $found = true;
+        break;
+      }
+    }
+
+    if ($found) {
+      echo "<th colspan='2'>{$timeSlot['start_time']} - {$timeSlot['end_time']}</th>";
+      $timeSlotsToShow[] = $timeSlot;
+    }
+  }
+
+  echo "</tr>";
+
+
+
+  $days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+  foreach ($days as $day) {
     echo "<tr>";
-    echo "<td>{$row['course_code']}</td>";
-    echo "<td>{$row['course_name']}</td>";
-    echo "<td>{$row['day']}</td>";
+    echo "<td>$day</td>";
 
-    echo "<td>{$row['start_time']} - {$row['end_time']}</td>";
-    echo "<td>{$row['room_number']}</td>";
-    echo "<td>{$row['name']}</td>";
+    foreach ($timeSlotsToShow as $timeSlot) {
+      echo "<td colspan='2'>";
+
+      $routineResult->data_seek(0); // Reset the result pointer
+      $found = false;
+      while ($row = $routineResult->fetch_assoc()) {
+        if ($row['day'] == $day && $row['start_time'] == $timeSlot['start_time'] && $row['end_time'] == $timeSlot['end_time']) {
+          echo "{$row['course_code']}<br>({$row['course_name']})<br><b>{$row['name']}<b><br>";
+          $found = true;
+        }
+      }
+
+      if (!$found) {
+        echo "Off day";
+      }
+
+      echo "</td>";
+    }
+
     echo "</tr>";
   }
 

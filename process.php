@@ -7,7 +7,6 @@
 
 <body>
 
-
   <?php
   $servername = "localhost";
   $username = "root";
@@ -50,40 +49,37 @@
   $courseStmt->execute();
   $courseResult = $courseStmt->get_result();
 
-  // Fetch days from the days table
-  $daysQuery = "SELECT day_name FROM days";
-  $daysResult = $connection->query($daysQuery);
-  $dayOptions = "";
-  while ($daysRow = $daysResult->fetch_assoc()) {
-    $dayName = $daysRow['day_name'];
-    $dayOptions .= "<option value='$dayName'>$dayName</option>";
-  }
-
   while ($courseRow = $courseResult->fetch_assoc()) {
     echo "<h2>{$courseRow['course_name']}</h2>";
-    echo "<label for='day'>Select Day:</label>";
-    echo "<select name='day[{$courseRow['course_id']}]'>$dayOptions</select><br>";
 
-    $courseType = $courseRow['course_type'];
+    echo "<div class='day-time-fields'>";
+    foreach (['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] as $dayName) {
+      echo "<div class='day-time-field'>";
+      echo "<label for='{$courseRow['course_id']}_{$dayName}'>$dayName:</label>";
+      echo "<input type='checkbox' name='day[{$courseRow['course_id']}][]' value='$dayName' id='{$courseRow['course_id']}_{$dayName}'>";
 
-    // Fetch appropriate time slots based on course type
-    $timetableTimeQuery = "SELECT DISTINCT start_time, end_time FROM timeslot WHERE class_type = ?";
+      $courseType = $courseRow['course_type'];
 
-    $timetableTimeStmt = $connection->prepare($timetableTimeQuery);
-    $timetableTimeStmt->bind_param("s", $courseType);
-    $timetableTimeStmt->execute();
-    $timetableTimeResult = $timetableTimeStmt->get_result();
+      // Fetch appropriate time slots based on course type
+      $timetableTimeQuery = "SELECT DISTINCT start_time, end_time FROM timeslot WHERE class_type = ?";
 
-    echo "<label for='time'>Select Time:</label>";
-    echo "<select name='time[{$courseRow['course_id']}]'>";
+      $timetableTimeStmt = $connection->prepare($timetableTimeQuery);
+      $timetableTimeStmt->bind_param("s", $courseType);
+      $timetableTimeStmt->execute();
+      $timetableTimeResult = $timetableTimeStmt->get_result();
 
-    while ($timetableTimeRow = $timetableTimeResult->fetch_assoc()) {
-      $startTime = $timetableTimeRow['start_time'];
-      $endTime = $timetableTimeRow['end_time'];
-      echo "<option value='$startTime|$endTime'>$startTime - $endTime</option>";
+      echo "<select name='time[{$courseRow['course_id']}][$dayName]'>";
+      while ($timetableTimeRow = $timetableTimeResult->fetch_assoc()) {
+        $startTime = $timetableTimeRow['start_time'];
+        $endTime = $timetableTimeRow['end_time'];
+        echo "<option value='$startTime|$endTime'>$startTime - $endTime</option>";
+      }
+      echo "</select><br>";
+
+      echo "</div>";
     }
+    echo "</div>";
 
-    echo "</select><br>";
 
     // Fetch and display room options based on course type
     $roomQuery = "SELECT room_id, room_number, room_type FROM room WHERE room_type = ?";
