@@ -16,28 +16,35 @@
 
   $connection = new mysqli($servername, $username, $password, $dbname);
 
-  if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $dayData = $_POST['day'];
-    $timeData = $_POST['time'];
-    $roomData = $_POST['room'];
-    $teacherData = $_POST['teacher'];
+  if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['day'])) {
+    $selectedBatch = $_POST['batch'];
+    $selectedSemester = $_POST['semester'];
+    $selectedDays = $_POST['day'];
+    $selectedTimes = $_POST['time'];
+    // $selectedEndTimes = $_POST['end_time'];
+    $selectedRooms = $_POST['room'];
+    $selectedTeachers = $_POST['teacher'];
 
-    foreach ($dayData as $courseId => $selectedDay) {
-      $selectedTime = $timeData[$courseId];
-      $selectedRoom = $roomData[$courseId];
-      $selectedTeacher = $teacherData[$courseId];
+    foreach ($selectedDays as $courseId => $selectedDay) {
+      $selectedTimeRange = explode("|", $selectedTimes[$courseId]);
+      $selectedTime = $selectedTimeRange[0];
+      $selectedEndTime = $selectedTimeRange[1];
+      $selectedRoom = $selectedRooms[$courseId];
+      $selectedTeacher = $selectedTeachers[$courseId];
 
-      // Perform database insert here using the routine table
-      // Example query (replace with your actual table name and columns):
-      $insertQuery = "INSERT INTO routine (course_id, day, time, room_id, teacher_id) VALUES (?, ?, ?, ?, ?)";
+      // Insert the data into the routine table
+      $insertQuery = "INSERT INTO routine (batch, semester, course_id, day, start_time, end_time, room_id, teacher_id)
+                      VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
       $insertStmt = $connection->prepare($insertQuery);
-      $insertStmt->bind_param("isssi", $courseId, $selectedDay, $selectedTime, $selectedRoom, $selectedTeacher);
+      $insertStmt->bind_param("ssisssii", $selectedBatch, $selectedSemester, $courseId, $selectedDay, $selectedTime, $selectedEndTime, $selectedRoom, $selectedTeacher);
       $insertStmt->execute();
     }
 
-    echo "Routine generated and stored in the database.";
+    echo "Routine generated successfully!";
   }
   ?>
+
 </body>
 
 </html>
