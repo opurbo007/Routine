@@ -67,7 +67,7 @@
   $routineResult = $routineStmt->get_result();
 
   echo "<table>";
-  echo "<tr><th >Day & Time</th>";
+  echo "<tr><th>Day & Time</th>";
 
   $timeSlotsToShow = array(); // Store time slots that have at least one class scheduled
   
@@ -81,7 +81,9 @@
     }
 
     if ($found) {
-      echo "<th colspan='2'>{$timeSlot['start_time']} - {$timeSlot['end_time']}</th>";
+      $startTime = date("H:i", strtotime($timeSlot['start_time']));
+      $endTime = date("H:i", strtotime($timeSlot['end_time']));
+      echo "<th colspan='3'>$startTime - $endTime</th>";
       $timeSlotsToShow[] = $timeSlot;
     }
   }
@@ -97,13 +99,13 @@
     echo "<td>$day</td>";
 
     foreach ($timeSlotsToShow as $timeSlot) {
-      echo "<td colspan='2'>";
+      echo "<td colspan='3'>";
 
       $routineResult->data_seek(0); // Reset the result pointer
       $found = false;
       while ($row = $routineResult->fetch_assoc()) {
         if ($row['day'] == $day && $row['start_time'] == $timeSlot['start_time'] && $row['end_time'] == $timeSlot['end_time']) {
-          echo "{$row['course_code']}<br>({$row['course_name']})<br><b>{$row['name']}<b><br>";
+          echo "{$row['course_code']}<br>{$row['course_name']}<br><b>{$row['name']}</b><br>({$row['room_number']})<br>";
           $found = true;
         }
       }
