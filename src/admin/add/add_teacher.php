@@ -53,6 +53,7 @@
         <label for="position">Position:</label>
         <select id="position" name="position" required>
             <option value="" disabled selected>Select a position</option>
+            <option value="Dean">Dean</option>
             <option value="Professor">Professor</option>
             <option value="Associate Professor">Associate Professor</option>
             <option value="Assistant Professor">Assistant Professor</option>
@@ -123,7 +124,7 @@
         $department_id = $_POST["department_id"];
         $position = $_POST["position"];
         $mail = $_POST["mail"];
-        $password = password_hash($_POST["password"], PASSWORD_DEFAULT); // Hash the password
+        $password = $_POST["password"];
         $courses = $_POST["courses"];
 
         // Check if the teacher with the given mobile number already exists
@@ -133,20 +134,34 @@
         if ($result_check_teacher->num_rows > 0) {
             echo "<p>Teacher with the given mobile number already exists!</p>";
         } else {
-            $sql_insert_teacher = "INSERT INTO Teachers (name, mobile, department_id, position, mail, password) VALUES ('$name', '$mobile', $department_id, '$position', '$mail', '$password')";
+            // Handle picture upload
+            if ($_FILES["picture"]["error"] === UPLOAD_ERR_OK) {
+                $picture_name = $_FILES["picture"]["name"];
+                $picture_tmp_name = $_FILES["picture"]["tmp_name"];
+                $picture_destination = "uploads/" . $picture_name; // Adjust the destination directory as needed
+    
+                if (move_uploaded_file($picture_tmp_name, $picture_destination)) {
+                    // Picture uploaded successfully, proceed with database insertion
+                    $sql_insert_teacher = "INSERT INTO Teachers (name, mobile, department_id, position, mail, password, picture) VALUES ('$name', '$mobile', $department_id, '$position', '$mail', '$password', '$picture_destination')";
 
-            if ($conn->query($sql_insert_teacher) === TRUE) {
-                $teacher_id = $conn->insert_id;
+                    if ($conn->query($sql_insert_teacher) === TRUE) {
+                        $teacher_id = $conn->insert_id;
 
-                // Insert selected courses into TeacherCourses table
-                foreach ($courses as $course_code) {
-                    $sql_insert_teacher_courses = "INSERT INTO TeacherCourses (teacher_id, course_id) SELECT $teacher_id, course_id FROM Course WHERE course_code = '$course_code'";
-                    $conn->query($sql_insert_teacher_courses);
+                        // Insert selected courses into TeacherCourses table
+                        foreach ($courses as $course_code) {
+                            $sql_insert_teacher_courses = "INSERT INTO TeacherCourses (teacher_id, course_id) SELECT $teacher_id, course_id FROM Course WHERE course_code = '$course_code'";
+                            $conn->query($sql_insert_teacher_courses);
+                        }
+
+                        echo "<p>New teacher added successfully!</p>";
+                    } else {
+                        echo "<p>Error adding teacher: " . $conn->error . "</p>";
+                    }
+                } else {
+                    echo "<p>Error uploading picture.</p>";
                 }
-
-                echo "<p>New teacher added successfully!</p>";
             } else {
-                echo "<p>Error adding teacher: " . $conn->error . "</p>";
+                echo "<p>Error uploading picture: " . $_FILES["picture"]["error"] . "</p>";
             }
         }
     }
@@ -154,6 +169,7 @@
     // Close the database connection
     $conn->close();
     ?>
+
 </body>
 
 </html>

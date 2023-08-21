@@ -57,7 +57,7 @@
     if ($result->num_rows > 0) {
       while ($row = $result->fetch_assoc()) {
         echo "<tr>
-                  <td><img src='../../{$row['picture']}' width='50' height='50'></td>
+                  <td><img src='../add/{$row['picture']}' width='50' height='50'></td>
                   <td>{$row['name']}</td>
                   <td>{$row['mobile']}</td>
                   <td>{$row['department_name']}</td>
