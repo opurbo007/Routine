@@ -107,17 +107,6 @@
         if ($row['day'] == $day && $row['start_time'] == $timeSlot['start_time'] && $row['end_time'] == $timeSlot['end_time']) {
           echo "{$row['course_code']}<br>{$row['course_name']}<br><b>{$row['name']}</b><br>({$row['room_number']})<br>";
           $found = true;
-          // Add an "Edit" button
-          echo "<form action='edit_routine.php' method='get'>";
-          echo "<input type='hidden' name='batch' value='$selectedBatch'>";
-          echo "<input type='hidden' name='semester' value='$selectedSemester'>";
-          echo "<input type='hidden' name='session' value='$selectedSession'>";
-          echo "<input type='hidden' name='day' value='$day'>";
-          echo "<input type='hidden' name='start_time' value='{$timeSlot['start_time']}'>";
-          echo "<input type='hidden' name='end_time' value='{$timeSlot['end_time']}'>";
-          echo "<input type='submit' value='Edit'>";
-          echo "</form>";
-
 
         }
       }

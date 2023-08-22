@@ -36,9 +36,9 @@
         $selectedTeacher = $selectedTeachers[$courseId];
 
         // Check room and teacher availability
-        $availabilityQuery = "SELECT * FROM routine WHERE day = ? AND start_time < ? AND end_time > ? AND (room_id = ? OR teacher_id = ?)";
+        $availabilityQuery = "SELECT * FROM routine WHERE day = ? AND ((start_time <= ? AND end_time >= ?) OR (start_time <= ? AND end_time >= ?)) AND (room_id = ? OR teacher_id = ?)";
         $availabilityStmt = $connection->prepare($availabilityQuery);
-        $availabilityStmt->bind_param("sssii", $selectedDay, $selectedEndTime, $selectedTime, $selectedRoom, $selectedTeacher);
+        $availabilityStmt->bind_param("ssssssi", $selectedDay, $selectedTime, $selectedTime, $selectedEndTime, $selectedEndTime, $selectedRoom, $selectedTeacher);
         $availabilityStmt->execute();
         $availabilityResult = $availabilityStmt->get_result();
 
