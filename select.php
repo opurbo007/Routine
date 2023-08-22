@@ -46,6 +46,16 @@
 
     <br>
 
+    <label for="session">Select Session:</label>
+    <select name="session" id="session">
+      <option value="Spring">Spring</option>
+
+      <option value="Fall">Fall</option>
+
+    </select>
+
+    <br>
+
     <input type="submit" value="Submit">
   </form>
 </body>
