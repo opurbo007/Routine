@@ -23,6 +23,9 @@
     $selectedTimes = $_POST['time'];
     $selectedRooms = $_POST['room'];
     $selectedTeachers = $_POST['teacher'];
+    $selectedSession = $_POST['session'];
+
+
 
     foreach ($selectedDays as $courseId => $days) {
       foreach ($days as $selectedDay) {
@@ -33,14 +36,15 @@
         $selectedTeacher = $selectedTeachers[$courseId];
 
         // Insert the data into the routine table
-        $insertQuery = "INSERT INTO routine (batch, semester, course_id, day, start_time, end_time, room_id, teacher_id)
-                        VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $insertQuery = "INSERT INTO routine (batch, semester, session, course_id, day, start_time, end_time, room_id, teacher_id)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         $insertStmt = $connection->prepare($insertQuery);
         $insertStmt->bind_param(
-          "ssisssii",
+          "iissssssi",
           $selectedBatch,
           $selectedSemester,
+          $selectedSession,
           $courseId,
           $selectedDay,
           $selectedTime,
@@ -49,10 +53,15 @@
           $selectedTeacher
         );
         $insertStmt->execute();
+
+
       }
     }
 
     echo "Routine generated successfully!";
+
+    echo "$selectedSession";
+
   }
   ?>
 

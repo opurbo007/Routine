@@ -14,10 +14,13 @@
   $dbname = "routine";
 
   $connection = new mysqli($servername, $username, $password, $dbname);
-  //take batch info
+
+  // Take batch, semester, and session info from previous page
   $selectedBatch = $_POST['batch'];
   $selectedSemester = $_POST['semester'];
+  $selectedSession = $_POST['session'];
 
+  // Fetch batch name
   $batchQuery = "SELECT batch_number FROM batch WHERE batch_id = ?";
   $batchStmt = $connection->prepare($batchQuery);
   $batchStmt->bind_param("i", $selectedBatch);
@@ -25,7 +28,8 @@
   $batchResult = $batchStmt->get_result();
   $batchRow = $batchResult->fetch_assoc();
   $selectedBatchName = $batchRow['batch_number'];
-  //take semester info
+
+  // Fetch semester name
   $semesterQuery = "SELECT semester_name FROM semester WHERE semester_id = ?";
   $semesterStmt = $connection->prepare($semesterQuery);
   $semesterStmt->bind_param("i", $selectedSemester);
@@ -33,15 +37,18 @@
   $semesterResult = $semesterStmt->get_result();
   $semesterRow = $semesterResult->fetch_assoc();
   $selectedSemesterName = $semesterRow['semester_name'];
-  //form to generate routine
-  
-  echo "<form action='generate_routine.php' method='post'>";
 
+  // Display batch, semester, and session info
+  echo "<h2>Selected Batch: $selectedBatchName</h2>";
+  echo "<h2>Selected Semester: $selectedSemesterName</h2>";
+  echo "<h2>Selected Session: $selectedSession</h2>";
+
+  // Display the form to generate the routine
+  echo "<form action='generate_routine.php' method='post'>";
   echo "<input type='hidden' name='batch' value='$selectedBatch'>";
   echo "<input type='hidden' name='semester' value='$selectedSemester'>";
+  echo "<input type='hidden' name='session' value='$selectedSession'>";
 
-  echo "<p>Selected Batch: $selectedBatchName</p>";
-  echo "<p>Selected Semester: $selectedSemesterName</p>";
   // Fetch and display courses for the selected semester
   $courseQuery = "SELECT course_id, course_name, course_type FROM course WHERE semester_id = ?";
   $courseStmt = $connection->prepare($courseQuery);
