@@ -48,11 +48,12 @@
   $selectedSemester = $_POST['semester'];
   $selectedSession = $_POST['session'];
 
-  $routineQuery = "SELECT course.course_code, course.course_name, day, start_time, end_time, room_number, name FROM routine
-                 INNER JOIN course ON routine.course_id = course.course_id
-                 INNER JOIN room ON routine.room_id = room.room_id
-                 INNER JOIN teachers ON routine.teacher_id = teachers.teacher_id
-                 WHERE batch = ? AND semester = ? AND session = ?"; // Adding session condition
+  $routineQuery = "SELECT routine_id, course.course_code, course.course_name, day, start_time, end_time, room_number, name FROM routine
+  INNER JOIN course ON routine.course_id = course.course_id
+  INNER JOIN room ON routine.room_id = room.room_id
+  INNER JOIN teachers ON routine.teacher_id = teachers.teacher_id
+  WHERE batch = ? AND semester = ? AND session = ?";
+  // Adding session condition
   
   $routineStmt = $connection->prepare($routineQuery);
   $routineStmt->bind_param("iis", $selectedBatch, $selectedSemester, $selectedSession); // Adding session parameter
@@ -106,6 +107,12 @@
       while ($row = $routineResult->fetch_assoc()) {
         if ($row['day'] == $day && $row['start_time'] == $timeSlot['start_time'] && $row['end_time'] == $timeSlot['end_time']) {
           echo "{$row['course_code']}<br>{$row['course_name']}<br><b>{$row['name']}</b><br>({$row['room_number']})<br>";
+
+
+          echo "<a href='edit_schedule.php?routine_id={$row['routine_id']}'>Edit</a> | ";
+          echo "<a href='delete_schedule.php?routine_id={$row['routine_id']}'>Delete</a><br>";
+
+
           $found = true;
 
         }
