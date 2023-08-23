@@ -109,8 +109,8 @@
           echo "{$row['course_code']}<br>{$row['course_name']}<br><b>{$row['name']}</b><br>({$row['room_number']})<br>";
 
 
-          echo "<a href='edit_schedule.php?routine_id={$row['routine_id']}'>Edit</a> | ";
-          echo "<a href='delete_schedule.php?routine_id={$row['routine_id']}'>Delete</a><br>";
+          echo "<a href='edit_routine.php?routine_id={$row['routine_id']}'>Edit</a> | ";
+          echo "<a href='delete_routine.php?routine_id={$row['routine_id']}'>Delete</a><br>";
 
 
           $found = true;
