@@ -5,6 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -38,34 +41,7 @@
     }
   </style>
 </head>
-<script type="text/javascript">
-  function dropdown() {
-    document.querySelector("#submenu").classList.toggle("hidden");
-    document.querySelector("#arrow").classList.toggle("rotate-0");
-  }
-  dropdown();
-  function dropdownview() {
-    document.querySelector("#submenuview").classList.toggle("hidden");
-    document.querySelector("#arrow2").classList.toggle("rotate-0");
-  }
-  dropdownview();
 
-  function dropdownRoutine() {
-    document.querySelector("#submenuRoutine").classList.toggle("hidden");
-    document.querySelector("#arrow3").classList.toggle("rotate-0");
-  }
-  dropdownRoutine();
-
-
-  function toggleNavbar() {
-    const navContainer = document.querySelector(".nav-container");
-    const toggleButton = document.querySelector(".toggle-button");
-
-    navContainer.classList.toggle("hidden");
-    toggleButton.classList.toggle("hidden");
-  }
-
-</script>
 
 <body class="bg-gray-100 ">
   <!-- show when navber is close -->
@@ -91,7 +67,7 @@
         <ul class="relative m-0 list-none px-[0.2rem] pb-12">
           <li class="relative pt-4">
 
-            <a href="../admin/add/add_teacher.php"
+            <a href="../add/add_teacher.php"
               class="flex cursor-pointer items-center truncate rounded-[5px] px-6 py-[0.45rem] text-[0.85rem] text-white outline-none transition duration-300 ease-linear hover:bg-gray-300 hover:text-inherit hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none  ">
               <span class="mr-4 h-5 w-5 hover:text-gray-300">
                 <i class="fas fa-home"></i>
@@ -116,12 +92,12 @@
             </div>
             <div class="text-left text-sm mt-2 w-full mx-auto text-gray-200" id="submenuRoutine">
               <!-- inside dropdown  -->
-              <a href="../admin/routine/generate/select.php">
+              <a href="../routine/generate/select.php">
                 <h1 class="cursor-pointer py-2 ml-16 pl-2 hover:bg-gray-300 hover:text-black rounded-md mt-1">Make
                   Routine
                 </h1>
               </a>
-              <a href="../admin/routine/show/select.php">
+              <a href="../routine/show/select.php">
                 <h1 class="cursor-pointer py-2 ml-16 pl-2 hover:bg-gray-300 hover:text-black rounded-md mt-1">View
                   Routine
                 </h1>
@@ -193,32 +169,32 @@
             </div>
             <div class="text-left text-sm mt-2 w-full mx-auto text-gray-200" id="submenuview">
               <!-- inside dropdown  -->
-              <a href="../admin/teacher/teacher.php">
+              <a href="../teacher/teacher.php">
                 <h1 class="cursor-pointer py-2 ml-16 pl-2 hover:bg-gray-300 hover:text-black rounded-md mt-1">Teacher
                 </h1>
               </a>
-              <a href="../admin/batch/batch.php">
+              <a href="../batch/batch.php">
                 <h1 class="cursor-pointer py-2 ml-16 pl-2 hover:bg-gray-300 hover:text-black rounded-md mt-1">Batch
                 </h1>
               </a>
-              <a href="../admin/dept/dept.php">
+              <a href="../dept/dept.php">
                 <h1 class="cursor-pointer py-2 ml-16 pl-2 hover:bg-gray-300 hover:text-black rounded-md mt-1">Department
                 </h1>
               </a>
-              <a href="../admin/semester/semester.php">
+              <a href="../semester/semester.php">
                 <h1 class="cursor-pointer py-2 ml-16 pl-2 hover:bg-gray-300 hover:text-black rounded-md mt-1">Semeter
                 </h1>
               </a>
-              <a href="../admin/course/course.php">
+              <a href="../course/course.php">
                 <h1 class="cursor-pointer py-2 ml-16 pl-2 hover:bg-gray-300 hover:text-black rounded-md mt-1">Course
                 </h1>
               </a>
-              <a href="../admin/room/room.php">
+              <a href="../room/room.php">
                 <h1 class="cursor-pointer py-2 ml-16 pl-2 hover:bg-gray-300 hover:text-black rounded-md mt-1">Room
                 </h1>
               </a>
 
-              <a href="../admin/time/timetable.php">
+              <a href="../time/timetable.php">
                 <h1 class="cursor-pointer py-2 ml-16 pl-2 hover:bg-gray-300 hover:text-black rounded-md mt-1">Timeslot
                 </h1>
               </a>
@@ -227,7 +203,7 @@
           </li>
           <li class="relative pt-4">
 
-            <a href="../admin/add/add_teacher.php"
+            <a href="/"
               class="flex cursor-pointer items-center truncate rounded-[5px] px-6 py-[0.45rem] text-[0.85rem] text-white outline-none transition duration-300 ease-linear hover:bg-gray-300 hover:text-inherit hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none  ">
               <span class="mr-4 h-5 w-5 hover:text-gray-300">
                 <i class="fa fa-sign-out" aria-hidden="true"></i>

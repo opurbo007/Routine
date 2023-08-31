@@ -59,6 +59,7 @@ include("../../include/adminNavbar.php");
                 </div>
                 <div class="mt-5">
                     <form method="post">
+
                         <div class="relative mt-6">
 
                             <input type="text" id="semester_name" name="semester_name" required

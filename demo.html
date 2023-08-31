@@ -11,22 +11,37 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
 <body class="bg-gray-100">
-  <div class="relative w-full inline-block shadow-lg">
-    <select id="dropdownHover"
-      class="w-full text-gray-700 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5"
-      aria-labelledby="dropdownHoverButton">
-      <option value="dashboard" class="bg-white hover:bg-gray-100">Dashboard</option>
-      <option value="settings" class="bg-white hover:bg-gray-100">Settings</option>
-      <option value="earnings" class="bg-white hover:bg-gray-100">Earnings</option>
-      <option value="signout" class="bg-white hover:bg-gray-100">Sign out</option>
-    </select>
-    <i
-      class="fas fa-chevron-down absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-500"></i>
+  <div class="flex items-center mb-4">
+    <label for="start_hour" class="mr-2">Start Time:</label>
+    <input type="number" id="start_hour" name="start_hour" min="0" max="23" required
+      class="w-16 px-2 py-1 text-gray-700 border rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-300 focus:outline-none">
+    <span class="mx-1">:</span>
+    <input type="number" id="start_minute" name="start_minute" min="0" max="59" required
+      class="w-16 px-2 py-1 text-gray-700 border rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-300 focus:outline-none">
+  </div>
+
+  <div class="flex items-center">
+    <label for="end_hour" class="mr-2">End Time:</label>
+    <input type="number" id="end_hour" name="end_hour" min="0" max="23" required
+      class="w-16 px-2 py-1 text-gray-700 border rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-300 focus:outline-none">
+    <span class="mx-1">:</span>
+    <input type="number" id="end_minute" name="end_minute" min="0" max="59" required
+      class="w-16 px-2 py-1 text-gray-700 border rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-300 focus:outline-none">
   </div>
 
 
-
 </body>
+<script>
+  swal({
+    title: "Good job!",
+    text: "You clicked the button!",
+    icon: "success",
+    button: "Aww yiss!",
+  });
+</script>
 
 </html>
