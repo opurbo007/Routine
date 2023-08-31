@@ -38,6 +38,34 @@
     }
   </style>
 </head>
+<script type="text/javascript">
+  function dropdown() {
+    document.querySelector("#submenu").classList.toggle("hidden");
+    document.querySelector("#arrow").classList.toggle("rotate-0");
+  }
+  dropdown();
+  function dropdownview() {
+    document.querySelector("#submenuview").classList.toggle("hidden");
+    document.querySelector("#arrow2").classList.toggle("rotate-0");
+  }
+  dropdownview();
+
+  function dropdownRoutine() {
+    document.querySelector("#submenuRoutine").classList.toggle("hidden");
+    document.querySelector("#arrow3").classList.toggle("rotate-0");
+  }
+  dropdownRoutine();
+
+
+  function toggleNavbar() {
+    const navContainer = document.querySelector(".nav-container");
+    const toggleButton = document.querySelector(".toggle-button");
+
+    navContainer.classList.toggle("hidden");
+    toggleButton.classList.toggle("hidden");
+  }
+
+</script>
 
 <body class="bg-gray-100 ">
   <!-- show when navber is close -->
@@ -46,11 +74,10 @@
   </button>
 
   <!-- ---------------------------- -->
-  <div class="container mx-auto md:flex ">
+  <div class="container mx-auto flex-container ">
 
     <!-- Sidenav -->
-    <div class="nav-container md:w-60 md:fixed md:left-0 md:top-0 md:h-full md:bg-zinc-800 transform md:transform-none"
-      :class="{'translate-x-0': navActive, '-translate-x-full': !navActive}">
+    <div class="nav-container">
       <nav class="fixed left-0 top-0 z-[1035] h-full w-60  overflow-hidden bg-zinc-800" id="sidenav-1">
         <!-- Navbar content -->
         <div class="mb-3 flex items-center justify-center border-b-2 border-solid border-gray-100 py-6  outline-none">
@@ -117,32 +144,32 @@
             </div>
             <div class="text-left text-sm mt-2 w-full mx-auto text-gray-200" id="submenu">
               <!-- inside dropdown  -->
-              <a href="../admin/add/add_teacher.php">
+              <a href="../add/add_teacher.php">
                 <h1 class="cursor-pointer py-2 ml-16 pl-2 hover:bg-gray-300 hover:text-black rounded-md mt-1">Teacher
                 </h1>
               </a>
-              <a href="../admin/add/add_batch.php">
+              <a href="../add/add_batch.php">
                 <h1 class="cursor-pointer py-2 ml-16 pl-2 hover:bg-gray-300 hover:text-black rounded-md mt-1">Batch
                 </h1>
               </a>
-              <a href="../admin/add/add_department.php">
+              <a href="../add/add_department.php">
                 <h1 class="cursor-pointer py-2 ml-16 pl-2 hover:bg-gray-300 hover:text-black rounded-md mt-1">Department
                 </h1>
               </a>
-              <a href="../admin/add/add_semester.php">
+              <a href="../add/add_semester.php">
                 <h1 class="cursor-pointer py-2 ml-16 pl-2 hover:bg-gray-300 hover:text-black rounded-md mt-1">Semeter
                 </h1>
               </a>
-              <a href="../admin/add/add_course.php">
+              <a href="../add/add_course.php">
                 <h1 class="cursor-pointer py-2 ml-16 pl-2 hover:bg-gray-300 hover:text-black rounded-md mt-1">Course
                 </h1>
               </a>
-              <a href="../admin/add/add_room.php">
+              <a href="../add/add_room.php">
                 <h1 class="cursor-pointer py-2 ml-16 pl-2 hover:bg-gray-300 hover:text-black rounded-md mt-1">Room
                 </h1>
               </a>
 
-              <a href="../admin/add/add_timetable.php">
+              <a href="../add/add_timetable.php">
                 <h1 class="cursor-pointer py-2 ml-16 pl-2 hover:bg-gray-300 hover:text-black rounded-md mt-1">Timeslot
                 </h1>
               </a>
@@ -211,37 +238,3 @@
           </li>
         </ul>
     </div>
-  </div>
-
-  <script type="text/javascript">
-    function dropdown() {
-      document.querySelector("#submenu").classList.toggle("hidden");
-      document.querySelector("#arrow").classList.toggle("rotate-0");
-    }
-    dropdown();
-    function dropdownview() {
-      document.querySelector("#submenuview").classList.toggle("hidden");
-      document.querySelector("#arrow2").classList.toggle("rotate-0");
-    }
-    dropdownview();
-
-    function dropdownRoutine() {
-      document.querySelector("#submenuRoutine").classList.toggle("hidden");
-      document.querySelector("#arrow3").classList.toggle("rotate-0");
-    }
-    dropdownRoutine();
-
-
-    function toggleNavbar() {
-      const navContainer = document.querySelector(".nav-container");
-      const toggleButton = document.querySelector(".toggle-button");
-
-      navContainer.classList.toggle("hidden");
-      toggleButton.classList.toggle("hidden");
-    }
-    let navActive = false;
-
-    function toggleNavbar() {
-      navActive = !navActive;
-    }
-  </script>
