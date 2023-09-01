@@ -25,11 +25,16 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["department_id"])) {
     while ($row = $result_courses->fetch_assoc()) {
       $course_code = $row["course_code"];
       $course_name = $row["course_name"];
-      echo "<li><input type='checkbox' name='courses[]' value='$course_code'>$course_name</li>";
+      echo "<li class='flex items-center mb-2 border border-gray-300 rounded p-2 shadow-sm'>
+      <input type='checkbox' name='courses[]' value='$course_code' class='mr-2 h-5 w-5 text-blue-500 border-gray-300 focus:ring-blue-500'>
+      <span class='text-black'>$course_name</span>
+  </li>";
+
+
     }
     echo "</ul>";
   } else {
-    echo "<p>No courses available for this department.</p>";
+    echo "<p class='text-red-500 text-center font-semibold mt-4'>No courses available for this department.</p>";
   }
 }
 

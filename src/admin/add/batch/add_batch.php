@@ -1,64 +1,72 @@
 <?php
-include("../../../database/config.php");
-include("../../include/adminNavbar.php");
-?>
 
+session_start();
+
+include("../../../../database/config.php");
+include("../../../include/adminNavbar.php");
+
+
+?>
 <div class="flex flex-col min-h-screen w-full">
 
     <?php
+    if (isset($_SESSION['exist'])) {
+        $existmsg = $_SESSION['exist'];
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $batch_number = $_POST["batch_number"];
-        $department_id = $_POST["department_id"];
-        $batch_shift = $_POST["batch_shift"];
-
-        // Check if the batch already exist
-        $sql_check_batch = "SELECT * FROM Batch WHERE batch_number = '$batch_number' AND department_id = $department_id AND batch_shift = '$batch_shift'";
-        $result_check_batch = $conn->query($sql_check_batch);
-
-        if ($result_check_batch->num_rows > 0) {
-            echo '<div class="flex items-center justify-center mt-6">  
-            <div id="errorMessage" class="flex w-96 shadow-lg rounded-lg">
-                <div class="bg-red-600 py-4 px-6 rounded-l-lg flex items-center">
-                    <i class="fas fa-times text-white"></i>
-                </div>
-                <div class="relative px-4 py-6 bg-white rounded-r-lg flex justify-between items-center w-full border border-l-transparent border-gray-200">
-                    <div>Error ! Batch Already Exist</div>
-                    <div class="absolute bottom-0 left-0 w-full h-1 bg-red-600"></div>
-                </div>
-            </div>
-        </div>';
-        } else {
-            // Insert the new batch into the Batch table
-            $sql_insert_batch = "INSERT INTO Batch (batch_number, department_id, batch_shift) VALUES ('$batch_number', $department_id, '$batch_shift')";
-
-            if ($conn->query($sql_insert_batch) === TRUE) {
-                echo '<div class="flex items-center justify-center mt-6">  
-                <div id="successMessage" class="flex w-96 shadow-lg rounded-lg">
-                    <div class="bg-green-600 py-4 px-6 rounded-l-lg flex items-center">
-                        <i class="fas fa-check text-white"></i>
-                    </div>
-                    <div class="relative px-4 py-6 bg-white rounded-r-lg flex justify-between items-center w-full border border-l-transparent border-gray-200">
-                        <div>Successfully Batch Added</div>
-                        <div class="absolute bottom-0 left-0 w-full h-1 bg-green-600"></div>
-                    </div>
-                </div>
-            </div>';
-            } else {
-                echo '<div class="flex items-center justify-center mt-6">  
-                <div id="errorMessage" class="flex w-96 shadow-lg rounded-lg">
-                    <div class="bg-red-600 py-4 px-6 rounded-l-lg flex items-center">
-                        <i class="fas fa-times text-white"></i>
-                    </div>
-                    <div class="relative px-4 py-6 bg-white rounded-r-lg flex justify-between items-center w-full border border-l-transparent border-gray-200">
-                        <div>Error ! Batch Not Add</div>
-                        <div class="absolute bottom-0 left-0 w-full h-1 bg-red-600"></div>
-                    </div>
-                </div>
-            </div>';
-            }
-        }
+        echo '<div class="flex items-center justify-center mt-6">  
+      <div id="errorMessage" class="flex w-96 shadow-lg rounded-lg">
+          <div class="bg-red-600 py-4 px-6 rounded-l-lg flex items-center">
+              <i class="fas fa-times text-white"></i>
+          </div>
+          <div class="relative px-4 py-6 bg-white rounded-r-lg flex justify-between items-center w-full border border-l-transparent border-gray-200">
+              <div>' . $existmsg . '</div>
+              <div class="absolute bottom-0 left-0 w-full h-1 bg-red-600"></div>
+          </div>
+      </div>
+  </div>';
+        unset($_SESSION['exist']);
     }
+    // Check if the success message session variable is set
+    if (isset($_SESSION['success_message'])) {
+        // Display the success message
+        $successMessage = $_SESSION['success_message'];
+        echo '<div class="flex items-center justify-center mt-6">  
+         <div id="successMessage" class="flex w-96 shadow-lg rounded-lg">
+             <div class="bg-green-600 py-4 px-6 rounded-l-lg flex items-center">
+                 <i class="fas fa-check text-white"></i>
+             </div>
+            <div class="relative px-4 py-6 bg-white rounded-r-lg flex justify-between items-center w-full border border-l-transparent border-gray-200">
+                <div>' . $successMessage . '</div>
+                <div class="absolute bottom-0 left-0 w-full h-1 bg-green-600"></div>
+            </div>
+        </div>
+    </div>';
+
+        // Clear the session variable
+        unset($_SESSION['success_message']);
+    }
+
+    // Check if the error message session variable is set (if needed)
+    if (isset($_SESSION['error_message'])) {
+        // Display the error message
+        $errorMessage = $_SESSION['error_message'];
+        echo '<div class="flex items-center justify-center mt-6">  
+         <div id="errorMessage" class="flex w-96 shadow-lg rounded-lg">
+             <div class="bg-red-600 py-4 px-6 rounded-l-lg flex items-center">
+                 <i class="fas fa-times text-white"></i>
+             </div>
+            <div class="relative px-4 py-6 bg-white rounded-r-lg flex justify-between items-center w-full border border-l-transparent border-gray-200">
+                <div>' . $errorMessage . '</div>
+                <div class="absolute bottom-0 left-0 w-full h-1 bg-red-600"></div>
+            </div>
+        </div>
+    </div>';
+
+        // Clear the session variable
+        unset($_SESSION['error_message']);
+    }
+
+
 
     // Fetch departments for dropdown
     $sql_departments = "SELECT * FROM Department";
@@ -74,7 +82,7 @@ include("../../include/adminNavbar.php");
                     <h1 class="text-2xl font-semibold text-gray-900">Add Batch</h1>
                 </div>
                 <div class="mt-5">
-                    <form method="post">
+                    <form method="post" action="insert.php">
                         <div class="relative mt-6">
 
                             <input type="text" id="batch_number" name="batch_number" required
@@ -104,7 +112,7 @@ include("../../include/adminNavbar.php");
                             </select>
                         </div>
                         <div class="relative mt-6 ">
-                            <div class="main flex border rounded-full overflow-hidden m-4 select-none">
+                            <div class="main flex border w-full rounded-full overflow-hidden my-4 select-none">
                                 <div class="title py-3 my-auto px-5 bg-gray-900 text-white text-sm font-semibold mr-3">
                                     S H I F T</div>
                                 <label for="day" class="flex radio p-2 cursor-pointer">
@@ -129,7 +137,7 @@ include("../../include/adminNavbar.php");
                 </form>
                 <p class="text-center text-sm text-gray-500">
                     View All Batch <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
-                    <a class="underline" href="../batch/batch.php">Here</a>
+                    <a class="underline" href="../../batch/batch.php">Here</a>
                 </p>
             </div>
         </div>
@@ -140,7 +148,7 @@ include("../../include/adminNavbar.php");
 $conn->close();
 ?>
 </div>
-<script src="../../include/index.js"></script>
+<script src="../../../include/index.js"></script>
 
 
 </body>

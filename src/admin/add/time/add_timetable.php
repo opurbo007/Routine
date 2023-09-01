@@ -1,48 +1,55 @@
 <?php
-include("../../../database/config.php");
-include("../../include/adminNavbar.php");
-
+session_start();
+include("../../../../database/config.php");
+include("../../../include/adminNavbar.php");
 ?>
-
 <div class="flex flex-col min-h-screen w-full">
 
     <?php
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $start_time = $_POST["start_hour"] . ":" . $_POST["start_minute"] . ":00";
-        $end_time = $_POST["end_hour"] . ":" . $_POST["end_minute"] . ":00";
-        $class_type = $_POST["class_type"];
-
-        $sql_insert_timetable = "INSERT INTO timeslot (start_time, end_time, class_type) VALUES ('$start_time', '$end_time', '$class_type')";
-
-        if ($conn->query($sql_insert_timetable) === TRUE) {
-            echo '<div class="flex items-center justify-center mt-6">  
-        <div id="successMessage" class="flex w-96 shadow-lg rounded-lg">
-            <div class="bg-green-600 py-4 px-6 rounded-l-lg flex items-center">
-                <i class="fas fa-check text-white"></i>
-            </div>
-            <div class="relative px-4 py-6 bg-white rounded-r-lg flex justify-between items-center w-full border border-l-transparent border-gray-200">
-                <div>Successfully TimeSlot Added</div>
-                <div class="absolute bottom-0 left-0 w-full h-1 bg-green-600"></div>
-            </div>
-        </div>
-    </div>';
-        } else {
-            echo '<div class="flex items-center justify-center mt-6">  
-    <div id="errorMessage" class="flex w-96 shadow-lg rounded-lg">
-                <div class="bg-red-600 py-4 px-6 rounded-l-lg flex items-center">
-                    <i class="fas fa-times text-white"></i>
-             </div>
-             <div class="relative px-4 py-6 bg-white rounded-r-lg flex      justify-between items-center w-full border border-l-transparent    border-gray-200">
-             <div>Error ! Time Not Add</div>
-                 <div class="absolute bottom-0 left-0 w-full h-1 bg-red-600"></div>
+    // error or succes msg 
+    if (isset($_SESSION['success_message'])) {
+        $successMessage = $_SESSION['success_message'];
+        echo '<div class="flex items-center justify-center mt-6">  
+             <div id="successMessage" class="flex w-96 shadow-lg rounded-lg">
+                 <div class="bg-green-600 py-4 px-6 rounded-l-lg flex items-center">
+                     <i class="fas fa-check text-white"></i>
+                 </div>
+                <div class="relative px-4 py-6 bg-white rounded-r-lg flex justify-between items-center w-full border border-l-transparent border-gray-200">
+                    <div>' . $successMessage . '</div>
+                    <div class="absolute bottom-0 left-0 w-full h-1 bg-green-600"></div>
                 </div>
-                </div>
-            </div>';
-        }
+            </div>
+        </div>';
 
+        unset($_SESSION['success_message']);
     }
+
+    if (isset($_SESSION['error_message'])) {
+
+        $errorMessage = $_SESSION['error_message'];
+        echo '<div class="flex items-center justify-center mt-6">  
+             <div id="errorMessage" class="flex w-96 shadow-lg rounded-lg">
+                 <div class="bg-red-600 py-4 px-6 rounded-l-lg flex items-center">
+                     <i class="fas fa-times text-white"></i>
+                 </div>
+                <div class="relative px-4 py-6 bg-white rounded-r-lg flex justify-between items-center w-full border border-l-transparent border-gray-200">
+                    <div>' . $errorMessage . '</div>
+                    <div class="absolute bottom-0 left-0 w-full h-1 bg-red-600"></div>
+                </div>
+            </div>
+        </div>';
+
+
+        unset($_SESSION['error_message']);
+    }
+
+
     ?>
+
+
+
+
 
     <div class="flex items-center justify-center flex-grow-2">
 
@@ -53,7 +60,7 @@ include("../../include/adminNavbar.php");
                     <h1 class="text-2xl font-semibold text-gray-900">Add Department</h1>
                 </div>
                 <div class="mt-5">
-                    <form method="post" id="addTimetableForm">
+                    <form method="post" action="insert.php" id="addTimetableForm">
 
                         <div class="relative mt-6">
                             <div class="flex items-center mb-4">
@@ -75,7 +82,7 @@ include("../../include/adminNavbar.php");
                             </div>
                         </div>
                         <div class="relative mt-6">
-                            <!-- <label for="class_type">Class Type:</label> -->
+
                             <select id="class_type" name="class_type" required
                                 class="w-full text-gray-700 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 border border-gray-300">
                                 <option value="" disabled selected>Select a class type</option>
@@ -90,7 +97,7 @@ include("../../include/adminNavbar.php");
                     </form>
                     <p class="text-center text-sm text-gray-500">
                         View All Room <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
-                        <a class="underline" href="../time/timetable.php">Here</a>
+                        <a class="underline" href="../../time/timetable.php">Here</a>
                     </p>
                 </div>
             </div>
@@ -102,7 +109,7 @@ include("../../include/adminNavbar.php");
 $conn->close();
 ?>
 </div>
-<script src="../../include/index.js"></script>
+<script src="../../../include/index.js"></script>
 
 
 </body>

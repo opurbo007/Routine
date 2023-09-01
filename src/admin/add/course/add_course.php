@@ -1,7 +1,7 @@
 <?php
-include("../../../database/config.php");
-include("../../include/adminNavbar.php");
-
+session_start();
+include("../../../../database/config.php");
+include("../../../include/adminNavbar.php");
 ?>
 
 <div class="flex flex-col min-h-screen w-full">
@@ -10,43 +10,42 @@ include("../../include/adminNavbar.php");
     // Fetch departments for dropdown
     $sql_departments = "SELECT * FROM department";
     $result_departments = $conn->query($sql_departments);
-    // Handle the form submission
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $course_code = $_POST["course_code"];
-        $course_name = $_POST["course_name"];
-        $semester_id = $_POST["semester_id"];
-        $course_type = $_POST["course_type"];
-        $credits = floatval($_POST["credits"]);
-        $department_id = $_POST["department_id"]; // Added department_id
-    
-        // Insert the new course into the Course table
-        $sql_insert_course = "INSERT INTO Course (course_code, course_name, department_id, semester_id, course_type, credits) VALUES ('$course_code', '$course_name', $department_id, $semester_id, '$course_type', $credits)";
 
-        if ($conn->query($sql_insert_course) === TRUE) {
-            echo '<div class="flex items-center justify-center mt-6">  
-            <div id="successMessage" class="flex w-96 shadow-lg rounded-lg">
-                <div class="bg-green-600 py-4 px-6 rounded-l-lg flex items-center">
-                    <i class="fas fa-check text-white"></i>
-                </div>
+
+    if (isset($_SESSION['success_message'])) {
+        $successMessage = $_SESSION['success_message'];
+        echo '<div class="flex items-center justify-center mt-6">  
+             <div id="successMessage" class="flex w-96 shadow-lg rounded-lg">
+                 <div class="bg-green-600 py-4 px-6 rounded-l-lg flex items-center">
+                     <i class="fas fa-check text-white"></i>
+                 </div>
                 <div class="relative px-4 py-6 bg-white rounded-r-lg flex justify-between items-center w-full border border-l-transparent border-gray-200">
-                    <div>Successfully Course Added</div>
+                    <div>' . $successMessage . '</div>
                     <div class="absolute bottom-0 left-0 w-full h-1 bg-green-600"></div>
                 </div>
             </div>
         </div>';
-        } else {
-            echo '<div class="flex items-center justify-center mt-6">  
-            <div id="errorMessage" class="flex w-96 shadow-lg rounded-lg">
-                <div class="bg-red-600 py-4 px-6 rounded-l-lg flex items-center">
-                    <i class="fas fa-times text-white"></i>
-                </div>
+
+        unset($_SESSION['success_message']);
+    }
+
+    if (isset($_SESSION['error_message'])) {
+
+        $errorMessage = $_SESSION['error_message'];
+        echo '<div class="flex items-center justify-center mt-6">  
+             <div id="errorMessage" class="flex w-96 shadow-lg rounded-lg">
+                 <div class="bg-red-600 py-4 px-6 rounded-l-lg flex items-center">
+                     <i class="fas fa-times text-white"></i>
+                 </div>
                 <div class="relative px-4 py-6 bg-white rounded-r-lg flex justify-between items-center w-full border border-l-transparent border-gray-200">
-                    <div>Error ! Department Not Add</div>
+                    <div>' . $errorMessage . '</div>
                     <div class="absolute bottom-0 left-0 w-full h-1 bg-red-600"></div>
                 </div>
             </div>
         </div>';
-        }
+
+
+        unset($_SESSION['error_message']);
     }
     ?>
 
@@ -60,7 +59,7 @@ include("../../include/adminNavbar.php");
                     <h1 class="text-2xl font-semibold text-gray-900">Add Department</h1>
                 </div>
                 <div class="mt-5">
-                    <form method="post" id="addCourseForm">
+                    <form method="post" action="insert.php" id="addCourseForm">
 
                         <div class="relative mt-6">
 
@@ -112,7 +111,7 @@ include("../../include/adminNavbar.php");
                                 class="pointer-events-none absolute top-0 left-0 origin-left -translate-y-1/2 transform text-sm text-gray-800 opacity-75 transition-all duration-100 ease-in-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-focus:top-0 peer-focus:pl-0 peer-focus:text-sm peer-focus:text-gray-800">Credit:</label>
                         </div>
                         <div class="relative mt-6 ">
-                            <div class="main flex border rounded-full overflow-hidden m-4 select-none">
+                            <div class="main flex border rounded-full overflow-hidden my-4 w-full select-none">
                                 <div class="title py-3 my-auto px-5 bg-gray-900 text-white text-sm font-semibold mr-3">
                                     T Y P E</div>
                                 <label for="theory" class="flex radio p-2 cursor-pointer">
@@ -134,7 +133,7 @@ include("../../include/adminNavbar.php");
                     </form>
                     <p class="text-center text-sm text-gray-500">
                         View All Room <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
-                        <a class="underline" href="../course/course.php">Here</a>
+                        <a class="underline" href="../../course/course.php">Here</a>
                     </p>
                 </div>
             </div>
@@ -148,7 +147,7 @@ include("../../include/adminNavbar.php");
         var departmentId = $(this).val();
         if (departmentId) {
             $.ajax({
-                url: 'get_semesters.php',
+                url: '../get_semesters.php',
                 method: 'POST',
                 data: { department_id: departmentId },
                 dataType: 'json',
@@ -174,15 +173,8 @@ include("../../include/adminNavbar.php");
 $conn->close();
 ?>
 </div>
-<script src="../../include/index.js"></script>
+<script src="../../../include/index.js"></script>
 
-<script>
-    swal({
-        title: "Good job!",
-        text: "You clicked the button!",
-        icon: "success",
-        button: "Aww yiss!",
-    });
 </script>
 </body>
 

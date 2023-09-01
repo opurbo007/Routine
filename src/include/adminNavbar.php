@@ -16,6 +16,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css" />
+
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
   <title>DIU DAILY</title>
   <style>
     .flex-container {
@@ -67,9 +74,9 @@
         <ul class="relative m-0 list-none px-[0.2rem] pb-12">
           <li class="relative pt-4">
 
-            <a href="../add/add_teacher.php"
-              class="flex cursor-pointer items-center truncate rounded-[5px] px-6 py-[0.45rem] text-[0.85rem] text-white outline-none transition duration-300 ease-linear hover:bg-gray-300 hover:text-inherit hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none  ">
-              <span class="mr-4 h-5 w-5 hover:text-gray-300">
+            <a href="../overview/dashboard.php"
+              class="flex cursor-pointer items-center truncate rounded-[5px] px-6 py-[0.45rem] text-[0.85rem] text-white outline-none transition duration-300 ease-linear hover:bg-gray-300 hover:text-black hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none hover:text-black hover:no-underline">
+              <span class="mr-4 h-5 w-5 hover:text-black">
                 <i class="fas fa-home"></i>
               </span>
               <span>Overview</span>
@@ -90,14 +97,16 @@
                 <i class="bi bi-chevron-down"></i>
               </span>
             </div>
-            <div class="text-left text-sm mt-2 w-full mx-auto text-gray-200" id="submenuRoutine">
+            <div class="text-left text-sm mt-2 w-full mx-auto text-gray-200 hover:outline-none" id="submenuRoutine">
               <!-- inside dropdown  -->
-              <a href="../routine/generate/select.php">
-                <h1 class="cursor-pointer py-2 ml-16 pl-2 hover:bg-gray-300 hover:text-black rounded-md mt-1">Make
+              <a href="../routine/generate/select.php" class="hover:text-black hover:no-underline">
+                <h1
+                  class="cursor-pointer py-2 ml-16 pl-2 hover:outline-none hover:bg-gray-300 hover:text-black rounded-md mt-1">
+                  Make
                   Routine
                 </h1>
               </a>
-              <a href="../routine/show/select.php">
+              <a href="../routine/show/select.php" class="hover:text-black hover:no-underline">
                 <h1 class="cursor-pointer py-2 ml-16 pl-2 hover:bg-gray-300 hover:text-black rounded-md mt-1">View
                   Routine
                 </h1>
@@ -106,11 +115,11 @@
           </li>
           <li class="relative pt-4">
             <div
-              class="flex cursor-pointer items-center truncate rounded-[5px] px-6 py-[0.45rem] text-[0.85rem] text-white outline-none transition duration-300 ease-linear hover:bg-gray-300 hover:text-inherit hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none  "
+              class="flex cursor-pointer items-center truncate rounded-[5px] px-6 py-[0.45rem] text-[0.85rem] text-white outline-none transition duration-300 ease-linear hover:bg-gray-300 hover:text-black hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none  "
               onclick="dropdown()">
 
 
-              <span class="mr-4 h-5 w-5 hover:text-gray-300">
+              <span class="mr-4 h-5 w-5">
                 <i class="fas fa-user-plus"></i>
               </span>
               <span>Add</span>
@@ -120,32 +129,32 @@
             </div>
             <div class="text-left text-sm mt-2 w-full mx-auto text-gray-200" id="submenu">
               <!-- inside dropdown  -->
-              <a href="../add/add_teacher.php">
+              <a href="../teacher/add_teacher.php" class="hover:text-black hover:no-underline">
                 <h1 class="cursor-pointer py-2 ml-16 pl-2 hover:bg-gray-300 hover:text-black rounded-md mt-1">Teacher
                 </h1>
               </a>
-              <a href="../add/add_batch.php">
+              <a href="../batch/add_batch.php" class="hover:text-black hover:no-underline">
                 <h1 class="cursor-pointer py-2 ml-16 pl-2 hover:bg-gray-300 hover:text-black rounded-md mt-1">Batch
                 </h1>
               </a>
-              <a href="../add/add_department.php">
+              <a href="../dept/add_department.php" class="hover:text-black hover:no-underline">
                 <h1 class="cursor-pointer py-2 ml-16 pl-2 hover:bg-gray-300 hover:text-black rounded-md mt-1">Department
                 </h1>
               </a>
-              <a href="../add/add_semester.php">
+              <a href="../semester/add_semester.php" class="hover:text-black hover:no-underline">
                 <h1 class="cursor-pointer py-2 ml-16 pl-2 hover:bg-gray-300 hover:text-black rounded-md mt-1">Semeter
                 </h1>
               </a>
-              <a href="../add/add_course.php">
+              <a href="../course/add_course.php" class="hover:text-black hover:no-underline">
                 <h1 class="cursor-pointer py-2 ml-16 pl-2 hover:bg-gray-300 hover:text-black rounded-md mt-1">Course
                 </h1>
               </a>
-              <a href="../add/add_room.php">
+              <a href="../room/add_room.php" class="hover:text-black hover:no-underline">
                 <h1 class="cursor-pointer py-2 ml-16 pl-2 hover:bg-gray-300 hover:text-black rounded-md mt-1">Room
                 </h1>
               </a>
 
-              <a href="../add/add_timetable.php">
+              <a href="../time/add_timetable.php" class="hover:text-black hover:no-underline">
                 <h1 class="cursor-pointer py-2 ml-16 pl-2 hover:bg-gray-300 hover:text-black rounded-md mt-1">Timeslot
                 </h1>
               </a>
@@ -169,48 +178,48 @@
             </div>
             <div class="text-left text-sm mt-2 w-full mx-auto text-gray-200" id="submenuview">
               <!-- inside dropdown  -->
-              <a href="../teacher/teacher.php">
+              <a href="../../teacher/teacher.php" class="hover:text-black hover:no-underline">
                 <h1 class="cursor-pointer py-2 ml-16 pl-2 hover:bg-gray-300 hover:text-black rounded-md mt-1">Teacher
                 </h1>
               </a>
-              <a href="../batch/batch.php">
+              <a href="../../batch/batch.php" class="hover:text-black hover:no-underline">
                 <h1 class="cursor-pointer py-2 ml-16 pl-2 hover:bg-gray-300 hover:text-black rounded-md mt-1">Batch
                 </h1>
               </a>
-              <a href="../dept/dept.php">
+              <a href="../../dept/dept.php" class="hover:text-black hover:no-underline">
                 <h1 class="cursor-pointer py-2 ml-16 pl-2 hover:bg-gray-300 hover:text-black rounded-md mt-1">Department
                 </h1>
               </a>
-              <a href="../semester/semester.php">
+              <a href="../../semester/semester.php" class="hover:text-black hover:no-underline">
                 <h1 class="cursor-pointer py-2 ml-16 pl-2 hover:bg-gray-300 hover:text-black rounded-md mt-1">Semeter
                 </h1>
               </a>
-              <a href="../course/course.php">
+              <a href="../../course/course.php" class="hover:text-black hover:no-underline">
                 <h1 class="cursor-pointer py-2 ml-16 pl-2 hover:bg-gray-300 hover:text-black rounded-md mt-1">Course
                 </h1>
               </a>
-              <a href="../room/room.php">
+              <a href="../../room/room.php" class="hover:text-black hover:no-underline">
                 <h1 class="cursor-pointer py-2 ml-16 pl-2 hover:bg-gray-300 hover:text-black rounded-md mt-1">Room
                 </h1>
               </a>
 
-              <a href="../time/timetable.php">
-                <h1 class="cursor-pointer py-2 ml-16 pl-2 hover:bg-gray-300 hover:text-black rounded-md mt-1">Timeslot
+              <a href="../../time/timetable.php" class="hover:text-black hover:no-underline">
+                <h1 class="cursor-pointer py-2 ml-16 pl-2 hover:bg-gray-300 hover:text-black rounded-md mt-1">
+                  Timeslot
                 </h1>
               </a>
 
             </div>
           </li>
           <li class="relative pt-4">
-
             <a href="/"
-              class="flex cursor-pointer items-center truncate rounded-[5px] px-6 py-[0.45rem] text-[0.85rem] text-white outline-none transition duration-300 ease-linear hover:bg-gray-300 hover:text-inherit hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none  ">
+              class="flex cursor-pointer items-center truncate rounded-[5px] px-6 py-[0.45rem] text-[0.85rem] text-white outline-none transition duration-300 ease-linear hover:bg-gray-300 hover:text-black hover:no-underline">
               <span class="mr-4 h-5 w-5 hover:text-gray-300">
                 <i class="fa fa-sign-out" aria-hidden="true"></i>
               </span>
               <span>Log Out</span>
             </a>
-
           </li>
+
         </ul>
     </div>

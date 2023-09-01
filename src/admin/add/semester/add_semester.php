@@ -1,7 +1,7 @@
 <?php
-include("../../../database/config.php");
-include("../../include/adminNavbar.php");
-
+session_start();
+include("../../../../database/config.php");
+include("../../../include/adminNavbar.php");
 ?>
 
 <div class="flex flex-col min-h-screen w-full">
@@ -12,40 +12,43 @@ include("../../include/adminNavbar.php");
     $sql_departments = "SELECT * FROM Department";
     $result_departments = $conn->query($sql_departments);
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $semester_name = $_POST["semester_name"];
-        $department_id = $_POST["department_id"];
-
-        // Insert new semester
-        $sql_insert_semester = "INSERT INTO Semester (semester_name, department_id) VALUES ('$semester_name', $department_id)";
-
-        if ($conn->query($sql_insert_semester) === TRUE) {
-            echo '<div class="flex items-center justify-center mt-6">  
-            <div id="successMessage" class="flex w-96 shadow-lg rounded-lg">
-                <div class="bg-green-600 py-4 px-6 rounded-l-lg flex items-center">
-                    <i class="fas fa-check text-white"></i>
-                </div>
+    if (isset($_SESSION['success_message'])) {
+        $successMessage = $_SESSION['success_message'];
+        echo '<div class="flex items-center justify-center mt-6">  
+             <div id="successMessage" class="flex w-96 shadow-lg rounded-lg">
+                 <div class="bg-green-600 py-4 px-6 rounded-l-lg flex items-center">
+                     <i class="fas fa-check text-white"></i>
+                 </div>
                 <div class="relative px-4 py-6 bg-white rounded-r-lg flex justify-between items-center w-full border border-l-transparent border-gray-200">
-                    <div>Success Department Added</div>
+                    <div>' . $successMessage . '</div>
                     <div class="absolute bottom-0 left-0 w-full h-1 bg-green-600"></div>
                 </div>
             </div>
         </div>';
 
-        } else {
-            echo '<div class="flex items-center justify-center mt-6">  
-            <div id="errorMessage" class="flex w-96 shadow-lg rounded-lg">
-                <div class="bg-red-600 py-4 px-6 rounded-l-lg flex items-center">
-                    <i class="fas fa-times text-white"></i>
-                </div>
+        unset($_SESSION['success_message']);
+    }
+
+    if (isset($_SESSION['error_message'])) {
+
+        $errorMessage = $_SESSION['error_message'];
+        echo '<div class="flex items-center justify-center mt-6">  
+             <div id="errorMessage" class="flex w-96 shadow-lg rounded-lg">
+                 <div class="bg-red-600 py-4 px-6 rounded-l-lg flex items-center">
+                     <i class="fas fa-times text-white"></i>
+                 </div>
                 <div class="relative px-4 py-6 bg-white rounded-r-lg flex justify-between items-center w-full border border-l-transparent border-gray-200">
-                    <div>Error ! Department Not Add</div>
+                    <div>' . $errorMessage . '</div>
                     <div class="absolute bottom-0 left-0 w-full h-1 bg-red-600"></div>
                 </div>
             </div>
         </div>';
-        }
+
+
+        unset($_SESSION['error_message']);
     }
+
+
     ?>
 
 
@@ -58,7 +61,7 @@ include("../../include/adminNavbar.php");
                     <h1 class="text-2xl font-semibold text-gray-900">Add Department</h1>
                 </div>
                 <div class="mt-5">
-                    <form method="post">
+                    <form method="post" action="insert.php">
 
                         <div class="relative mt-6">
 
@@ -70,9 +73,7 @@ include("../../include/adminNavbar.php");
                                 Name:</label>
                         </div>
                         <div class="relative mt-6 ">
-                            <!-- <label for="department_id"
-                                class="pointer-events-none absolute top-0 left-0 origin-left -translate-y-1/2 transform text-sm text-gray-800 opacity-75 transition-all duration-100 ease-in-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-focus:top-0 peer-focus:pl-0 peer-focus:text-sm peer-focus:text-gray-800">Select
-                                Department:</label> -->
+
                             <select id="department_id" name="department_id" required
                                 class="w-full text-gray-700 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 border border-gray-300">
                                 <option value="" disabled selected class="bg-white py-2 hover:bg-gray-100">Select a
@@ -95,7 +96,7 @@ include("../../include/adminNavbar.php");
                     </form>
                     <p class="text-center text-sm text-gray-500">
                         View All Semester <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
-                        <a class="underline" href="../semester/semester.php">Here</a>
+                        <a class="underline" href="../../semester/semester.php">Here</a>
                     </p>
                 </div>
             </div>
@@ -106,7 +107,7 @@ include("../../include/adminNavbar.php");
 $conn->close();
 ?>
 </div>
-<script src="../../include/index.js"></script>
+<script src="../../../include/index.js"></script>
 
 
 </body>
