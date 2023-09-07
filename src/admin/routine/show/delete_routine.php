@@ -1,33 +1,35 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "routine";
 
-$connection = new mysqli($servername, $username, $password, $dbname);
+session_start();
+ob_start();
 
-if ($connection->connect_error) {
-  die("Connection failed: " . $connection->connect_error);
-}
+include("../../../../database/config.php");
+include("../../../include/adminNavbar.php");
+
+
 
 if (isset($_GET['routine_id'])) {
   $routineId = $_GET['routine_id'];
 
   // Delete the routine from the database
   $deleteQuery = "DELETE FROM routine WHERE routine_id = ?";
-  $stmt = $connection->prepare($deleteQuery);
+  $stmt = $conn->prepare($deleteQuery);
   $stmt->bind_param("i", $routineId);
 
   if ($stmt->execute()) {
-    echo "Routine deleted successfully.";
+    $_SESSION['success_message'] = "Routine deleted successfully.";
   } else {
-    echo "Error deleting routine: " . $stmt->error;
+    $_SESSION['error_message'] = "Error deleting routine! ";
   }
 
   $stmt->close();
+  header('Location: select.php');
+  exit;
 } else {
-  echo "Routine ID not provided.";
+  $_SESSION['error_message'] = "Routine ID not provided.";
+  header('Location: select.php');
+  exit;
 }
 
-$connection->close();
+
 ?>

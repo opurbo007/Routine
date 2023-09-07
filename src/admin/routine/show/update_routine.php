@@ -1,14 +1,12 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "routine";
 
-$connection = new mysqli($servername, $username, $password, $dbname);
+session_start();
+ob_start();
 
-if ($connection->connect_error) {
-  die("Connection failed: " . $connection->connect_error);
-}
+include("../../../../database/config.php");
+include("../../../include/adminNavbar.php");
+
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $routineId = $_POST['routine_id'];
@@ -23,19 +21,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // Update the routine in the database
   $updateQuery = "UPDATE routine SET day = ?, start_time = ?, end_time = ?, room_id = ?, teacher_id = ? 
                     WHERE routine_id = ?";
-  $stmt = $connection->prepare($updateQuery);
+  $stmt = $conn->prepare($updateQuery);
   $stmt->bind_param("ssssii", $newDay, $newStartTime, $newEndTime, $newRoom, $newTeacher, $routineId);
 
   if ($stmt->execute()) {
-    echo "Routine updated successfully.";
+    $_SESSION['success_message'] = "Routine updated successfully.";
   } else {
-    echo "Error updating routine: " . $stmt->error;
+    $_SESSION['error_message'] = "Error updating routine! ";
   }
 
   $stmt->close();
+  header('Location: select.php');
+  exit;
 } else {
-  echo "Invalid request.";
+  $_SESSION['error_message'] = "Invalid request.";
+  header('Location: select.php');
+  exit;
 }
-
-$connection->close();
 ?>

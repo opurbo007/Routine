@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 21, 2023 at 06:20 PM
+-- Generation Time: Sep 07, 2023 at 07:58 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -20,6 +20,27 @@ SET time_zone = "+00:00";
 --
 -- Database: `routine`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admins`
+--
+
+CREATE TABLE `admins` (
+  `id` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `token` varchar(100) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `admins`
+--
+
+INSERT INTO `admins` (`id`, `email`, `password`, `token`, `created_at`) VALUES
+(1, 'opurbopaul3@gmail.com', '$2y$10$SgJ01BxrvhLJdN9k1uYY3unbScweOOgfqEwKb/Z9b4PhsM/ZqQ1IC\r\n\r\n', 'a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6\r\n', '2023-09-07 17:09:32');
 
 -- --------------------------------------------------------
 
@@ -47,7 +68,7 @@ INSERT INTO `batch` (`batch_id`, `batch_number`, `department_id`, `batch_shift`)
 (6, 'D-56', 1, 'day'),
 (7, 'E-50', 1, 'evening'),
 (8, 'E-51', 1, 'evening'),
-(9, 'E-52', 1, 'evening');
+(9, 'E-52', 1, 'day');
 
 -- --------------------------------------------------------
 
@@ -135,7 +156,9 @@ INSERT INTO `course` (`course_id`, `course_name`, `semester_id`, `course_type`, 
 (64, 'Elective Course', 8, 'theory', 3, '0541/0413', 1),
 (65, 'Elective Course', 8, 'theory', 3, '0541/0413', 1),
 (66, 'Entrepreneurship: Innovation and Commercialization', 8, 'theory', 3, '0413-401', 1),
-(67, 'Capstone Project Design', 8, 'theory', 3, '0688-400', 1);
+(67, 'Capstone Project Design', 8, 'theory', 3, '0688-400', 1),
+(75, 'ghhhvvvv', 9, 'theory', 22, '1651641', 2),
+(77, ' zcthshadvnfbhbdshfbfb555', 14, 'theory', 0.8, '028885455', 4);
 
 -- --------------------------------------------------------
 
@@ -212,7 +235,9 @@ INSERT INTO `room` (`room_id`, `room_number`, `room_type`) VALUES
 (18, '505', 'theory'),
 (19, '506', 'lab'),
 (20, '508', 'theory'),
-(21, '509', 'lab');
+(21, '509', 'lab'),
+(22, '7001', 'theory'),
+(26, '000', 'theory');
 
 -- --------------------------------------------------------
 
@@ -229,8 +254,17 @@ CREATE TABLE `routine` (
   `teacher_id` int(11) DEFAULT NULL,
   `batch` varchar(50) DEFAULT NULL,
   `semester` varchar(50) DEFAULT NULL,
-  `end_time` time DEFAULT NULL
+  `end_time` time DEFAULT NULL,
+  `session` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `routine`
+--
+
+INSERT INTO `routine` (`routine_id`, `course_id`, `day`, `start_time`, `room_id`, `teacher_id`, `batch`, `semester`, `end_time`, `session`) VALUES
+(201, 2, 'Saturday', '09:00:00', 14, 13, '1', '1', '10:15:00', 'Fall'),
+(202, 3, 'Friday', '09:00:00', 19, 13, '1', '1', '10:40:00', 'Fall');
 
 -- --------------------------------------------------------
 
@@ -519,13 +553,6 @@ INSERT INTO `teachercourses` (`id`, `teacher_id`, `course_id`) VALUES
 (382, 33, 66),
 (383, 33, 61),
 (384, 33, 67),
-(386, 34, 9),
-(387, 34, 16),
-(388, 34, 24),
-(389, 34, 34),
-(390, 34, 35),
-(391, 34, 58),
-(392, 34, 59),
 (393, 35, 10),
 (394, 35, 11),
 (395, 35, 27),
@@ -572,7 +599,14 @@ INSERT INTO `teachercourses` (`id`, `teacher_id`, `course_id`) VALUES
 (437, 38, 35),
 (438, 38, 36),
 (439, 38, 44),
-(440, 38, 45);
+(440, 38, 45),
+(445, 34, 9),
+(446, 34, 16),
+(447, 34, 24),
+(448, 34, 34),
+(449, 34, 35),
+(450, 34, 58),
+(451, 34, 59);
 
 -- --------------------------------------------------------
 
@@ -617,7 +651,7 @@ INSERT INTO `teachers` (`teacher_id`, `name`, `mobile`, `department_id`, `positi
 (31, 'Md. Tipu Sultan', '0121', 1, 'Lecturer', 'opurbo***17@gmail.com', 'uploads/dum.png', '123'),
 (32, 'Hemonta Kumar Barman', '0155', 1, 'Lecturer', 'opurbo***18@gmail.com', 'uploads/dum.png', '123'),
 (33, 'Md. Sifuzzaman', '001****', 1, 'Associate Professor', 'opurbo***18@gmail.com', 'uploads/jaman.jpg', '123'),
-(34, 'Dr. A.T.M. Mahbubur Rahman Sarker', '018******7', 1, 'Professor', 'opurbo***19@gmail.com', 'uploads/dean.jpg', '123'),
+(34, 'Dr. A.T.M. Mahbubur Rahman Sarker', '018******7', 1, 'Dean', 'opurbo***19@gmail.com', 'uploads/dean.jpg', '123'),
 (35, 'Md. Nur -a-Alam', '018******2', 1, 'Lecturer', 'opurbo***20@gmail.com', 'uploads/nur.jpg', '123'),
 (36, 'Md. Rezaul Islam', '018******4', 1, 'Lecturer', 'opurbo***21@gmail.com', 'uploads/dum.png', '123'),
 (37, 'Md. Abdul Based', '018******9', 1, 'Professor', 'opurbo***22@gmail.com', 'uploads/based.jpg', '123'),
@@ -642,16 +676,32 @@ CREATE TABLE `timeslot` (
 
 INSERT INTO `timeslot` (`timetable_id`, `start_time`, `end_time`, `class_type`) VALUES
 (1, '09:00:00', '10:15:00', 'theory'),
-(2, '10:15:00', '11:30:00', 'theory'),
-(3, '11:30:00', '12:45:00', 'theory'),
-(4, '12:45:00', '02:00:00', 'theory'),
+(2, '10:16:00', '11:30:00', 'theory'),
+(3, '11:31:00', '12:45:00', 'theory'),
+(4, '12:46:00', '02:00:00', 'theory'),
 (5, '09:00:00', '10:40:00', 'lab'),
-(6, '10:40:00', '12:20:00', 'lab'),
-(7, '12:20:00', '02:00:00', 'lab');
+(6, '10:41:00', '12:20:00', 'lab'),
+(7, '12:21:00', '02:00:00', 'lab'),
+(8, '12:55:00', '01:33:00', 'theory'),
+(9, '01:00:00', '05:01:00', 'lab'),
+(10, '03:01:00', '02:03:00', 'lab'),
+(11, '03:01:00', '02:03:00', 'lab'),
+(35, '05:02:00', '04:02:00', 'theory'),
+(36, '03:07:00', '08:06:00', 'lab'),
+(37, '02:04:00', '05:02:00', 'lab'),
+(38, '01:01:00', '02:02:00', 'theory'),
+(39, '12:06:00', '01:02:00', 'lab');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `admins`
+--
+ALTER TABLE `admins`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `admin_email` (`email`);
 
 --
 -- Indexes for table `batch`
@@ -728,16 +778,22 @@ ALTER TABLE `timeslot`
 --
 
 --
+-- AUTO_INCREMENT for table `admins`
+--
+ALTER TABLE `admins`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `batch`
 --
 ALTER TABLE `batch`
-  MODIFY `batch_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `batch_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `course`
 --
 ALTER TABLE `course`
-  MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
 -- AUTO_INCREMENT for table `days`
@@ -749,43 +805,43 @@ ALTER TABLE `days`
 -- AUTO_INCREMENT for table `department`
 --
 ALTER TABLE `department`
-  MODIFY `department_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `department_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=120;
 
 --
 -- AUTO_INCREMENT for table `room`
 --
 ALTER TABLE `room`
-  MODIFY `room_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `room_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `routine`
 --
 ALTER TABLE `routine`
-  MODIFY `routine_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
+  MODIFY `routine_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=203;
 
 --
 -- AUTO_INCREMENT for table `semester`
 --
 ALTER TABLE `semester`
-  MODIFY `semester_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `semester_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `teachercourses`
 --
 ALTER TABLE `teachercourses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=441;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=489;
 
 --
 -- AUTO_INCREMENT for table `teachers`
 --
 ALTER TABLE `teachers`
-  MODIFY `teacher_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `teacher_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `timeslot`
 --
 ALTER TABLE `timeslot`
-  MODIFY `timetable_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `timetable_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- Constraints for dumped tables

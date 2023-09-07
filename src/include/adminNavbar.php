@@ -64,7 +64,7 @@
       <nav class="fixed left-0 top-0 z-[1035] h-full w-60  overflow-hidden bg-zinc-800" id="sidenav-1">
         <!-- Navbar content -->
         <div class="mb-3 flex items-center justify-center border-b-2 border-solid border-gray-100 py-6  outline-none">
-          <img id="logo" class="mr-4 w-12" src="../img/logo.png" alt="Logo" />
+          <img id="logo" class="mr-4 w-12" src="../../../img/logo.png" alt="Logo" />
           <span class="text-white font mr-8">DIU DAILY</span>
 
           <span class="text-white cursor-pointer" onclick="toggleNavbar()">
@@ -74,7 +74,7 @@
         <ul class="relative m-0 list-none px-[0.2rem] pb-12">
           <li class="relative pt-4">
 
-            <a href="../overview/dashboard.php"
+            <a href="../../view/overview/dashboard.php"
               class="flex cursor-pointer items-center truncate rounded-[5px] px-6 py-[0.45rem] text-[0.85rem] text-white outline-none transition duration-300 ease-linear hover:bg-gray-300 hover:text-black hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none hover:text-black hover:no-underline">
               <span class="mr-4 h-5 w-5 hover:text-black">
                 <i class="fas fa-home"></i>
@@ -99,14 +99,14 @@
             </div>
             <div class="text-left text-sm mt-2 w-full mx-auto text-gray-200 hover:outline-none" id="submenuRoutine">
               <!-- inside dropdown  -->
-              <a href="../routine/generate/select.php" class="hover:text-black hover:no-underline">
+              <a href="../../routine/generate/select.php" class="hover:text-black hover:no-underline">
                 <h1
                   class="cursor-pointer py-2 ml-16 pl-2 hover:outline-none hover:bg-gray-300 hover:text-black rounded-md mt-1">
                   Make
                   Routine
                 </h1>
               </a>
-              <a href="../routine/show/select.php" class="hover:text-black hover:no-underline">
+              <a href="../../routine/show/select.php" class="hover:text-black hover:no-underline">
                 <h1 class="cursor-pointer py-2 ml-16 pl-2 hover:bg-gray-300 hover:text-black rounded-md mt-1">View
                   Routine
                 </h1>
