@@ -212,7 +212,7 @@
             </div>
           </li>
           <li class="relative pt-4">
-            <a href="/"
+            <a href="../../../../logout.php"
               class="flex cursor-pointer items-center truncate rounded-[5px] px-6 py-[0.45rem] text-[0.85rem] text-white outline-none transition duration-300 ease-linear hover:bg-gray-300 hover:text-black hover:no-underline">
               <span class="mr-4 h-5 w-5 hover:text-gray-300">
                 <i class="fa fa-sign-out" aria-hidden="true"></i>

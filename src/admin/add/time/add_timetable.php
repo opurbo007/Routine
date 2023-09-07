@@ -43,12 +43,7 @@ include("../../../include/adminNavbar.php");
 
         unset($_SESSION['error_message']);
     }
-
-
     ?>
-
-
-
 
 
     <div class="flex items-center justify-center flex-grow-2">
@@ -92,7 +87,7 @@ include("../../../include/adminNavbar.php");
                         </div>
                         <div class=" my-6">
                             <input type="submit" value="Add Timetable Entry"
-                                class="w-full rounded-md bg-gray-900 px-3 py-4 text-white focus:bg-gray-400 focus:outline-none">
+                                class="w-full rounded-md bg-gray-900 px-3 py-2 text-white focus:bg-gray-400 focus:outline-none">
                         </div>
                     </form>
                     <p class="text-center text-sm text-gray-500">

@@ -129,7 +129,7 @@ include("../../../include/adminNavbar.php");
         <tr>
           <th class="px-4 py-2">Department ID</th>
           <th class="px-4 py-2">Department Name</th>
-          <th class="px-4 py-2">Actions</th>
+          <th class="px-4 py-2">Action</th>
         </tr>
       </thead>
       <tbody>

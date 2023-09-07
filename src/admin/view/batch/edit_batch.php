@@ -7,10 +7,7 @@ include("../../../../database/config.php");
 include("../../../include/adminNavbar.php");
 
 
-?>
-<div class="flex flex-col min-h-screen w-full">
 
-  <?php
         // Handle the form submission
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $batch_id = $_POST["batch_id"];
@@ -43,7 +40,7 @@ include("../../../include/adminNavbar.php");
         $sql_departments = "SELECT * FROM Department";
         $result_departments = $conn->query($sql_departments);
         ?>
-
+<div class="flex flex-col min-h-screen w-full">
     <div class="flex items-center justify-center flex-grow-2">
 
     <div

@@ -158,6 +158,7 @@ include("../../../include/adminNavbar.php");
                 <a href='edit_semester.php?action=edit&semester_id=<?= $semester_id ?>'
                   class="text-blue-500 text-black mr-4 hover:text-black"><i class="fa fa-pencil-square"
                     aria-hidden="true"></i></a>
+
                 <a href='delete.php?action=delete&semester_id=<?= $semester_id ?>' class='text-red-500 hover:text-black'
                   onclick='return confirm("Are you sure you want to delete this semester?");'>
                   <i class='fa fa-trash' aria-hidden='true'></i>
@@ -174,13 +175,15 @@ include("../../../include/adminNavbar.php");
         }
         ?>
       </tbody>
-
-
+    </table>
   </div>
-  <?php
-  $conn->close();
-  ob_end_flush();
-  ?>
+
+
+</div>
+<?php
+$conn->close();
+ob_end_flush();
+?>
 </div>
 <script src="../../../include/index.js"></script>
 
