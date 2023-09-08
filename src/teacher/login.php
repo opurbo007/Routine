@@ -19,11 +19,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $result = $stmt->get_result();
   $teacher = $result->fetch_assoc();
 
-  if ($teacher && password_verify($password, $teacher["password"])) {
+  if ($teacher && $password === $teacher["password"]) {
+    // Password is correct (plain text match). Log in the user.
     $_SESSION["teacher_id"] = $teacher["teacher_id"];
     header("Location: dashboard.php");
     exit();
   } else {
+    // Invalid email or password. Display an error message.
     $loginError = "Invalid email or password. Please try again.";
   }
 }
@@ -59,6 +61,5 @@ $connection->close();
   </form>
 
 </body>
-
 
 </html>

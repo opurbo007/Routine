@@ -1,0 +1,17 @@
+{
+    "name": "opurbo/rou",
+    "autoload": {
+        "psr-4": {
+            "Opurbo\\Rou\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "opurbo007",
+            "email": "opurboujjol@gmail.com"
+        }
+    ],
+    "require": {
+        "dompdf/dompdf": "^2.0"
+    }
+}

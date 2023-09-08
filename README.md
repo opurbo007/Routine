@@ -76,3 +76,6 @@ Contributions to this project are welcomed and encouraged. If you encounter issu
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
+
+\*\* need to install composer
+use: composer require mpdf/mpdf
