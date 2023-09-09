@@ -74,18 +74,7 @@
         <ul class="relative m-0 list-none px-[0.2rem] pb-12">
           <li class="relative pt-4">
 
-            <a href="./dashboard.php"
-              class="flex cursor-pointer items-center truncate rounded-[5px] px-6 py-[0.45rem] text-[0.85rem] text-white outline-none transition duration-300 ease-linear hover:bg-gray-300 hover:text-black hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none hover:text-black hover:no-underline">
-              <span class="mr-4 h-5 w-5 hover:text-black">
-                <i class="fas fa-home"></i>
-              </span>
-              <span>Profile</span>
-            </a>
-
-          </li>
-          <li class="relative pt-4">
-
-            <a href="./routine.php"
+            <a href="./select.php"
               class="flex cursor-pointer items-center truncate rounded-[5px] px-6 py-[0.45rem] text-[0.85rem] text-white outline-none transition duration-300 ease-linear hover:bg-gray-300 hover:text-black hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none hover:text-black hover:no-underline">
               <span class="mr-4 h-5 w-5 hover:text-black">
                 <i class="fas fa-home"></i>
@@ -94,14 +83,37 @@
             </a>
 
           </li>
+          <li class="relative pt-4">
+
+            <a href="./teacher_search.php"
+              class="flex cursor-pointer items-center truncate rounded-[5px] px-6 py-[0.45rem] text-[0.85rem] text-white outline-none transition duration-300 ease-linear hover:bg-gray-300 hover:text-black hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none hover:text-black hover:no-underline">
+              <span class="mr-4 h-5 w-5 hover:text-black">
+                <i class="fas fa-home"></i>
+              </span>
+              <span>Find Teacher</span>
+            </a>
+
+          </li>
 
           <li class="relative pt-4">
-            <a href="../../../../login/logout.php"
+
+            <a href="./room_search.php"
+              class="flex cursor-pointer items-center truncate rounded-[5px] px-6 py-[0.45rem] text-[0.85rem] text-white outline-none transition duration-300 ease-linear hover:bg-gray-300 hover:text-black hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none hover:text-black hover:no-underline">
+              <span class="mr-4 h-5 w-5 hover:text-black">
+                <i class="fas fa-home"></i>
+              </span>
+              <span>Check Room</span>
+            </a>
+
+          </li>
+
+          <li class="relative pt-4">
+            <a href="../../index.php"
               class="flex cursor-pointer items-center truncate rounded-[5px] px-6 py-[0.45rem] text-[0.85rem] text-white outline-none transition duration-300 ease-linear hover:bg-gray-300 hover:text-black hover:no-underline">
               <span class="mr-4 h-5 w-5 hover:text-gray-300">
                 <i class="fa fa-sign-out" aria-hidden="true"></i>
               </span>
-              <span>Log Out</span>
+              <span>Back</span>
             </a>
           </li>
 

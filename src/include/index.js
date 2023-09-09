@@ -25,7 +25,7 @@ function toggleNavbar() {
 }
 // Hide the success message
 setTimeout(function () {
-   var successMessage = document.getElementById("successMessage");
+   let successMessage = document.getElementById("successMessage");
    if (successMessage) {
       successMessage.style.display = "none";
    }
@@ -33,7 +33,7 @@ setTimeout(function () {
 
 // Hide the error message
 setTimeout(function () {
-   var errorMessage = document.getElementById("errorMessage");
+   let errorMessage = document.getElementById("errorMessage");
    if (errorMessage) {
       errorMessage.style.display = "none";
    }

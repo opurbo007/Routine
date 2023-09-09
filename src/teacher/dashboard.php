@@ -88,7 +88,7 @@ include("../include/teacherNavbar.php");
   ?>
 </div>
 </div>
-<script src="../include/index.js"></script>
+<script src="../include/index2.js"></script>
 </body>
 
 </html>

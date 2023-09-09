@@ -1,8 +1,7 @@
 <?php
 session_start();
-include("../../../../database/config.php");
-include("../../../include/adminNavbar.php");
-
+include("../../database/config.php");
+include("../include/studentNavbar.php");
 
 // Take batch, semester, and session info from previous page
 $selectedBatch = $_POST['batch'];
@@ -128,13 +127,6 @@ $selectedSemesterName = $semesterRow['semester_name'];
                 if ($row['day'] == $day && $row['start_time'] == $timeSlot['start_time'] && $row['end_time'] == $timeSlot['end_time']) {
                   echo "{$row['course_code']}<br>{$row['course_name']}<br><b>{$row['name']}</b><br>({$row['room_number']})<br>";
 
-
-                  echo "<a href='edit_routine.php?routine_id={$row['routine_id']}'  class='text-blue-500 text-black mr-2 hover:text-black'><i class='fa fa-pencil-square'
-              aria-hidden='true'></i></a> | ";
-                  echo "<a href='delete_routine.php?routine_id={$row['routine_id']}' class='ml-2 text-red-500 hover:text-black'><i class='fa fa-trash'
-              aria-hidden='true'></i></a><br>";
-
-
                   $found = true;
 
                 }
@@ -161,7 +153,7 @@ $selectedSemesterName = $semesterRow['semester_name'];
   $conn->close();
   ?>
 </div>
-<script src="../../../include/index.js"></script>
+<script src="../include/index2.js"></script>
 
 
 </body>
