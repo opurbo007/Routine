@@ -20,8 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["admin_login"])) {
 
     // Verify the entered password with the stored hashed password
     if (password_verify($admin_password, $hashed_password)) {
-      // Password is correct, perform login
-      session_start();
+
       $_SESSION["admin_id"] = $admin_data["id"];
       $_SESSION["admin_email"] = $admin_data["email"];
       header("Location: ../../src/admin/view/overview/dashboard.php");

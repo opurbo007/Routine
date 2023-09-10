@@ -61,40 +61,33 @@ include("../../database/config.php");
           <div class="max-w-md mx-auto">
             <div>
               <h1 class="text-2xl font-semibold px-16">
-                Login To DIU Routine (Admin)
+                Reset Password (Admin)
 
               </h1>
             </div>
             <div class="divide-y divide-gray-200">
-              <form method="POST" action="login_logic.php">
+              <form method="POST" action="password_reset_logic.php">
                 <div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
                   <div class="relative">
-                    <input autocomplete="off" id="email" name="admin_email" type="text" class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900
+                    <input autocomplete="off" id="email" name="email" type="text" class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900
                   focus:outline-none focus:borer-rose-600" placeholder="Email address" />
                     <label for="adminemail"
                       class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">
                       Email Address
                     </label>
                   </div>
-                  <div class="relative">
-                    <input autocomplete="off" id="password" name="admin_password" type="password" class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900
-                  focus:outline-none focus:borer-rose-600" placeholder="Password" />
-                    <label for="password"
-                      class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">
-                      Password
-                    </label>
-                  </div>
+
 
                   <div class="relative">
                     <button class="bg-gradient-to-r from-green-300 to-blue-600 text-white rounded-md px-2 py-1"
                       type="submit" value="Login" name="admin_login">
-                      <input type="submit" value="login" name="admin_login" />
+                      <input type="submit" value="Forget Password" name="admin_login" />
                     </button>
                   </div>
                 </div>
               </form>
-              <a href="./recovery.php" className="text-black hover:text-green-600 text-sm font-mono">
-                Forget password?
+              <a href="./login.php" className="text-black hover:text-green-600 text-sm font-mono">
+                Back to Login
               </a>
             </div>
           </div>
