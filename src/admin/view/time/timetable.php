@@ -1,6 +1,5 @@
 <?php
-
-session_start();
+include("../../../include/auth.php");
 ob_start();
 
 include("../../../../database/config.php");

@@ -4,8 +4,8 @@ include("../../database/config.php");
 
 if (isset($_GET["token"])) {
   $token = $_GET["token"];
-  echo $token;
-  $sql = "SELECT * FROM admins WHERE token = ?";
+
+  $sql = "SELECT * FROM teachers WHERE token = ?";
 
   $stmt = $conn->prepare($sql);
   $stmt->bind_param("s", $token);
@@ -26,22 +26,24 @@ if (isset($_GET["token"])) {
   // Valid token, continue with password update
   $newPassword = $_GET["password"];
   $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+  echo "New Password: " . $newPassword . "<br>";
+  echo "Hashed Password: " . $hashedPassword . "<br>";
 
-  $sql = "UPDATE admins SET password = ?,
-                            token = NULL,
-                            expiry = NULL 
-                    WHERE id = ?";
-
+  $sql = "UPDATE teachers SET password = ?, token = NULL, expiry = NULL WHERE teacher_id = ?";
   $stmt = $conn->prepare($sql);
-  $stmt->bind_param("si", $hashedPassword, $user["id"]);
+  $stmt->bind_param("si", $hashedPassword, $user["teacher_id"]);
+
+
   if ($stmt->execute()) {
     // Password updated successfully
-    // Redirect the user to the login page
     header("Location: login.php");
     exit();
   } else {
-    die("Password update failed");
+    // Password update failed, display error
+    die("Password update failed: " . $stmt->error);
   }
+
+
 } else {
   die("Invalid token");
 }

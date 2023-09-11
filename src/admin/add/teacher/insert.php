@@ -10,6 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $position = $_POST["position"];
   $mail = $_POST["mail"];
   $password = $_POST["password"];
+  $hashed_password = password_hash($password, PASSWORD_DEFAULT);
   $courses = $_POST["courses"];
 
   // Check if the teacher with the given mobile number already exists
@@ -28,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
       if (move_uploaded_file($picture_tmp_name, $picture_destination)) {
         // Picture uploaded successfully, proceed with database insertion
-        $sql_insert_teacher = "INSERT INTO Teachers (name, mobile, department_id, position, mail, password, picture) VALUES ('$name', '$mobile', $department_id, '$position', '$mail', '$password', '$picture_destination')";
+        $sql_insert_teacher = "INSERT INTO Teachers (name, mobile, department_id, position, mail, password, picture) VALUES ('$name', '$mobile', $department_id, '$position', '$mail', '$hashed_password', '$picture_destination')";
 
         if ($conn->query($sql_insert_teacher) === TRUE) {
           $teacher_id = $conn->insert_id;

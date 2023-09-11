@@ -11,9 +11,9 @@ $token = bin2hex(random_bytes(16));
 
 $expiry = date("Y-m-d H:i:s", time() + 60 * 10);
 
-$sql = "UPDATE admins SET token = ?,
+$sql = "UPDATE teachers SET token = ?,
                       expiry= ?
-                      WHERE email = ?";
+                      WHERE mail = ?";
 $stmt = $conn->prepare($sql);
 
 $stmt->bind_param("sss", $token, $expiry, $email);
@@ -40,7 +40,7 @@ if ($stmt->affected_rows) {
 
   // Use double curly braces for variable interpolation inside the string
   $mail->Body = <<<END
-  Click <a href="http://localhost/rou/login/admin/reset_password.php?token={$token}">Here</a> to reset your password.
+  Click <a href="http://localhost/rou/login/teacher/reset_password.php?token={$token}">Here</a> to reset your password.
   END;
 
   try {

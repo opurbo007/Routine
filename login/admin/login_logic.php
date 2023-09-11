@@ -23,6 +23,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["admin_login"])) {
 
       $_SESSION["admin_id"] = $admin_data["id"];
       $_SESSION["admin_email"] = $admin_data["email"];
+
+      $_SESSION["authenticated"] = true;
       header("Location: ../../src/admin/view/overview/dashboard.php");
       exit();
     } else {

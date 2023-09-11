@@ -1,5 +1,5 @@
 <?php
-session_start();
+include("../../../include/auth.php");
 include("../../../../database/config.php");
 include("../../../include/adminNavbar.php");
 ?>

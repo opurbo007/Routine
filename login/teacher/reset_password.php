@@ -4,7 +4,8 @@ include("../../database/config.php");
 
 $token = $_GET["token"];
 
-$sql = "SELECT `id`, `email`, `password`, `token`, `expiry` FROM `admins` WHERE `token`=?";
+
+$sql = "SELECT `teacher_id`, `mail`, `password`, `token`, `expiry` FROM teachers WHERE `token`=?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $token);
 $stmt->execute();
@@ -15,13 +16,14 @@ $stmt->bind_result($id, $email, $password, $token, $expiry);
 // Fetch the result
 if ($stmt->fetch()) {
   $user = array(
-    'id' => $id,
-    'email' => $email,
+    'teacher_id' => $id,
+    'mail' => $email,
     'password' => $password,
     'token' => $token,
     'expiry' => $expiry
   );
 } else {
+
   die("Token Not Found");
 }
 
@@ -66,7 +68,7 @@ if (strtotime($user["expiry"]) <= time()) {
           <div class="max-w-md mx-auto">
             <div>
               <h1 class="text-2xl font-semibold px-16">
-                New Password (Admin)
+                New Password (teacher)
 
               </h1>
             </div>
@@ -81,6 +83,7 @@ if (strtotime($user["expiry"]) <= time()) {
                   <input autocomplete="off" id="password" name="password" type="password"
                     class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
                     placeholder="Password" />
+
 
                   <label for="password"
                     class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">
@@ -101,7 +104,7 @@ if (strtotime($user["expiry"]) <= time()) {
                 <div class="relative">
                   <button class="bg-gradient-to-r from-green-300 to-blue-600 text-white rounded-md px-2 py-1"
                     type="submit" value="Login" name="admin_login">
-                    <input type="submit" value="login" name="admin_login" />
+                    <input type="submit" value="login" name="teacher_login" />
                   </button>
                 </div>
               </div>

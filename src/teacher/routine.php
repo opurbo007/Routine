@@ -1,5 +1,5 @@
 <?php
-session_start();
+include("../include/auth2.php");
 include("../../database/config.php");
 include("../include/teacherNavbar.php");
 

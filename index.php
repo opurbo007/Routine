@@ -86,8 +86,7 @@
             class="text-gray-800 font-bold tracking tracking-widest">DIU DAILY</span></h1>
 
         <span class="content__container block font-light text-browngray text-2xl my-6 sm:my-12">
-          <p class="content__container__list__item xl:pl-3 changing-text" id="changingText">Your Daily University
-            Routine at Your Fingertips</p>
+          <p class="content__container__list__item xl:pl-3 changing-text" id="changingText"></p>
         </span>
         <p class="font-bold tracking-widest text-4xl">Stay on Track with DIU Daily!</p>
       </div>
@@ -97,7 +96,7 @@
     </div>
     <script>
       const textArray = [
-        "Your Daily University Routine at Your Fingertips",
+        "Your Daily University Routine at Your Fingertip",
         "Stay Organized and Thrive"
       ];
 
