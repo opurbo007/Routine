@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 07, 2023 at 07:58 PM
+-- Generation Time: Sep 11, 2023 at 06:36 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -31,16 +31,16 @@ CREATE TABLE `admins` (
   `id` int(11) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `token` varchar(100) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `token` varchar(255) DEFAULT NULL,
+  `expiry` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `admins`
 --
 
-INSERT INTO `admins` (`id`, `email`, `password`, `token`, `created_at`) VALUES
-(1, 'opurbopaul3@gmail.com', '$2y$10$SgJ01BxrvhLJdN9k1uYY3unbScweOOgfqEwKb/Z9b4PhsM/ZqQ1IC\r\n\r\n', 'a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6\r\n', '2023-09-07 17:09:32');
+INSERT INTO `admins` (`id`, `email`, `password`, `token`, `expiry`) VALUES
+(1, 'opurbopaul3@gmail.com', '$2y$10$QYtarXEsWGCKNbO6xnb76.SK1SZnmgQLg0LgZMROGlgnq8bSUfr7i', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -264,7 +264,9 @@ CREATE TABLE `routine` (
 
 INSERT INTO `routine` (`routine_id`, `course_id`, `day`, `start_time`, `room_id`, `teacher_id`, `batch`, `semester`, `end_time`, `session`) VALUES
 (201, 2, 'Saturday', '09:00:00', 14, 13, '1', '1', '10:15:00', 'Fall'),
-(202, 3, 'Friday', '09:00:00', 19, 13, '1', '1', '10:40:00', 'Fall');
+(202, 3, 'Friday', '09:00:00', 19, 13, '1', '1', '10:40:00', 'Fall'),
+(203, 10, 'Monday', '09:00:00', 14, 14, '5', '2', '10:15:00', 'Fall'),
+(204, 10, 'Tuesday', '10:16:00', 14, 14, '5', '2', '11:30:00', 'Fall');
 
 -- --------------------------------------------------------
 
@@ -622,40 +624,42 @@ CREATE TABLE `teachers` (
   `position` varchar(50) NOT NULL,
   `mail` varchar(100) NOT NULL,
   `picture` varchar(255) DEFAULT NULL,
-  `password` varchar(255) NOT NULL
+  `password` varchar(255) NOT NULL,
+  `token` varchar(255) DEFAULT NULL,
+  `expiry` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `teachers`
 --
 
-INSERT INTO `teachers` (`teacher_id`, `name`, `mobile`, `department_id`, `position`, `mail`, `picture`, `password`) VALUES
-(13, 'Khandaker Mohammad Mohi Uddin', '019******', 1, 'Professor', 'opurbo***@gmail.com', 'uploads/jialni.jpg', '123'),
-(14, 'Md. Tahzib Ul Islam', '017******', 1, 'Associate Professor', 'opurbo***1@gmail.com', 'uploads/thazib.jpg', '123'),
-(15, 'Md. Habibullah Belali', '019***', 1, 'Assistant Professor', 'opurbo***2@gmail.com', 'uploads/bilali.jpg', '123'),
-(16, 'Mahmudul Hasan', '013****', 1, 'Lecturer', 'opurbo***3@gmail.com', 'uploads/hasan.jpg', '123'),
-(17, 'Md. Aminul Islam', '013*******', 1, 'Lecturer', 'opurbo***4@gmail.com', 'uploads/animul.jpg', '123'),
-(18, 'Sahab Uddin Rana', '018******', 1, 'Lecturer', 'opurbo***5@gmail.com', 'uploads/rana.jpg', '123'),
-(19, 'Md Rakib Hossain', '019*********', 1, 'Lecturer', 'opurbo***6@gmail.com', 'uploads/rakib.jpg', '123'),
-(20, 'Syed Jamiul Alam', '017*********', 1, 'Lecturer', 'opurbo***7@gmail.com', 'uploads/jaimul.jpg', '123'),
-(21, 'Md. Ashraful Islam', '017**********', 1, 'Assistant Professor', 'opurbo***8@gmail.com', 'uploads/ashraful.jpg', '123'),
-(22, 'MD. ZAHIDUL ISLAM', '015*******', 1, 'Assistant Professor', 'opurbo***8@gmail.com', 'uploads/zahid.jpeg', '123'),
-(23, 'Sraboni Barua', '018****', 1, 'Assistant Professor', 'opurbo***9@gmail.com', 'uploads/sraboni.jpg', '123'),
-(24, 'Md. Humaun Kabir', '01', 1, 'Lecturer', 'opurbo***10@gmail.com', 'uploads/humaiun.jpg', '123'),
-(25, 'Mohammad Asraful Hasnat', '02', 1, 'Lecturer', 'opurbo***12@gmail.com', 'uploads/dum.png', '123'),
-(26, 'Md. Abir Mahmud', '013', 1, 'Lecturer', 'opurbo***13@gmail.com', 'uploads/dum.png', '123'),
-(27, 'Md. Anisur Rahman Pramanik', '014****', 1, 'Associate Professor', 'opurbo***13@gmail.com', 'uploads/dum.png', '123'),
-(28, 'Rashed Mahmud', '015*', 1, 'Lecturer', 'opurbo***14@gmail.com', 'uploads/dum.png', '123'),
-(29, 'Sayma Sultana', '016*', 1, 'Lecturer', 'opurbo***15@gmail.com', 'uploads/sayma.jpeg', '123'),
-(30, 'Sajia Akhter Airin', '0177', 1, 'Lecturer', 'opurbo***16@gmail.com', 'uploads/dum.png', '123'),
-(31, 'Md. Tipu Sultan', '0121', 1, 'Lecturer', 'opurbo***17@gmail.com', 'uploads/dum.png', '123'),
-(32, 'Hemonta Kumar Barman', '0155', 1, 'Lecturer', 'opurbo***18@gmail.com', 'uploads/dum.png', '123'),
-(33, 'Md. Sifuzzaman', '001****', 1, 'Associate Professor', 'opurbo***18@gmail.com', 'uploads/jaman.jpg', '123'),
-(34, 'Dr. A.T.M. Mahbubur Rahman Sarker', '018******7', 1, 'Dean', 'opurbo***19@gmail.com', 'uploads/dean.jpg', '123'),
-(35, 'Md. Nur -a-Alam', '018******2', 1, 'Lecturer', 'opurbo***20@gmail.com', 'uploads/nur.jpg', '123'),
-(36, 'Md. Rezaul Islam', '018******4', 1, 'Lecturer', 'opurbo***21@gmail.com', 'uploads/dum.png', '123'),
-(37, 'Md. Abdul Based', '018******9', 1, 'Professor', 'opurbo***22@gmail.com', 'uploads/based.jpg', '123'),
-(38, 'MD. SHARIFUL ISLAM', '018*****78', 1, 'Lecturer', 'opurbo***23@gmail.com', 'uploads/shariful.jpg', '123');
+INSERT INTO `teachers` (`teacher_id`, `name`, `mobile`, `department_id`, `position`, `mail`, `picture`, `password`, `token`, `expiry`) VALUES
+(13, 'Khandaker Mohammad Mohi Uddin', '019******', 1, 'Professor', 'opurbo***@gmail.com', 'uploads/jialni.jpg', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL),
+(14, 'Md. Tahzib Ul Islam', '017******', 1, 'Associate Professor', 'opurbo***1@gmail.com', 'uploads/thazib.jpg', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL),
+(15, 'Md. Habibullah Belali', '019***', 1, 'Assistant Professor', 'opurbo***2@gmail.com', 'uploads/bilali.jpg', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL),
+(16, 'Mahmudul Hasan', '013****', 1, 'Lecturer', 'opurbo***3@gmail.com', 'uploads/hasan.jpg', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL),
+(17, 'Md. Aminul Islam', '013*******', 1, 'Lecturer', 'opurbo***4@gmail.com', 'uploads/animul.jpg', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL),
+(18, 'Sahab Uddin Rana', '018******', 1, 'Lecturer', 'opurbo***5@gmail.com', 'uploads/rana.jpg', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL),
+(19, 'Md Rakib Hossain', '019*********', 1, 'Lecturer', 'opurbo***6@gmail.com', 'uploads/rakib.jpg', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL),
+(20, 'Syed Jamiul Alam', '017*********', 1, 'Lecturer', 'opurbo***7@gmail.com', 'uploads/jaimul.jpg', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL),
+(21, 'Md. Ashraful Islam', '017**********', 1, 'Assistant Professor', 'opurbo***8@gmail.com', 'uploads/ashraful.jpg', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL),
+(22, 'MD. ZAHIDUL ISLAM', '015*******', 1, 'Assistant Professor', 'opurbo***8@gmail.com', 'uploads/zahid.jpeg', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL),
+(23, 'Sraboni Barua', '018****', 1, 'Assistant Professor', 'opurbo***9@gmail.com', 'uploads/sraboni.jpg', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL),
+(24, 'Md. Humaun Kabir', '01', 1, 'Lecturer', 'opurbo***10@gmail.com', 'uploads/humaiun.jpg', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL),
+(25, 'Mohammad Asraful Hasnat', '02', 1, 'Lecturer', 'opurbo***12@gmail.com', 'uploads/dum.png', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL),
+(26, 'Md. Abir Mahmud', '013', 1, 'Lecturer', 'opurbo***13@gmail.com', 'uploads/dum.png', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL),
+(27, 'Md. Anisur Rahman Pramanik', '014****', 1, 'Associate Professor', 'opurbo***13@gmail.com', 'uploads/dum.png', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL),
+(28, 'Rashed Mahmud', '015*', 1, 'Lecturer', 'opurbo***14@gmail.com', 'uploads/dum.png', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL),
+(29, 'Sayma Sultana', '016*', 1, 'Lecturer', 'opurbo***15@gmail.com', 'uploads/sayma.jpeg', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL),
+(30, 'Sajia Akhter Airin', '0177', 1, 'Lecturer', 'opurbo***16@gmail.com', 'uploads/dum.png', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL),
+(31, 'Md. Tipu Sultan', '0121', 1, 'Lecturer', 'opurbo***17@gmail.com', 'uploads/dum.png', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL),
+(32, 'Hemonta Kumar Barman', '0155', 1, 'Lecturer', 'opurbo***18@gmail.com', 'uploads/dum.png', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL),
+(33, 'Md. Sifuzzaman', '001****', 1, 'Associate Professor', 'opurbo***18@gmail.com', 'uploads/jaman.jpg', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL),
+(34, 'Dr. A.T.M. Mahbubur Rahman Sarker', '018******7', 1, 'Dean', 'opurbo***19@gmail.com', 'uploads/dean.jpg', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL),
+(35, 'Md. Nur -a-Alam', '018******2', 1, 'Lecturer', 'opurbo***20@gmail.com', 'uploads/nur.jpg', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL),
+(36, 'Md. Rezaul Islam', '018******4', 1, 'Lecturer', 'opurbo***21@gmail.com', 'uploads/dum.png', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL),
+(37, 'Md. Abdul Based', '018******9', 1, 'Professor', 'opurbo***22@gmail.com', 'uploads/based.jpg', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL),
+(38, 'MD. SHARIFUL ISLAM', '018*****78', 1, 'Lecturer', 'opurbo***23@gmail.com', 'uploads/shariful.jpg', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL);
 
 -- --------------------------------------------------------
 
@@ -817,7 +821,7 @@ ALTER TABLE `room`
 -- AUTO_INCREMENT for table `routine`
 --
 ALTER TABLE `routine`
-  MODIFY `routine_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=203;
+  MODIFY `routine_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=205;
 
 --
 -- AUTO_INCREMENT for table `semester`
@@ -829,13 +833,13 @@ ALTER TABLE `semester`
 -- AUTO_INCREMENT for table `teachercourses`
 --
 ALTER TABLE `teachercourses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=489;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=499;
 
 --
 -- AUTO_INCREMENT for table `teachers`
 --
 ALTER TABLE `teachers`
-  MODIFY `teacher_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `teacher_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `timeslot`
