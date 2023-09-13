@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 11, 2023 at 06:36 PM
+-- Generation Time: Sep 13, 2023 at 07:28 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -263,10 +263,18 @@ CREATE TABLE `routine` (
 --
 
 INSERT INTO `routine` (`routine_id`, `course_id`, `day`, `start_time`, `room_id`, `teacher_id`, `batch`, `semester`, `end_time`, `session`) VALUES
-(201, 2, 'Saturday', '09:00:00', 14, 13, '1', '1', '10:15:00', 'Fall'),
-(202, 3, 'Friday', '09:00:00', 19, 13, '1', '1', '10:40:00', 'Fall'),
-(203, 10, 'Monday', '09:00:00', 14, 14, '5', '2', '10:15:00', 'Fall'),
-(204, 10, 'Tuesday', '10:16:00', 14, 14, '5', '2', '11:30:00', 'Fall');
+(217, 2, 'Tuesday', '09:00:00', 14, 17, '1', '1', '10:15:00', 'Fall'),
+(218, 2, 'Saturday', '11:31:00', 14, 17, '1', '1', '12:45:00', 'Fall'),
+(220, 4, 'Tuesday', '11:31:00', 14, 19, '1', '1', '12:45:00', 'Fall'),
+(221, 4, 'Saturday', '09:00:00', 14, 19, '1', '1', '10:15:00', 'Fall'),
+(224, 6, 'Thursday', '10:16:00', 14, 23, '1', '1', '11:30:00', 'Fall'),
+(225, 7, 'Thursday', '11:31:00', 14, 28, '1', '1', '12:45:00', 'Fall'),
+(227, 9, 'Tuesday', '10:16:00', 14, 33, '1', '1', '11:30:00', 'Fall'),
+(228, 9, 'Saturday', '10:16:00', 14, 33, '1', '1', '11:30:00', 'Fall'),
+(230, 6, 'Tuesday', '12:46:00', 14, 23, '1', '1', '02:00:00', 'Fall'),
+(232, 3, 'Wednesday', '09:00:00', 19, 17, '1', '1', '10:40:00', 'Fall'),
+(233, 5, 'Wednesday', '10:41:00', 19, 19, '1', '1', '12:20:00', 'Fall'),
+(234, 8, 'Wednesday', '12:21:00', 19, 29, '1', '1', '02:00:00', 'Fall');
 
 -- --------------------------------------------------------
 
@@ -821,7 +829,7 @@ ALTER TABLE `room`
 -- AUTO_INCREMENT for table `routine`
 --
 ALTER TABLE `routine`
-  MODIFY `routine_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=205;
+  MODIFY `routine_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=235;
 
 --
 -- AUTO_INCREMENT for table `semester`
