@@ -11,6 +11,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
@@ -77,7 +79,7 @@
             <a href="./select.php"
               class="flex cursor-pointer items-center truncate rounded-[5px] px-6 py-[0.45rem] text-[0.85rem] text-white outline-none transition duration-300 ease-linear hover:bg-gray-300 hover:text-black hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none hover:text-black hover:no-underline">
               <span class="mr-4 h-5 w-5 hover:text-black">
-                <i class="fas fa-home"></i>
+                <i class="fa fa-calendar-check" aria-hidden="true"></i>
               </span>
               <span>Routine</span>
             </a>
@@ -88,7 +90,7 @@
             <a href="./teacher_search.php"
               class="flex cursor-pointer items-center truncate rounded-[5px] px-6 py-[0.45rem] text-[0.85rem] text-white outline-none transition duration-300 ease-linear hover:bg-gray-300 hover:text-black hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none hover:text-black hover:no-underline">
               <span class="mr-4 h-5 w-5 hover:text-black">
-                <i class="fas fa-home"></i>
+                <i class="fa fa-search" aria-hidden="true"></i>
               </span>
               <span>Find Teacher</span>
             </a>
@@ -100,7 +102,7 @@
             <a href="./room_search.php"
               class="flex cursor-pointer items-center truncate rounded-[5px] px-6 py-[0.45rem] text-[0.85rem] text-white outline-none transition duration-300 ease-linear hover:bg-gray-300 hover:text-black hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none hover:text-black hover:no-underline">
               <span class="mr-4 h-5 w-5 hover:text-black">
-                <i class="fas fa-home"></i>
+                <i class="fa fa-list-alt" aria-hidden="true"></i>
               </span>
               <span>Check Room</span>
             </a>
