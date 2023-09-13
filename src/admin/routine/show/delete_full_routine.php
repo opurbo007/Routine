@@ -17,7 +17,7 @@ if (isset($_GET['batchId']) && isset($_GET['semesterName']) && isset($_GET['sess
 
   if ($deleteStmt->execute()) {
 
-    header("Location: batche_show.php");
+    header("Location: batch_show.php");
     exit();
   } else {
     echo "Error deleting routines: " . $conn->error;

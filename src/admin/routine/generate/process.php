@@ -85,7 +85,7 @@ include("../../../include/adminNavbar.php");
               </h2>
 
               <div class="day-time-fields flex flex-wrap -mx-2">
-                <?php foreach (['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] as $dayName) { ?>
+                <?php foreach (['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'] as $dayName) { ?>
                   <div class="day-time-field w-1/3 px-2 mb-2">
                     <label for="<?php echo "{$courseRow['course_id']}_{$dayName}"; ?>"
                       class="block text-sm font-medium text-gray-700"><?php echo $dayName; ?>:
@@ -161,6 +161,7 @@ include("../../../include/adminNavbar.php");
                     </option>
                   <?php } ?>
                 </select>
+
               </div>
             </div>
           </div>

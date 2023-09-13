@@ -78,8 +78,8 @@ $selectedSemesterName = $semesterRow['semester_name'];
         <tr>
           <th class="px-4 border py-2">Day & Time</th>
           <?php
-          $timeSlotsToShow = array(); // Store time slots that have at least one class scheduled
-          // Fetch the distinct time slots from the timeslot table
+          $timeSlotsToShow = array(); // Store time slots least one class
+          // time slotsthe from timeslot table
           $timeSlotQuery = "SELECT DISTINCT start_time, end_time FROM timeslot";
           $timeSlotResult = $conn->query($timeSlotQuery);
           $timeSlots = array();
@@ -111,7 +111,8 @@ $selectedSemesterName = $semesterRow['semester_name'];
 
 
         <?php
-        $days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        $days = ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+
 
         foreach ($days as $day) {
           echo "<tr>";
@@ -141,7 +142,7 @@ $selectedSemesterName = $semesterRow['semester_name'];
               }
 
               if (!$found) {
-                echo "Off day";
+                echo "Off Time";
               }
 
               echo "</td>";

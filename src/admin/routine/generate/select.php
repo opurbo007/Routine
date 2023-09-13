@@ -44,6 +44,25 @@ include("../../../include/adminNavbar.php");
 
     unset($_SESSION['error_message']);
   }
+  if (isset($_SESSION['unavailability_messages'])) {
+    $unavailabilityMessages = $_SESSION['unavailability_messages'];
+    // id="errorMessage"
+    foreach ($unavailabilityMessages as $message) {
+      echo '<div class="flex items-center justify-center mt-6">  
+     <div class="flex w-96 shadow-lg rounded-lg">
+         <div class="bg-red-600 py-4 px-6 rounded-l-lg flex items-center">
+             <i class="fas fa-times text-white"></i>
+         </div>
+        <div class="relative px-4 py-6 bg-white rounded-r-lg flex justify-between items-center w-full border border-l-transparent border-gray-200">
+            <div>' . $message . '</div>
+            <div class="absolute bottom-0 left-0 w-full h-1 bg-red-600"></div>
+         </div>
+          </div>
+      </div>';
+    }
+    // Clear the session variable
+    unset($_SESSION['unavailability_messages']);
+  }
   ?>
 
   <div
