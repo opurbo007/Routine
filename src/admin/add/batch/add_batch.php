@@ -131,7 +131,7 @@ include("../../../include/adminNavbar.php");
                         </div>
                         <div class=" my-6">
                             <input type="submit" value="Add Batch"
-                                class="w-full rounded-md bg-gray-900 px-3 py-4 text-white focus:bg-gray-400 focus:outline-none">
+                                class="w-full rounded-md bg-gray-900 px-3 py-2 text-white focus:bg-gray-400 focus:outline-none">
                         </div>
                 </div>
                 </form>

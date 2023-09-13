@@ -19,7 +19,7 @@ $batchResult = $conn->query($batchQuery);
       <p class="border border-black flex">
         <a href="select.php"
           class="inline-block px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-600 hover:no-underline">
-          Back
+          Make Routine
         </a>
       </p>
     </div>

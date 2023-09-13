@@ -28,63 +28,92 @@ $totalBatch = $row['batch'];
 
 mysqli_close($conn);
 ?>
+<style>
+  .border-gradient {
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    border-image: linear-gradient(to right, #93C5FD, #38A169);
+    border-image-slice: 1;
+  }
+</style>
 
 <body>
   <div class="container mx-auto mt-10">
-    <h1 class="text-2xl font-bold mb-4">Educational Institution Dashboard</h1>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-      <div class="bg-blue-200 p-4 rounded-lg">
-        <h2 class="text-xl font-semibold">Total Teachers</h2>
-        <p class="text-3xl font-bold">
-          <?= $totalTeachers ?>
-        </p>
-      </div>
-      <div class="bg-green-200 p-4 rounded-lg">
-        <h2 class="text-xl font-semibold">Total Departments</h2>
-        <p class="text-3xl font-bold">
-          <?= $totalDepartments ?>
-        </p>
-      </div>
-      <div class="bg-yellow-200 p-4 rounded-lg">
-        <h2 class="text-xl font-semibold">Total Courses</h2>
-        <p class="text-3xl font-bold">
-          <?= $totalCourses ?>
-        </p>
-      </div>
-      <div class="bg-red-200 p-4 rounded-lg">
-        <h2 class="text-xl font-semibold">Total Timeslots</h2>
-        <p class="text-3xl font-bold">
-          <?= $totalTimeslots ?>
-        </p>
-      </div>
-      <div class="bg-red-200 p-4 rounded-lg">
-        <h2 class="text-xl font-semibold">Total Rooms</h2>
-        <p class="text-3xl font-bold">
-          <?= $totalRoom ?>
-        </p>
-      </div>
-      <div class="bg-red-200 p-4 rounded-lg">
-        <h2 class="text-xl font-semibold">Total Batch</h2>
-        <p class="text-3xl font-bold">
-          <?= $totalBatch ?>
-        </p>
-      </div>
-      <div class="bg-red-200 p-4 rounded-lg">
-        <h2 class="text-xl font-semibold">Total Theory Rooms</h2>
-        <p class="text-3xl font-bold">
-          <?= $totalTheoryRooms ?>
-        </p>
-      </div>
-      <div class="bg-red-200 p-4 rounded-lg">
-        <h2 class="text-xl font-semibold">Total Lab Rooms</h2>
-        <p class="text-3xl font-bold">
-          <?= $totalLabRooms ?>
-        </p>
-      </div>
-    </div>
-  </div>
+    <h1 class="text-2xl font-bold mb-16 text-center">DIU DASHBOARD</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-24">
 
-  <script src="../../../include/index.js"></script>
+      <a href="../teacher/teacher.php" class="hover:no-underline hover:text-black">
+        <div class="bg-white shadow-lg rounded-lg p-10 border-gradient text-center ">
+          <h2 class="text-xl font-semibold pb-4">Total Teachers <i class="fa fa-users" aria-hidden="true"></i></h2>
+          <p class="text-3xl font-bold ">
+            <?= $totalTeachers ?>
+          </p>
+        </div>
+      </a>
+      <a href="../dept/dept.php" class="hover:no-underline hover:text-black">
+        <div class="bg-white shadow-lg rounded-lg p-10 border-gradient text-center ">
+          <h2 class="text-xl font-semibold pb-4">Total Departments <i class="fa fa-sitemap" aria-hidden="true"></i>
+          </h2>
+          <p class="text-3xl font-bold">
+            <?= $totalDepartments ?>
+          </p>
+        </div>
+      </a>
+      <a href="../course/course.php" class="hover:no-underline hover:text-black">
+        <div class="bg-white shadow-lg rounded-lg p-10 border-gradient text-center ">
+          <h2 class="text-xl font-semibold pb-4">Total Courses <i class="fa fa-book" aria-hidden="true"></i></h2>
+          <p class="text-3xl font-bold">
+            <?= $totalCourses ?>
+          </p>
+        </div>
+      </a>
+      <a href="../time/timetable.php" class="hover:no-underline hover:text-black">
+        <div class="bg-white shadow-lg rounded-lg p-10 border-gradient text-center ">
+          <h2 class="text-xl font-semibold pb-4">Total Timeslot <i class="fa fa-clock" aria-hidden="true"></i></h2>
+          <p class="text-3xl font-bold">
+            <?= $totalTimeslots ?>
+          </p>
+        </div>
+      </a>
+
+      <a href="../batch/batch.php" class="hover:no-underline hover:text-black">
+        <div class="bg-white shadow-lg rounded-lg p-10 border-gradient text-center ">
+          <h2 class="text-xl font-semibold pb-4">Total Batch <i class="fa fa-cubes" aria-hidden="true"></i></h2>
+          <p class="text-3xl font-bold">
+            <?= $totalBatch ?>
+          </p>
+        </div>
+      </a><a href="../room/room.php" class="hover:no-underline hover:text-black">
+        <div class="bg-white shadow-lg rounded-lg p-10 border-gradient text-center ">
+          <h2 class="text-xl font-semibold pb-4">Total Rooms <i class="fa fa-building" aria-hidden="true"></i></h2>
+          <p class="text-3xl font-bold">
+            <?= $totalRoom ?>
+          </p>
+        </div>
+      </a>
+      <a href="../room/room.php" class="hover:no-underline hover:text-black">
+        <div class="bg-white shadow-lg rounded-lg p-10 border-gradient text-center ">
+          <h2 class="text-xl font-semibold pb-4">Total Regular Rooms <i class="fa fa-window-maximize"
+              aria-hidden="true"></i>
+          </h2>
+          <p class="text-3xl font-bold">
+            <?= $totalTheoryRooms ?>
+          </p>
+        </div>
+      </a>
+      <a href="../room/room.php" class="hover:no-underline hover:text-black">
+        <div class="bg-white shadow-lg rounded-lg p-10 border-gradient text-center ">
+          <h2 class="text-xl font-semibold pb-4">Total LAB <i class="fa fa-flask" aria-hidden="true"></i></h2>
+          <p class="text-3xl font-bold">
+            <?= $totalLabRooms ?>
+          </p>
+        </div>
+      </a>
+
+
+    </div>
+
+    <script src="../../../include/index.js"></script>
 
 
 </body>
