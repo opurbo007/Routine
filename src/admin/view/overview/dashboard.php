@@ -109,7 +109,15 @@ mysqli_close($conn);
           </p>
         </div>
       </a>
-
+      <a href="../semester/semester.php" class="hover:no-underline hover:text-black">
+        <div class="bg-white shadow-lg rounded-lg p-10 border-gradient text-center ">
+          <h2 class="text-xl font-semibold pb-4">Semester Per Department <i class="fa fa-adjust" aria-hidden="true"></i>
+          </h2>
+          <p class="text-3xl font-bold">
+            8
+          </p>
+        </div>
+      </a>
 
     </div>
 
