@@ -137,7 +137,7 @@ include("../../../include/adminNavbar.php");
                 </form>
                 <p class="text-center text-sm text-gray-500">
                     View All Batch <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
-                    <a class="underline" href="../../batch/batch.php">Here</a>
+                    <a class="underline" href="../../view/batch/batch.php">Here</a>
                 </p>
             </div>
         </div>

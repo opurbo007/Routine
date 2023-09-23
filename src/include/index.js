@@ -23,6 +23,7 @@ function toggleNavbar() {
    navContainer.classList.toggle("hidden");
    toggleButton.classList.toggle("hidden");
 }
+
 // Hide the success message
 setTimeout(function () {
    let successMessage = document.getElementById("successMessage");

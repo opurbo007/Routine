@@ -22,61 +22,44 @@
       }
     }
 
-    /* Apply the animation to the changing text */
+  
     .changing-text {
       animation: fadeInOut 3s ease-in-out infinite;
     }
 
-    /* Position the buttons at the bottom */
-    .btn-container {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background-color: white;
-      display: flex;
-      justify-content: space-around;
-      padding: 10px;
-      box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
-      z-index: 9999;
+ 
+       
+    body {
+      /* background-image: url('src/img/cover2.jpg');  */
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    nav {
+      background-color: rgba(128, 0, 128, 0.8); 
     }
   </style>
 </head>
 
 <body class="bg-gray-100">
-  <!-- for big screen  -->
-  <div class="fixed left-0 top-0 h-full p-4 flex flex-col items-start" id="btnContainer2">
-    <div class="m-auto">
-      <div class="mb-6 sm:mb-36 transform -rotate-90">
-        <a class="px-6 py-2 text-gray-200 bg-purple-600 rounded-full shadow-md text-lg hover:bg-gray-800 hover:border-red"
-          href="src/student/select.php">Student</a>
-      </div>
-      <div class="mb-6 sm:mb-36 transform -rotate-90">
-        <a class="px-6 py-2 text-gray-200 bg-purple-600 rounded-full shadow-md text-lg hover:bg-gray-800 hover:border-red"
-          href="login/admin/login.php">Admin</a>
-      </div>
-      <div class="mb-6 sm:mb-36 transform -rotate-90">
-        <a class="px-6 py-2 text-gray-200 bg-purple-600 rounded-full shadow-md text-lg hover:bg-gray-800 hover:border-red"
-          href="login/teacher/login.php">Teacher</a>
-      </div>
+<nav class="bg-gray-900 p-4">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-gray-200 text-2xl font-bold">DIU DAILY</h1>
+      <ul class="space-x-4">
+        <li class="inline-block">
+          <a class="text-gray-200 hover:text-gray-200" href="src/student/select.php">Student</a>
+        </li>
+        <li class="inline-block">
+          <a class="text-gray-200 hover:text-gray-200" href="login/admin/login.php">Admin</a>
+        </li>
+        <li class="inline-block">
+          <a class="text-gray-200 hover:text-gray-200" href="login/teacher/login.php">Teacher</a>
+        </li>
+      </ul>
     </div>
-  </div>
-
-  <!-- Button container for mobile -->
-  <div class="btn-container bg-gray-100 flex justify-start" id="btnContainer">
-    <span class="mr-1">
-      <a class="px-6 py-2 text-gray-200 bg-purple-600 rounded-full shadow-md text-lg hover:bg-gray-800 hover:border-red"
-        href="src/student/select.php">Student</a>
-    </span>
-    <span class="mr-1">
-      <a class="px-6 py-2 text-gray-200 bg-purple-600 rounded-full shadow-md text-lg hover:bg-gray-800 hover:border-red"
-        href="login/admin/login.php">Admin</a>
-    </span>
-    <span class="">
-      <a class="px-6 py-2 text-gray-200 bg-purple-600 rounded-full shadow-md text-lg hover:bg-gray-800 hover:border-red"
-        href="login/teacher/login.php">Teacher</a>
-    </span>
-  </div>
+  </nav>
 
 
   <div class="min-h-screen flex flex-col justify-center">
@@ -116,19 +99,7 @@
 
       const btnContainer2 = document.getElementById("btnContainer2");
 
-      function toggleButtonsVisibility() {
-        if (window.innerWidth <= 768) {
-          btnContainer2.style.display = "none";
-          btnContainer.style.display = "block";
-
-
-        } else {
-
-          btnContainer.style.display = "none";
-        }
-      }
-      toggleButtonsVisibility();
-      window.addEventListener("resize", toggleButtonsVisibility);
+   
     </script>
   </div>
 </body>

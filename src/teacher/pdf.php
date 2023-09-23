@@ -16,7 +16,7 @@ if (isset($_GET['teacher_id'])) {
   $dompdf = new Dompdf($options);
 
   // Fetch time slots from the database
-  $timeSlotsQuery = "SELECT DISTINCT TIME_FORMAT(start_time, '%h:%i') AS start_time, TIME_FORMAT(end_time, '%h:%i') AS end_time FROM timeslot ORDER BY start_time";
+  $timeSlotsQuery = "SELECT DISTINCT TIME_FORMAT(start_time, '%h:%i %p') AS start_time, TIME_FORMAT(end_time, '%h:%i %p') AS end_time FROM timeslot ORDER BY start_time";
   $timeSlotsResult = $conn->query($timeSlotsQuery);
   $timeSlots = [];
   while ($row = $timeSlotsResult->fetch_assoc()) {
@@ -31,7 +31,7 @@ if (isset($_GET['teacher_id'])) {
       <body>';
 
   // Modify the routineQuery to use $teacherId
-  $routineQuery = "SELECT day, TIME_FORMAT(start_time, '%h:%i') AS start_time, TIME_FORMAT(end_time, '%h:%i') AS end_time, course_code, course_name, room_number
+  $routineQuery = "SELECT day, TIME_FORMAT(start_time, '%h:%i %p') AS start_time, TIME_FORMAT(end_time, '%h:%i %p') AS end_time, course_code, course_name, room_number
                        FROM routine
                        INNER JOIN course ON routine.course_id = course.course_id
                        INNER JOIN room ON routine.room_id = room.room_id

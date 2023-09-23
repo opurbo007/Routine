@@ -77,7 +77,7 @@ include("../../../include/adminNavbar.php");
 
                     <p class="text-center text-sm text-gray-500">
                         View All Department <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
-                        <a class="underline" href="../../dept/dept.php">Here</a>
+                        <a class="underline" href="../../view/dept/dept.php">Here</a>
                     </p>
                 </div>
             </div>

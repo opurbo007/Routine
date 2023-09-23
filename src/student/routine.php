@@ -27,7 +27,11 @@ $semesterRow = $semesterResult->fetch_assoc();
 $selectedSemesterName = $semesterRow['semester_name'];
 
 ?>
-
+<style>
+  .nav-container {
+    flex: 0 0 99px;
+}
+</style>
 <div class="flex flex-col min-h-screen w-full">
   <div class="flex justify-between mt-4">
     <div>
@@ -77,35 +81,45 @@ $selectedSemesterName = $semesterRow['semester_name'];
         <tr>
           <th class="px-4 border py-2">Day & Time</th>
           <?php
-          $timeSlotsToShow = array(); // Store time slots that have at least one class scheduled
-          // Fetch the distinct time slots from the timeslot table
-          $timeSlotQuery = "SELECT DISTINCT start_time, end_time FROM timeslot";
-          $timeSlotResult = $conn->query($timeSlotQuery);
-          $timeSlots = array();
-          while ($row = $timeSlotResult->fetch_assoc()) {
-            $timeSlots[] = $row;
+  $timeSlotsToShow = array(); // Store time slots with at least one class
+
+  // Fetch distinct time slots from the timeslot table
+  $timeSlotQuery = "SELECT DISTINCT start_time, end_time FROM timeslot";
+  $timeSlotResult = $conn->query($timeSlotQuery);
+  $timeSlots = array();
+
+  while ($row = $timeSlotResult->fetch_assoc()) {
+    $timeSlots[] = $row;
+  }
+
+      // Loop through the fetched time slots
+      foreach ($timeSlots as $timeSlot) {
+        $found = false;
+        // Reset the routine result pointer
+        mysqli_data_seek($routineResult, 0);
+
+        while ($row = $routineResult->fetch_assoc()) {
+          // Check if the routine matches the current time slot
+          if ($row['start_time'] == $timeSlot['start_time'] && $row['end_time'] == $timeSlot['end_time']) {
+            $found = true;
+            break;
           }
+        }
 
-          foreach ($timeSlots as $timeSlot) {
-            $found = false;
-            while ($row = $routineResult->fetch_assoc()) {
-              if ($row['start_time'] == $timeSlot['start_time'] && $row['end_time'] == $timeSlot['end_time']) {
-                $found = true;
-                break;
-              }
-            }
-
-            if ($found) {
-              $startTime = date("H:i", strtotime($timeSlot['start_time']));
-              $endTime = date("H:i", strtotime($timeSlot['end_time']));
-              echo "<th colspan='3' class='border px-4 py-2'>$startTime - $endTime</th>";
-              $timeSlotsToShow[] = $timeSlot;
-            }
+           // Only display and store the time slot if at least one class is found
+           if ($found) {
+            // Convert the time to a 12-hour format with AM/PM
+            $startTime = date("h:i A", strtotime($timeSlot['start_time']));
+            $endTime = date("h:i A", strtotime($timeSlot['end_time']));
+            echo "<th colspan='3' class='border pl-2 py-2'>$startTime - $endTime</th>";
+            $timeSlotsToShow[] = $timeSlot;
           }
+        }
+    ?>
+  </tr>
+</thead>
 
-          ?>
-        </tr>
-      </thead>
+
       <tbody>
 
 
@@ -133,7 +147,7 @@ $selectedSemesterName = $semesterRow['semester_name'];
               }
 
               if (!$found) {
-                echo "Off day";
+                echo "✘";
               }
 
               echo "</td>";

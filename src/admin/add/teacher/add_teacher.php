@@ -200,7 +200,7 @@ include("../../../include/adminNavbar.php");
 
                     <p class="text-center text-sm text-gray-500">
                         View All Room <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
-                        <a class="underline" href="../../teacher/teacher.php">Here</a>
+                        <a class="underline" href="../../view/teacher/teacher.php">Here</a>
                     </p>
                 </div>
             </div>
