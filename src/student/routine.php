@@ -74,7 +74,7 @@ $selectedSemesterName = $semesterRow['semester_name'];
   $routineResult = $routineStmt->get_result();
   ?>
 
-  <div class="container mx-auto py-8">
+  <div class="container mx-auto py-8 w-[1792px]">
 
     <table class="table-auto w-full">
       <thead>
