@@ -42,7 +42,7 @@ mysqli_close($conn);
     <h1 class="text-2xl font-bold mb-16 text-center">DIU DASHBOARD</h1>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-24">
 
-      <a href="../teacher/teacher.php" class="hover:no-underline hover:text-black">
+      <a href="../teacher/teacher.php" class="hover:no-underline hover:text-black" >
         <div class="bg-white shadow-lg rounded-lg p-10 border-gradient text-center ">
           <h2 class="text-xl font-semibold pb-4">Total Teachers <i class="fa fa-users" aria-hidden="true"></i></h2>
           <p class="text-3xl font-bold ">

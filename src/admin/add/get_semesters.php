@@ -1,17 +1,5 @@
 <?php
-// Replace these variables with your database credentials
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "routine";
-
-// Create a database connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check if the connection was successful
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include("../../../database/config.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["department_id"])) {
     $department_id = $_POST["department_id"];

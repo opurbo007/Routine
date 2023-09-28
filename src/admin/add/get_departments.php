@@ -1,18 +1,5 @@
 <?php
-// Replace these variables with your database credentials
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "routine";
-
-// Create a database connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check if the connection was successful
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
+include("../../../database/config.php");
 // Fetch departments
 $sql_departments = "SELECT * FROM Department";
 $result_departments = $conn->query($sql_departments);

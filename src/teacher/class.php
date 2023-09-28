@@ -6,7 +6,8 @@ include("../include/teacherNavbar.php");
 // Get the current day and time
 date_default_timezone_set('Asia/Dhaka');
 $currentDay = date("l"); 
-$currentTime = date("H:i"); 
+$currentTime = date("H:i");
+$displayCurrentTime = date("H:i A");
 
 
 // Fetch and display the teacher's current classes
@@ -27,7 +28,7 @@ if (isset($_SESSION["teacher_id"])) {
   ?>
 
 <div class="container mx-auto py-8">
-  <h1 class="text-3xl font-bold mb-10 text-center">Onging Class<br> <?php echo $currentDay; ?></h1>
+  <h1 class="text-3xl font-bold mb-10 text-center">Onging Class<br> <?php echo $currentDay; ?> <br> <?php echo $displayCurrentTime; ?></h1>
 
   <table class="table-auto w-full">
   <thead class='border px-4 py-2'>

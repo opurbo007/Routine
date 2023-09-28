@@ -1,17 +1,6 @@
 <?php
-// Replace these variables with your database credentials
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "routine";
+include("../../../database/config.php");
 
-// Create a database connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check if the connection was successful
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
 
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["department_id"])) {
   $department_id = $_GET["department_id"];

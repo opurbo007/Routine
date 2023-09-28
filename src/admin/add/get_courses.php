@@ -1,18 +1,5 @@
 <?php
-// Replace these variables with your database credentials
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "routine";
-
-// Create a database connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check if the connection was successful
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
+include("../../../database/config.php");
 // Check if semester_id is provided in the request
 if (isset($_GET['semester_id'])) {
     $semester_id = $_GET['semester_id'];

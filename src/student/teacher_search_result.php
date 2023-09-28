@@ -8,7 +8,7 @@ if (isset($_POST['search'])) {
   $selectedTime = $_POST['time'];
   $selectedTeacher = $_POST['teacher'];
 
-  // Fetch Teacher ID based on teacher name
+  // Fetch Teacher ID on teacher name
   $query = "SELECT teacher_id FROM teachers WHERE name = ?";
   $stmt = $conn->prepare($query);
   $stmt->bind_param("s", $selectedTeacher);
