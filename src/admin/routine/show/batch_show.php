@@ -25,7 +25,7 @@ $batchResult = $conn->query($batchQuery);
     </div>
   </div>
   <div class="container mx-auto py-8">
-    <table class="table-auto w-full">
+    <table class="table-auto w-full bg-white">
       <thead>
         <tr>
           <th class="px-4 border py-2">Batch</th>

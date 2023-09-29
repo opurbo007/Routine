@@ -70,14 +70,14 @@ $selectedSemesterName = $semesterRow['semester_name'];
   // Adding session condition
   
   $routineStmt = $conn->prepare($routineQuery);
-  $routineStmt->bind_param("iis", $selectedBatch, $selectedSemester, $selectedSession); // Adding session parameter
+  $routineStmt->bind_param("iis", $selectedBatch, $selectedSemester, $selectedSession); 
   $routineStmt->execute();
   $routineResult = $routineStmt->get_result();
   ?>
 
   <div class="container mx-auto py-8 w-[112rem]">
 
-    <table class="table-auto w-full">
+    <table class="table-auto w-full bg-white">
       <thead>
         <tr>
           <th class="px-4 border py-2">Day & Time</th>
@@ -141,13 +141,13 @@ $selectedSemesterName = $semesterRow['semester_name'];
               $found = false;
               while ($row = $routineResult->fetch_assoc()) {
                 if ($row['day'] == $day && $row['start_time'] == $timeSlot['start_time'] && $row['end_time'] == $timeSlot['end_time']) {
-                  echo "{$row['course_code']}<br>{$row['course_name']}<br><b>{$row['name']}</b><br>({$row['room_number']})<br>";
+                  echo "<div class='text-center'><span class='font-bold'>{$row['course_code']}</span><br>{$row['course_name']}<br><b>{$row['name']}</b><br>({$row['room_number']})<br>";
 
 
                   echo "<a href='edit_routine.php?routine_id={$row['routine_id']}'  class='text-blue-500 text-black mr-2 hover:text-black'><i class='fa fa-pencil-square'
               aria-hidden='true'></i></a> | ";
                   echo "<a href='delete_routine.php?routine_id={$row['routine_id']}' class='ml-2 text-red-500 hover:text-black'><i class='fa fa-trash'
-              aria-hidden='true'></i></a><br>";
+              aria-hidden='true'></i></a><br></div>";
 
 
                   $found = true;
@@ -156,7 +156,7 @@ $selectedSemesterName = $semesterRow['semester_name'];
               }
 
               if (!$found) {
-                echo "✘";
+                echo "<div class='text-center'>✘</div>";
               }
 
               echo "</td>";

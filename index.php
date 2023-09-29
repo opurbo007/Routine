@@ -102,7 +102,7 @@
         <p class="font-bold tracking-widest text-4xl">Stay on Track with DIU Daily!</p>
       </div>
       <div class="w-full sm:w-1/2">
-        <img src="src/img/cover2.jpg" alt="AWE.SOME header">
+        <img src="src/img/cover3.png" alt="AWE.SOME header">
       </div>
     </div>
     <script>

@@ -75,7 +75,7 @@ $selectedSemesterName = $semesterRow['semester_name'];
 
   <div class="container mx-auto py-8 w-[112rem]">
 
-    <table class="table-auto w-full">
+    <table class="table-auto w-full bg-white">
       <thead>
         <tr>
           <th class="px-4 border py-2">Day & Time</th>
@@ -136,7 +136,7 @@ $selectedSemesterName = $semesterRow['semester_name'];
               $found = false;
               while ($row = $routineResult->fetch_assoc()) {
                 if ($row['day'] == $day && $row['start_time'] == $timeSlot['start_time'] && $row['end_time'] == $timeSlot['end_time']) {
-                  echo "{$row['course_code']}<br>{$row['course_name']}<br><b>{$row['name']}</b><br>({$row['room_number']})<br>";
+                  echo "<div class='text-center'><span class='font-bold'>{$row['course_code']}</span><br>{$row['course_name']}<br><b>{$row['name']}</b><br>({$row['room_number']})</div><br>";
 
                   $found = true;
 
@@ -144,7 +144,7 @@ $selectedSemesterName = $semesterRow['semester_name'];
               }
 
               if (!$found) {
-                echo "✘";
+                echo "<div class='text-center'>✘</div>";
               }
 
               echo "</td>";

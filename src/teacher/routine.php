@@ -28,7 +28,7 @@ if (isset($_SESSION["teacher_id"])) {
 
   <div class="container mx-auto py-8">
     <h1 class="text-3xl font-bold mb-10 text-center">Class Routine</h1>
-    <table class="table-auto w-full">
+    <table class="table-auto w-full bg-white">
       <thead>
         <tr>
           <th class="px-4 border py-2">Day & Time</th>
@@ -68,13 +68,13 @@ if (isset($_SESSION["teacher_id"])) {
             $routineResult->data_seek(0);
             while ($row = $routineResult->fetch_assoc()) {
               if ($row['day'] == $day && "{$row['start_time']} - {$row['end_time']}" == $timeSlot) {
-                $classes[] = "{$row['course_code']}<br>{$row['course_name']}<br>{$row['room_number']}";
+                $classes[] = "<div class='text-center'><span class='font-bold'>{$row['course_code']}</span><br> {$row['course_name']}<br><span class='font-bold'>{$row['room_number']} </span> </div>";
               }
             }
 
             echo "<td class='border px-4 py-2'>";
             if (empty($classes)) {
-              echo "✘";
+              echo "<div class='text-center'>✘</div>";
             } else {
               foreach ($classes as $class) {
                 echo "{$class}<br>";
