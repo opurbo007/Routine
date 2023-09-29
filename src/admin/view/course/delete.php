@@ -17,16 +17,16 @@ if (isset($_GET["action"]) && $_GET["action"] == "delete" && isset($_GET["course
     $_SESSION['error'] = "Failed to delete the course.";
   }
 
-  // Close the prepared statement
+
   $stmt->close();
 } else {
   $_SESSION['error_message'] = "Course ID not specified.";
 }
-// Close the database connection
+
 $conn->close();
 ob_end_flush();
 
-// Redirect back to the course list page
+
 header("Location: course.php");
 exit();
 ?>

@@ -50,7 +50,7 @@ include("../../../include/adminNavbar.php");
 
     unset($_SESSION['error_message']);
   }
-  // if delete, this alart will show
+
   if (isset($_SESSION['delete'])) {
     $msg = $_SESSION['delete'];
 

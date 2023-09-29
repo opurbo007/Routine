@@ -58,7 +58,7 @@ include("../../../include/adminNavbar.php");
             class="relative mx-auto w-full max-w-md bg-white px-6 pt-10 mt-24 pb-8 shadow-xl ring-1 ring-gray-900/5 sm:rounded-xl sm:px-10">
             <div class="w-full">
                 <div class="text-center">
-                    <h1 class="text-2xl font-semibold text-gray-900">Add Department</h1>
+                    <h1 class="text-2xl font-semibold text-gray-900">Add Semester</h1>
                 </div>
                 <div class="mt-5">
                     <form method="post" action="insert.php">

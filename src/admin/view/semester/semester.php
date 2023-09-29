@@ -10,7 +10,7 @@ include("../../../include/adminNavbar.php");
 <div class="flex flex-col min-h-screen w-full">
 
   <?php
-  // if update,  this alart will show
+  
   if (isset($_SESSION['success_message'])) {
 
     $successMessage = $_SESSION['success_message'];
@@ -46,7 +46,7 @@ include("../../../include/adminNavbar.php");
 
     unset($_SESSION['error_message']);
   }
-  // if delete, this alart will show
+
   if (isset($_SESSION['delete'])) {
     $msg = $_SESSION['delete'];
 

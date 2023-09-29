@@ -3,7 +3,6 @@ session_start();
 include("../../database/config.php");
 include("../include/studentNavbar.php");
 
-// Take batch, semester, and session info from previous page
 $selectedBatch = $_POST['batch'];
 $selectedSemester = $_POST['semester'];
 $selectedSession = $_POST['session'];
@@ -83,7 +82,6 @@ $selectedSemesterName = $semesterRow['semester_name'];
           <?php
   $timeSlotsToShow = array(); // Store time slots with at least one class
 
-  // Fetch distinct time slots from the timeslot table
   $timeSlotQuery = "SELECT DISTINCT start_time, end_time FROM timeslot";
   $timeSlotResult = $conn->query($timeSlotQuery);
   $timeSlots = array();
@@ -92,10 +90,9 @@ $selectedSemesterName = $semesterRow['semester_name'];
     $timeSlots[] = $row;
   }
 
-      // Loop through the fetched time slots
       foreach ($timeSlots as $timeSlot) {
         $found = false;
-        // Reset the routine result pointer
+
         mysqli_data_seek($routineResult, 0);
 
         while ($row = $routineResult->fetch_assoc()) {
@@ -108,7 +105,7 @@ $selectedSemesterName = $semesterRow['semester_name'];
 
            // Only display and store the time slot if at least one class is found
            if ($found) {
-            // Convert the time to a 12-hour format with AM/PM
+
             $startTime = date("h:i A", strtotime($timeSlot['start_time']));
             $endTime = date("h:i A", strtotime($timeSlot['end_time']));
             echo "<th colspan='3' class='border pl-2 py-2'>$startTime - $endTime</th>";

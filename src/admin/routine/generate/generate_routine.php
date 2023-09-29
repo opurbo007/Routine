@@ -2,7 +2,7 @@
 session_start();
 include("../../../../database/config.php");
 
-// Initialize an array to store unavailability messages
+// array tostore unavailability message
 $unavailabilityMessages = [];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['day'])) {
@@ -47,7 +47,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['day'])) {
       $teacherUnavailable = ($teacherAvailabilityResult->num_rows > 0);
       $roomUnavailable = ($roomAvailabilityResult->num_rows > 0);
 
-      // Fetch the teacher's name using the $selectedTeacher (teacher ID)
+      // Fetch the teacher's name using teacher ID
+
       $teacherNameQuery = "SELECT name FROM teachers WHERE teacher_id = ?";
       $teacherNameStmt = $conn->prepare($teacherNameQuery);
       $teacherNameStmt->bind_param("i", $selectedTeacher);
@@ -61,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['day'])) {
         $teacherName = "Unknown Teacher";
       }
 
-      // Fetch the room number using the $selectedRoom (room ID)
+      // Fetch the room number using the $selectedRoom ---room ID
       $roomNumberQuery = "SELECT room_number FROM room WHERE room_id = ?";
       $roomNumberStmt = $conn->prepare($roomNumberQuery);
       $roomNumberStmt->bind_param("i", $selectedRoom);
@@ -75,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['day'])) {
         $roomNumber = "Unknown Room";
       }
 
-      // Generate the error message
+   
       if ($teacherUnavailable && $roomUnavailable) {
         $unavailabilityMessages[] = "Error! Teacher ($teacherName) and Room ($roomNumber) are not available for this time slot on $selectedDay at $selectedTime - $selectedEndTime.";
       } elseif ($teacherUnavailable) {
@@ -83,7 +84,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['day'])) {
       } elseif ($roomUnavailable) {
         $unavailabilityMessages[] = "Error! Room ($roomNumber) is not available for this time slot on $selectedDay at $selectedTime - $selectedEndTime.";
       } else {
-        // Insert the data into the routine table
+        // Insert data into routine table
         $insertQuery = "INSERT INTO routine (batch, semester, session, course_id, day, start_time, end_time, room_id, teacher_id)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -112,7 +113,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['day'])) {
   }
 }
 
-// Store the unavailability messages in the session
+// pass unavailability messages in the session
 if (!empty($unavailabilityMessages)) {
   $_SESSION['unavailability_messages'] = $unavailabilityMessages;
 }

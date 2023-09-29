@@ -11,7 +11,7 @@ include("../../../include/adminNavbar.php");
 <div class="flex flex-col min-h-screen w-full">
 
   <?php
-  // if update,  this alart will show
+
   if (isset($_SESSION['success_message'])) {
 
     $successMessage = $_SESSION['success_message'];
@@ -47,7 +47,7 @@ include("../../../include/adminNavbar.php");
 
     unset($_SESSION['error_message']);
   }
-  // if delete, this alart will show
+
   if (isset($_SESSION['delete'])) {
     $msg = $_SESSION['delete'];
 
@@ -105,11 +105,11 @@ include("../../../include/adminNavbar.php");
   if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["search"])) {
     $search = $_POST["search"];
 
-    // Search for rooms based on room number or room type
+
     $sql_search = "SELECT * FROM Room WHERE room_number LIKE '%$search%' OR room_type LIKE '%$search%'";
     $result_search = $conn->query($sql_search);
   } else {
-    // Fetch all rooms
+
     $sql_all_rooms = "SELECT * FROM Room";
     $result_all_rooms = $conn->query($sql_all_rooms);
   }

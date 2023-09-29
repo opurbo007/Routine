@@ -31,7 +31,7 @@ include("../include/studentNavbar.php"); ?>
             <label for="semester">Select Semester:</label>
             <select name="semester" id="semester"
               class="w-full text-gray-700 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 border border-gray-300">
-              <!-- Fetch and populate semester options from the database -->
+  
               <?php
               $semesterQuery = "SELECT semester_id, semester_name FROM semester";
               $semesterResult = $conn->query($semesterQuery);

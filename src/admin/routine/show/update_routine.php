@@ -18,7 +18,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // Split new_time into start_time and end_time
   list($newStartTime, $newEndTime) = explode('|', $newTime);
 
-  // Update the routine in the database
   $updateQuery = "UPDATE routine SET day = ?, start_time = ?, end_time = ?, room_id = ?, teacher_id = ? 
                     WHERE routine_id = ?";
   $stmt = $conn->prepare($updateQuery);

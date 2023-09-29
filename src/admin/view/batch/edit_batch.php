@@ -14,7 +14,6 @@ include("../../../include/adminNavbar.php");
             $department_id = $_POST["department_id"];
             $batch_shift = $_POST["batch_shift"];
 
-            // Update the batch information
             $sql_update_batch = "UPDATE Batch SET batch_number = '$batch_number', department_id = $department_id, batch_shift = '$batch_shift' WHERE batch_id = $batch_id";
 
             if ($conn->query($sql_update_batch) === TRUE) {

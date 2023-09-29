@@ -23,7 +23,7 @@ if (isset($_GET["token"])) {
     die("Link Expired");
   }
 
-  // Valid token, continue with password update
+  // Valid token
   $newPassword = $_GET["password"];
   $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
 
@@ -35,8 +35,7 @@ if (isset($_GET["token"])) {
   $stmt = $conn->prepare($sql);
   $stmt->bind_param("si", $hashedPassword, $user["id"]);
   if ($stmt->execute()) {
-    // Password updated successfully
-    // Redirect the user to the login page
+
     header("Location: login.php");
     exit();
   } else {

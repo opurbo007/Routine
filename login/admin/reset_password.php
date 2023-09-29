@@ -9,7 +9,7 @@ $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $token);
 $stmt->execute();
 
-// Bind the result columns to variables
+// Bind result columns to variables
 $stmt->bind_result($id, $email, $password, $token, $expiry);
 
 // Fetch the result

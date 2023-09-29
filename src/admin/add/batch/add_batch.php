@@ -26,9 +26,9 @@ include("../../../include/adminNavbar.php");
   </div>';
         unset($_SESSION['exist']);
     }
-    // Check if the success message session variable is set
+
     if (isset($_SESSION['success_message'])) {
-        // Display the success message
+
         $successMessage = $_SESSION['success_message'];
         echo '<div class="flex items-center justify-center mt-6">  
          <div id="successMessage" class="flex w-96 shadow-lg rounded-lg">
@@ -42,13 +42,13 @@ include("../../../include/adminNavbar.php");
         </div>
     </div>';
 
-        // Clear the session variable
+
         unset($_SESSION['success_message']);
     }
 
-    // Check if the error message session variable is set (if needed)
+
     if (isset($_SESSION['error_message'])) {
-        // Display the error message
+ 
         $errorMessage = $_SESSION['error_message'];
         echo '<div class="flex items-center justify-center mt-6">  
          <div id="errorMessage" class="flex w-96 shadow-lg rounded-lg">
@@ -62,7 +62,7 @@ include("../../../include/adminNavbar.php");
         </div>
     </div>';
 
-        // Clear the session variable
+
         unset($_SESSION['error_message']);
     }
 

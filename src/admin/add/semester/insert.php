@@ -16,14 +16,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $_SESSION['success_message'] = "Successfully Semester Added";
 
-    // Redirect to the add_timetable.php page
     header('Location: add_semester.php');
     exit;
   } else {
-    // Set the error message in the session variable (if needed)
+
     $_SESSION['error_message'] = "Error! Semester Not Added";
 
-    // Redirect to the add_timetable.php page
     header('Location: add_semester.php');
     exit;
   }

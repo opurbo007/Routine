@@ -12,7 +12,7 @@ include("../../../include/adminNavbar.php");
 
   <?php
 
-  // Get the routine_id from the URL parameter
+
   $routineId = $_GET['routine_id'];
 
   // Fetch routine data based on the routine_id
@@ -140,10 +140,6 @@ include("../../../include/adminNavbar.php");
 
           </form>
 
-          <!-- <p class="text-center text-sm text-gray-500">
-            View The Routine<i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
-            <a class="underline" href="routine.php">Here</a>
-          </p> -->
         </div>
       </div>
     </div>

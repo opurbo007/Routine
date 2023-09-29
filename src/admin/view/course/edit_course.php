@@ -20,7 +20,7 @@ include("../../../include/adminNavbar.php");
     $new_department_id = $_POST['department_id'];
     $new_semester_id = $_POST['semester_id'];
 
-    // Update course details in the database
+
     $sql_update_course = "UPDATE Course SET course_code = '$new_course_code', course_name = '$new_course_name', credits = '$new_credits', department_id = '$new_department_id', semester_id = '$new_semester_id' WHERE course_id = '$course_id'";
 
     if ($conn->query($sql_update_course) === TRUE) {
@@ -33,7 +33,7 @@ include("../../../include/adminNavbar.php");
     exit;
   }
 
-  // Retrieve course details from the database
+  // course details from the database
   $sql_course = "SELECT * FROM Course WHERE course_id = '$course_id'";
   $result_course = $conn->query($sql_course);
   $course = $result_course->fetch_assoc();

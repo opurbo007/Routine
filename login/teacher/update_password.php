@@ -23,7 +23,7 @@ if (isset($_GET["token"])) {
     die("Link Expired");
   }
 
-  // Valid token, continue with password update
+  // Valid token
   $newPassword = $_GET["password"];
   $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
   echo "New Password: " . $newPassword . "<br>";
@@ -35,11 +35,11 @@ if (isset($_GET["token"])) {
 
 
   if ($stmt->execute()) {
-    // Password updated successfully
+
     header("Location: login.php");
     exit();
   } else {
-    // Password update failed, display error
+
     die("Password update failed: " . $stmt->error);
   }
 

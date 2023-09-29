@@ -3,11 +3,9 @@ session_start();
 ob_start();
 include("../../../../database/config.php");
 
-// Check if the room_id is provided in the URL
 if (isset($_GET["room_id"])) {
   $room_id = $_GET["room_id"];
 
-  // Perform the deletion query
   $sql_delete_room = "DELETE FROM Room WHERE room_id = $room_id";
 
   if ($conn->query($sql_delete_room) === TRUE) {

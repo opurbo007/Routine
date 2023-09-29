@@ -7,10 +7,7 @@ include("../../../include/adminNavbar.php");
 
     <?php
 
-
-    // add department
-    
-
+  
     if (isset($_SESSION['success_message'])) {
         $successMessage = $_SESSION['success_message'];
         echo '<div class="flex items-center justify-center mt-6">  

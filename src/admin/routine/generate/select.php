@@ -46,7 +46,7 @@ include("../../../include/adminNavbar.php");
   }
   if (isset($_SESSION['unavailability_messages'])) {
     $unavailabilityMessages = $_SESSION['unavailability_messages'];
-    // id="errorMessage"
+
     foreach ($unavailabilityMessages as $message) {
       echo '<div class="flex items-center justify-center mt-6">  
      <div class="flex w-96 shadow-lg rounded-lg">
@@ -60,7 +60,7 @@ include("../../../include/adminNavbar.php");
           </div>
       </div>';
     }
-    // Clear the session variable
+
     unset($_SESSION['unavailability_messages']);
   }
   ?>
@@ -94,7 +94,7 @@ include("../../../include/adminNavbar.php");
             <label for="semester">Select Semester:</label>
             <select name="semester" id="semester"
               class="w-full text-gray-700 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 border border-gray-300">
-              <!-- Fetch and populate semester options from the database -->
+              <!-- Fetch semester options from database -->
               <?php
               $semesterQuery = "SELECT semester_id, semester_name FROM semester";
               $semesterResult = $conn->query($semesterQuery);

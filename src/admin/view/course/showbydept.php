@@ -26,7 +26,7 @@
     </form>
 
     <script>
-        // Populate the departments dropdown
+     
         $.getJSON('../../add/get_departments.php', function (data) {
             var departments = $('#department');
             $.each(data, function (key, value) {

@@ -44,7 +44,7 @@ $batchResult = $conn->query($batchQuery);
           $session = $row['session'];
           $routineCount = $row['routine_count'];
 
-          // Determine the symbol to display based on the routine count
+ 
           $symbol = ($routineCount > 0) ? '✔' : '✘';
 
           echo "<tr>";
@@ -54,10 +54,10 @@ $batchResult = $conn->query($batchQuery);
           echo "<td class='border px-4 py-4'>$symbol</td>";
           echo "<td class='border px-4 py-4'>";
           if ($routineCount > 0) {
-            // Display a delete button only if routines exist
+            // Display a delete button
             echo "<button onclick=\"deleteRoutine($batchId, '$semesterName', '$session')\" class='bg-red-500 text-white px-2 py-1 rounded hover:bg-red-700'>Delete</button>";
           } else {
-            echo "N/A"; // No routines to delete
+            echo "N/A"; 
           }
           echo "</td>";
           echo "</tr>";

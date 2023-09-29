@@ -1,6 +1,6 @@
 <?php
 session_start();
-ob_start();
+
 include("../../database/config.php");
 
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["admin_login"])) {
@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["admin_login"])) {
     $admin_password = $admin_data["password"];
     $hashed_password = password_hash($admin_password, PASSWORD_DEFAULT);
 
-    // Verify the entered password with the stored hashed password
+    // match password
     if (password_verify($admin_password, $hashed_password)) {
 
       $_SESSION["admin_id"] = $admin_data["id"];

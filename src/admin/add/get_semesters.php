@@ -18,6 +18,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["department_id"])) {
     echo json_encode($semesters);
 }
 
-// Close the database connection
+
 $conn->close();
 ?>

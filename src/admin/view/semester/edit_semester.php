@@ -18,7 +18,7 @@ include("../../../include/adminNavbar.php");
     $semester_name = $_POST["semester_name"];
     $department_id = $_POST["department_id"];
 
-    // Update the semester in the Semester table
+
     $sql_update_semester = "UPDATE Semester SET semester_name = '$semester_name', department_id = $department_id WHERE semester_id = $semester_id";
 
     if ($conn->query($sql_update_semester) === TRUE) {

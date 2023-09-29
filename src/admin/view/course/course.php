@@ -11,7 +11,7 @@ include("../../../include/adminNavbar.php");
 <div class="flex flex-col min-h-screen w-full">
 
   <?php
-  // if update,  this alart will show
+
   if (isset($_SESSION['success_message'])) {
 
     $successMessage = $_SESSION['success_message'];
@@ -47,7 +47,7 @@ include("../../../include/adminNavbar.php");
 
     unset($_SESSION['error_message']);
   }
-  // if delete, this alart will show
+
   if (isset($_SESSION['delete'])) {
     $msg = $_SESSION['delete'];
 
@@ -100,7 +100,6 @@ include("../../../include/adminNavbar.php");
     </form>
   </div>
 
-  <!-- Course List -->
   <div>
     <table class="table-auto w-full bg-white shadow-md rounded-lg overflow-hidden">
       <thead class="bg-gray-200">

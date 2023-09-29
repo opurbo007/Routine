@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $sql_insert_timetable = "INSERT INTO timeslot (start_time, end_time, class_type) VALUES ('$start_time', '$end_time', '$class_type')";
 
   if ($conn->query($sql_insert_timetable) === TRUE) {
-    // Set the success message in the session variable
+
     $_SESSION['success_message'] = "Successfully TimeSlot Added";
 
     header('Location: add_timetable.php');

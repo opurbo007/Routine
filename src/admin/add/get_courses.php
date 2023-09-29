@@ -1,6 +1,6 @@
 <?php
 include("../../../database/config.php");
-// Check if semester_id is provided in the request
+
 if (isset($_GET['semester_id'])) {
     $semester_id = $_GET['semester_id'];
 
@@ -8,7 +8,7 @@ if (isset($_GET['semester_id'])) {
     $sql_courses = "SELECT * FROM Course WHERE semester_id = $semester_id";
     $result_courses = $conn->query($sql_courses);
 
-    // Prepare the data in an array
+    // Prepare data in array
     $courses = array();
     if ($result_courses->num_rows > 0) {
         while ($row = $result_courses->fetch_assoc()) {
@@ -20,7 +20,7 @@ if (isset($_GET['semester_id'])) {
         }
     }
 
-    // Close the database connection
+
     $conn->close();
 
     // Return the data as JSON

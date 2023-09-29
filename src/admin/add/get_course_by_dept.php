@@ -27,6 +27,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["department_id"])) {
   }
 }
 
-// Close the database connection
+
 $conn->close();
 ?>

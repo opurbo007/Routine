@@ -8,7 +8,7 @@ include("../../../include/adminNavbar.php");
 
   <?php
 
-  // Take batch, semester, and session info from previous page
+ 
   $selectedBatch = $_POST['batch'];
   $selectedSemester = $_POST['semester'];
   $selectedSession = $_POST['session'];
@@ -33,7 +33,7 @@ include("../../../include/adminNavbar.php");
 
   ?>
 
-  <!-- // Display batch, semester, and session info -->
+
   <div class="flex justify-between mt-4">
     <div>
       <p class="border border-black flex">
@@ -60,7 +60,7 @@ include("../../../include/adminNavbar.php");
 
 
 
-  <!-- // Display the form to generate the routine -->
+  <!-- // form to generate routine -->
   <div class="w-full">
 
     <form action="generate_routine.php" method="post" class=" mb-4 justify-center ">

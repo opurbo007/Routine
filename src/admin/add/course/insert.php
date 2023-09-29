@@ -8,9 +8,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $semester_id = $_POST["semester_id"];
   $course_type = $_POST["course_type"];
   $credits = floatval($_POST["credits"]);
-  $department_id = $_POST["department_id"]; // Added department_id
+  $department_id = $_POST["department_id"]; 
 
-  // Insert the new course into the Course table
+  // Insert course into databse
   $sql_insert_course = "INSERT INTO Course (course_code, course_name, department_id, semester_id, course_type, credits) VALUES ('$course_code', '$course_name', $department_id, $semester_id, '$course_type', $credits)";
 
   if ($conn->query($sql_insert_course) === TRUE) {
@@ -19,14 +19,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $_SESSION['success_message'] = "Successfully Course Added";
 
-    // Redirect to the add_timetable.php page
     header('Location: add_course.php');
     exit;
   } else {
-    // Set the error message in the session variable (if needed)
+
     $_SESSION['error_message'] = "Error! Course Not Added";
 
-    // Redirect to the add_timetable.php page
+
     header('Location: add_course.php');
     exit;
   }

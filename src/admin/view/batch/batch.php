@@ -19,7 +19,7 @@ include("../../../include/adminNavbar.php");
   }
   ?>
   <?php
-  // if update,  this alart will show
+
   if (isset($_SESSION['success_message'])) {
 
     $successMessage = $_SESSION['success_message'];
@@ -57,7 +57,7 @@ include("../../../include/adminNavbar.php");
 
     unset($_SESSION['error_message']);
   }
-  // if delete, this alart will show
+
   if (isset($_SESSION['delete'])) {
     $msg = $_SESSION['delete'];
 
@@ -117,10 +117,10 @@ include("../../../include/adminNavbar.php");
   // Fetch batch information
   $sql_batches = "SELECT * FROM Batch";
 
-  // Check if a POST request is submitted
+
   if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["search"])) {
     $search = $_POST["search"];
-    // Modify the SQL query for search
+    // SQL query for search
     $sql_batches = "SELECT * FROM Batch 
                   WHERE batch_number LIKE '%$search%' 
                   OR department_id IN (SELECT department_id FROM Department WHERE department_name LIKE '%$search%')";

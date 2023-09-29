@@ -37,8 +37,6 @@ if ($stmt->affected_rows) {
   $mail->setFrom("opurbodiu51@gmail.com");
   $mail->addAddress($email);
   $mail->Subject = "Password Reset";
-
-  // Use double curly braces for variable interpolation inside the string
   $mail->Body = <<<END
   Click <a href="http://localhost/rou/login/teacher/reset_password.php?token={$token}">Here</a> to reset your password.
   END;

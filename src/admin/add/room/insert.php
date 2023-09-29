@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["room_number"]) && isse
     exit;
   } else {
 
-    $_SESSION['error_message'] = "Error! Time Not Added";
+    $_SESSION['error_message'] = "Error! Room Not Added";
 
 
     header('Location: add_room.php');

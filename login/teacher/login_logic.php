@@ -1,5 +1,5 @@
 <?php
-session_start(); // Start session
+session_start();
 ob_start();
 include("../../database/config.php");
 
@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if ($result->num_rows === 1) {
     $teacher = $result->fetch_assoc();
 
-    // Compare the user input password with the hashed password from the database
+    // match input password with hashed password
     if (password_verify($password, $teacher["password"])) {
       $_SESSION["teacher_id"] = $teacher["teacher_id"];
       header("Location: ../../src/teacher/dashboard.php");

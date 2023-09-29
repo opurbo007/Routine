@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $department_id = $_POST["department_id"];
   $batch_shift = $_POST["batch_shift"];
 
-  // Check if the batch already exist
+  // Check if batch exist
   $sql_check_batch = "SELECT * FROM Batch WHERE batch_number = '$batch_number' AND department_id = $department_id AND batch_shift = '$batch_shift'";
   $result_check_batch = $conn->query($sql_check_batch);
 
@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     header('Location: add_batch.php');
     exit;
   } else {
-    // Insert the new batch into the Batch table
+    // Insert batch into databse
     $sql_insert_batch = "INSERT INTO Batch (batch_number, department_id, batch_shift) VALUES ('$batch_number', $department_id, '$batch_shift')";
 
     if ($conn->query($sql_insert_batch) === TRUE) {
