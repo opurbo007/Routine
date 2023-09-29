@@ -20,7 +20,7 @@ include("../../database/config.php");
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+    <link rel="shortcut icon" href="../../src/img/logo.svg" type="image/x-icon">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <title>DIU DAILY</title>
@@ -70,7 +70,7 @@ include("../../database/config.php");
                 <div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
                   <div class="relative">
                     <input autocomplete="off" id="email" name="admin_email" type="text" class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900
-                  focus:outline-none focus:borer-rose-600" placeholder="Email address" />
+                  focus:outline-none focus:borer-rose-600" placeholder="Email address" required/>
                     <label for="adminemail"
                       class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">
                       Email Address
@@ -78,7 +78,7 @@ include("../../database/config.php");
                   </div>
                   <div class="relative">
                     <input autocomplete="off" id="password" name="admin_password" type="password" class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900
-                  focus:outline-none focus:borer-rose-600" placeholder="Password" />
+                  focus:outline-none focus:borer-rose-600" placeholder="Password" required/>
                     <label for="password"
                       class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">
                       Password
