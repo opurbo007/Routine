@@ -12,7 +12,7 @@ include("../../../include/adminNavbar.php");
 
 
   <?php
-  // if update,  this alart will show
+ 
   if (isset($_SESSION['success_message'])) {
 
     $successMessage = $_SESSION['success_message'];
@@ -89,9 +89,9 @@ include("../../../include/adminNavbar.php");
 
   <div class="flex justify-between my-4 ">
     <p class="border border-black">
-      <a href="../../add/dept/add_department.php"
+      <a href="../../add/dept/add_teacher.php"
         class="inline-block px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-600 hover:no-underline">
-        Add Department
+        Add Teacher
       </a>
     </p>
     <!-- Search Form -->

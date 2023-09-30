@@ -1,6 +1,6 @@
 <?php
 // Replace with your database connection code
-include("database/config.php");
+include("../../../../database/config.php");
 
 if (isset($_POST['department_id'])) {
     $departmentId = $_POST['department_id'];

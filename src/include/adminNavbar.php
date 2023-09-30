@@ -116,6 +116,10 @@
                 <h1 class="cursor-pointer py-2 ml-16 pl-2 hover:bg-gray-300 hover:text-black rounded-md mt-1">View
                   Batch
                 </h1>
+              </a> <a href="../../routine/show/view.php" class="hover:text-black hover:no-underline">
+                <h1 class="cursor-pointer py-2 ml-16 pl-2 hover:bg-gray-300 hover:text-black rounded-md mt-1">
+                  All Routine
+                </h1>
               </a>
             </div>
           </li>
