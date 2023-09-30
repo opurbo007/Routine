@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 23, 2023 at 07:17 PM
+-- Generation Time: Sep 30, 2023 at 03:26 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -40,7 +40,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `email`, `password`, `token`, `expiry`) VALUES
-(1, 'opurbopaul3@gmail.com', '$2y$10$QYtarXEsWGCKNbO6xnb76.SK1SZnmgQLg0LgZMROGlgnq8bSUfr7i', NULL, NULL);
+(1, 'opurbopaul3@gmail.com', '$2y$10$hiNubovHkG/9U2Dz9IuyLe.QdbqndRFfWCrR0emYLiLMEQb4J95PK', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -156,33 +156,7 @@ INSERT INTO `course` (`course_id`, `course_name`, `semester_id`, `course_type`, 
 (64, 'Elective Course', 8, 'theory', 3, '0541/0413', 1),
 (65, 'Elective Course', 8, 'theory', 3, '0541/0413', 1),
 (66, 'Entrepreneurship: Innovation and Commercialization', 8, 'theory', 3, '0413-401', 1),
-(67, 'Capstone Project Design', 8, 'theory', 3, '0688-400', 1),
-(75, 'ghhhvvvv', 9, 'theory', 22, '1651641', 2),
-(77, ' zcthshadvnfbhbdshfbfb555', 14, 'theory', 0.8, '028885455', 4);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `days`
---
-
-CREATE TABLE `days` (
-  `day_id` int(11) NOT NULL,
-  `day_name` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `days`
---
-
-INSERT INTO `days` (`day_id`, `day_name`) VALUES
-(1, 'Monday'),
-(2, 'Tuesday'),
-(3, 'Wednesday'),
-(4, 'Thursday'),
-(5, 'Friday'),
-(6, 'Saturday'),
-(7, 'Sunday');
+(67, 'Capstone Project Design', 8, 'theory', 3, '0688-400', 1);
 
 -- --------------------------------------------------------
 
@@ -278,7 +252,14 @@ INSERT INTO `routine` (`routine_id`, `course_id`, `day`, `start_time`, `room_id`
 (245, 8, 'Wednesday', '10:41:00', 29, 29, '1', '1', '12:20:00', 'Fall'),
 (246, 9, 'Saturday', '10:16:00', 16, 32, '1', '1', '11:30:00', 'Fall'),
 (247, 9, 'Tuesday', '10:16:00', 16, 32, '1', '1', '11:30:00', 'Fall'),
-(249, 2, 'Saturday', '14:00:00', 16, 17, '1', '1', '23:00:00', 'Fall');
+(249, 2, 'Friday', '14:00:00', 16, 17, '1', '1', '23:00:00', 'Fall'),
+(250, 10, 'Saturday', '09:00:00', 15, 27, '2', '2', '10:15:00', 'Fall'),
+(251, 11, 'Thursday', '09:00:00', 27, 27, '2', '2', '10:40:00', 'Fall'),
+(252, 12, 'Saturday', '10:16:00', 15, 13, '2', '2', '11:30:00', 'Fall'),
+(253, 13, 'Saturday', '11:31:00', 15, 22, '2', '2', '12:45:00', 'Fall'),
+(254, 14, 'Monday', '09:00:00', 15, 26, '2', '2', '10:15:00', 'Fall'),
+(255, 15, 'Monday', '10:16:00', 15, 18, '2', '2', '11:30:00', 'Fall'),
+(256, 16, 'Monday', '11:31:00', 15, 34, '2', '2', '12:45:00', 'Fall');
 
 -- --------------------------------------------------------
 
@@ -781,12 +762,6 @@ ALTER TABLE `course`
   ADD KEY `department_id` (`department_id`);
 
 --
--- Indexes for table `days`
---
-ALTER TABLE `days`
-  ADD PRIMARY KEY (`day_id`);
-
---
 -- Indexes for table `department`
 --
 ALTER TABLE `department`
@@ -858,12 +833,6 @@ ALTER TABLE `course`
   MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
--- AUTO_INCREMENT for table `days`
---
-ALTER TABLE `days`
-  MODIFY `day_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
 -- AUTO_INCREMENT for table `department`
 --
 ALTER TABLE `department`
@@ -873,13 +842,13 @@ ALTER TABLE `department`
 -- AUTO_INCREMENT for table `room`
 --
 ALTER TABLE `room`
-  MODIFY `room_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `room_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `routine`
 --
 ALTER TABLE `routine`
-  MODIFY `routine_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=250;
+  MODIFY `routine_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=257;
 
 --
 -- AUTO_INCREMENT for table `semester`
@@ -891,7 +860,7 @@ ALTER TABLE `semester`
 -- AUTO_INCREMENT for table `teachercourses`
 --
 ALTER TABLE `teachercourses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=864;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=863;
 
 --
 -- AUTO_INCREMENT for table `teachers`
