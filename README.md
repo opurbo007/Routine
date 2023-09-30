@@ -22,7 +22,7 @@ The Class Schedule Generator is an essential tool for educational institutions t
 
 -  **Batch and Semester Selection:** Choose a specific batch and semester for which you want to generate a class schedule.
 
--  **Automatic Schedule Generation:** The system automatically generates a class schedule based on predefined criteria, such as course availability, teacher preferences, and room capacity.
+**Schedule Generation:** The system generates a class schedule based on predefined criteria, such as course availability, teacher preferences, and room capacity.
 
 -  **Teacher and Room Availability:** Ensure that teachers and rooms are available during the specified time slots, avoiding scheduling conflicts.
 

@@ -34,7 +34,7 @@
  
        
     body {
-      /* background-image: url('src/img/cover2.jpg');  */
+
       background-size: cover;
       background-repeat: no-repeat;
       background-attachment: fixed;

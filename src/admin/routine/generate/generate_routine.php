@@ -2,7 +2,7 @@
 session_start();
 include("../../../../database/config.php");
 
-// array tostore unavailability message
+// array to store unavailability message
 $unavailabilityMessages = [];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['day'])) {
@@ -76,13 +76,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['day'])) {
         $roomNumber = "Unknown Room";
       }
 
-   
+      // Fetch the course name using the $courseId
+      $courseNameQuery = "SELECT course_name FROM course WHERE course_id = ?";
+      $courseNameStmt = $conn->prepare($courseNameQuery);
+      $courseNameStmt->bind_param("i", $courseId);
+      $courseNameStmt->execute();
+      $courseNameResult = $courseNameStmt->get_result();
+
+      if ($courseNameResult->num_rows > 0) {
+        $courseData = $courseNameResult->fetch_assoc();
+        $courseName = $courseData['course_name'];
+      } else {
+        $courseName = "Unknown Course";
+      }
+
       if ($teacherUnavailable && $roomUnavailable) {
-        $unavailabilityMessages[] = "Error! Teacher ($teacherName) and Room ($roomNumber) are not available for this time slot on $selectedDay at $selectedTime - $selectedEndTime.";
+        $unavailabilityMessages[] = "Error! Course ($courseName), Teacher ($teacherName), and Room ($roomNumber) are not available for this time slot on $selectedDay at $selectedTime - $selectedEndTime.";
       } elseif ($teacherUnavailable) {
-        $unavailabilityMessages[] = "Error! Teacher ($teacherName) is not available for this time slot on $selectedDay at $selectedTime - $selectedEndTime.";
+        $unavailabilityMessages[] = "Error! Course ($courseName), Teacher ($teacherName) is not available for this time slot on $selectedDay at $selectedTime - $selectedEndTime.";
       } elseif ($roomUnavailable) {
-        $unavailabilityMessages[] = "Error! Room ($roomNumber) is not available for this time slot on $selectedDay at $selectedTime - $selectedEndTime.";
+        $unavailabilityMessages[] = "Error! Course ($courseName), Room ($roomNumber) is not available for this time slot on $selectedDay at $selectedTime - $selectedEndTime.";
       } else {
         // Insert data into routine table
         $insertQuery = "INSERT INTO routine (batch, semester, session, course_id, day, start_time, end_time, room_id, teacher_id)
