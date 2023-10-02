@@ -110,7 +110,7 @@ if (isset($_GET['teacher_id'])) {
   $dompdf->loadHtml($html);
 
   // Set paper size and orientation
-  $dompdf->setPaper('A4', 'portrait');
+  $dompdf->setPaper('A2', 'portrait');
 
   // Render the PDF
   $dompdf->render();

@@ -27,8 +27,8 @@ $selectedSemesterName = $semesterRow['semester_name'];
 
 ?>
 <style>
-  .nav-container {
-    flex: 0 0 99px;
+.nav-container {
+  flex: 0 0 99px;
 }
 </style>
 <div class="flex flex-col min-h-screen w-full">
@@ -68,7 +68,7 @@ $selectedSemesterName = $semesterRow['semester_name'];
   // Adding session condition
   
   $routineStmt = $conn->prepare($routineQuery);
-  $routineStmt->bind_param("iis", $selectedBatch, $selectedSemester, $selectedSession); // Adding session parameter
+  $routineStmt->bind_param("iis", $selectedBatch, $selectedSemester, $selectedSession); 
   $routineStmt->execute();
   $routineResult = $routineStmt->get_result();
   ?>
@@ -113,8 +113,8 @@ $selectedSemesterName = $semesterRow['semester_name'];
           }
         }
     ?>
-  </tr>
-</thead>
+        </tr>
+      </thead>
 
 
       <tbody>
@@ -129,9 +129,9 @@ $selectedSemesterName = $semesterRow['semester_name'];
 
           foreach ($timeSlotsToShow as $timeSlot) { ?>
 
-            <td colspan='3' class='border px-4 py-4'>
+        <td colspan='3' class='border px-4 py-4'>
 
-              <?php
+          <?php
               $routineResult->data_seek(0);
               $found = false;
               while ($row = $routineResult->fetch_assoc()) {
@@ -158,6 +158,12 @@ $selectedSemesterName = $semesterRow['semester_name'];
 
         ?>
 
+  </div>
+  <div class="flex justify-center my-4">
+    <button class="bg-gradient-to-r from-green-600 to-blue-600 text-white font-bold py-2 px-4 rounded-full">
+      <a
+        href="pdf.php?batch=<?php echo $selectedBatch; ?>&semester=<?php echo $selectedSemester; ?>&session=<?php echo $selectedSession; ?>">Download</a>
+    </button>
   </div>
 
   <?php
