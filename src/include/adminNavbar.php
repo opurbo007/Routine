@@ -26,27 +26,27 @@
 
   <title>DIU DAILY</title>
   <style>
-    .flex-container {
-      display: flex;
-    }
+  .flex-container {
+    display: flex;
+  }
 
-    .nav-container {
-      flex: 0 0 200px;
-    }
+  .nav-container {
+    flex: 0 0 200px;
+  }
 
-    .content-container {
-      flex: 1;
-      margin-left: 40px;
-    }
+  .content-container {
+    flex: 1;
+    margin-left: 40px;
+  }
 
-    .nav-container,
-    .toggle-button {
-      transition: transform 3s ease-in-out;
-    }
+  .nav-container,
+  .toggle-button {
+    transition: transform 3s ease-in-out;
+  }
 
-    .font {
-      font-family: 'Orbitron', sans-serif;
-    }
+  .font {
+    font-family: 'Orbitron', sans-serif;
+  }
   </style>
 </head>
 
@@ -119,6 +119,10 @@
               </a> <a href="../../routine/show/view.php" class="hover:text-black hover:no-underline">
                 <h1 class="cursor-pointer py-2 ml-16 pl-2 hover:bg-gray-300 hover:text-black rounded-md mt-1">
                   All Routine
+                </h1>
+              </a><a href="../../routine/show/room_search.php" class="hover:text-black hover:no-underline">
+                <h1 class="cursor-pointer py-2 ml-16 pl-2 hover:bg-gray-300 hover:text-black rounded-md mt-1">
+                  Available Room
                 </h1>
               </a>
             </div>
