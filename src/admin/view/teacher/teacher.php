@@ -89,7 +89,7 @@ include("../../../include/adminNavbar.php");
 
   <div class="flex justify-between my-4 ">
     <p class="border border-black">
-      <a href="../../add/dept/add_teacher.php"
+      <a href="../../add/teacher/add_teacher.php"
         class="inline-block px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-600 hover:no-underline">
         Add Teacher
       </a>
@@ -150,56 +150,56 @@ include("../../../include/adminNavbar.php");
         if ($result->num_rows > 0) {
           while ($row = $result->fetch_assoc()) {
             ?>
-            <tr>
-              <td class="border px-4 py-2 ">
-                <img src="../../add/teacher/<?php echo $row['picture']; ?>" width='70' height='70'>
-              </td>
-              <td class="border px-4 py-2 ">
-                <?php echo $row['name']; ?>
-              </td>
-              <td class="border px-4 py-2">
-                <?php echo $row['mobile']; ?>
-              </td>
-              <td class="border px-4 py-2">
-                <?php echo $row['mail']; ?>
-              </td>
-              <td class="border px-4 py-2 ">
-                <?php echo $row['department_name']; ?>
-              </td>
-              <td class="border px-4 py-2">
-                <?php echo $row['position']; ?>
-              </td>
-              <td class="border px-4 py-2">
-                <select
-                  class="text-gray-700 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-2 py-2.5"
-                  style="width: 150px;">
-                  <option value="" class="bg-white py-2 hover:bg-gray-100">Chosen Courses</option>
-                  <?php
+        <tr>
+          <td class="border px-4 py-2 ">
+            <img src="../../add/teacher/<?php echo $row['picture']; ?>" width='70' height='70'>
+          </td>
+          <td class="border px-4 py-2 ">
+            <?php echo $row['name']; ?>
+          </td>
+          <td class="border px-4 py-2">
+            <?php echo $row['mobile']; ?>
+          </td>
+          <td class="border px-4 py-2">
+            <?php echo $row['mail']; ?>
+          </td>
+          <td class="border px-4 py-2 ">
+            <?php echo $row['department_name']; ?>
+          </td>
+          <td class="border px-4 py-2">
+            <?php echo $row['position']; ?>
+          </td>
+          <td class="border px-4 py-2">
+            <select
+              class="text-gray-700 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-2 py-2.5"
+              style="width: 150px;">
+              <option value="" class="bg-white py-2 hover:bg-gray-100">Chosen Courses</option>
+              <?php
                   // Display chosen courses 
                   $courses = explode(', ', $row['courses']);
                   foreach ($courses as $course) {
                     echo "<option value='$course'>$course</option>";
                   }
                   ?>
-                </select>
+            </select>
 
-              </td>
+          </td>
 
-              <td class="border px-4 py-2">
-                <a href="edit_teacher.php?action=edit&id=<?php echo $row['teacher_id']; ?>"
-                  class="text-blue-500 text-black mr-2 hover:text-black">
-                  <i class="fa fa-pencil-square" aria-hidden="true"></i>
-                </a>
+          <td class="border px-4 py-2">
+            <a href="edit_teacher.php?action=edit&id=<?php echo $row['teacher_id']; ?>"
+              class="text-blue-500 text-black mr-2 hover:text-black">
+              <i class="fa fa-pencil-square" aria-hidden="true"></i>
+            </a>
 
-                <a href="delete.php?action=delete&id=<?php echo $row['teacher_id']; ?>"
-                  class="text-red-500 hover:text-black"
-                  onclick='return confirm("Are you sure you want to delete this Teacher ID?");'>
-                  <i class="fa fa-trash" aria-hidden="true"></i>
-                </a>
-              </td>
+            <a href="delete.php?action=delete&id=<?php echo $row['teacher_id']; ?>"
+              class="text-red-500 hover:text-black"
+              onclick='return confirm("Are you sure you want to delete this Teacher ID?");'>
+              <i class="fa fa-trash" aria-hidden="true"></i>
+            </a>
+          </td>
 
-            </tr>
-            <?php
+        </tr>
+        <?php
           }
         } else {
           echo "<tr><td colspan='8' class='text-center'>No teachers found.</td></tr>";

@@ -156,7 +156,7 @@
                 </h1>
               </a>
               <a href="../../add/semester/add_semester.php" class="hover:text-black hover:no-underline">
-                <h1 class="cursor-pointer py-2 ml-16 pl-2 hover:bg-gray-300 hover:text-black rounded-md mt-1">Semeter
+                <h1 class="cursor-pointer py-2 ml-16 pl-2 hover:bg-gray-300 hover:text-black rounded-md mt-1">Semester
                 </h1>
               </a>
               <a href="../../add/course/add_course.php" class="hover:text-black hover:no-underline">
@@ -205,7 +205,7 @@
                 </h1>
               </a>
               <a href="../../view/semester/semester.php" class="hover:text-black hover:no-underline">
-                <h1 class="cursor-pointer py-2 ml-16 pl-2 hover:bg-gray-300 hover:text-black rounded-md mt-1">Semeter
+                <h1 class="cursor-pointer py-2 ml-16 pl-2 hover:bg-gray-300 hover:text-black rounded-md mt-1">Semester
                 </h1>
               </a>
               <a href="../../view/course/course.php" class="hover:text-black hover:no-underline">
