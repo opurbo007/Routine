@@ -216,7 +216,7 @@ $conn->close();
 <script>
     $(document).ready(function () {
         $('.department-toggle').click(function () {
-            var departmentId = $(this).data('department');
+            let departmentId = $(this).data('department');
 
             // Toggle the course list visibility
             $('#course-list').toggle();
