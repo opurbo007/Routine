@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 6.0.0-dev+20230929.1cde51cf70
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 05, 2023 at 09:30 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Generation Time: Oct 05, 2023 at 10:08 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,7 +33,7 @@ CREATE TABLE `admins` (
   `password` varchar(255) NOT NULL,
   `token` varchar(255) DEFAULT NULL,
   `expiry` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `admins`
@@ -53,7 +53,7 @@ CREATE TABLE `batch` (
   `batch_number` varchar(10) NOT NULL,
   `department_id` int(11) NOT NULL,
   `batch_shift` enum('day','evening') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `batch`
@@ -88,7 +88,7 @@ CREATE TABLE `course` (
   `credits` float NOT NULL,
   `course_code` varchar(100) NOT NULL,
   `department_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `course`
@@ -171,7 +171,7 @@ INSERT INTO `course` (`course_id`, `course_name`, `semester_id`, `course_type`, 
 CREATE TABLE `department` (
   `department_id` int(11) NOT NULL,
   `department_name` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `department`
@@ -199,7 +199,7 @@ CREATE TABLE `room` (
   `room_id` int(11) NOT NULL,
   `room_number` varchar(50) NOT NULL,
   `room_type` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `room`
@@ -237,25 +237,25 @@ CREATE TABLE `routine` (
   `semester` varchar(50) DEFAULT NULL,
   `end_time` time DEFAULT NULL,
   `session` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `routine`
 --
 
 INSERT INTO `routine` (`routine_id`, `course_id`, `day`, `start_time`, `room_id`, `teacher_id`, `batch`, `semester`, `end_time`, `session`) VALUES
-(236, 2, 'Saturday', '11:31:00', 16, 17, '1', '1', '12:45:00', 'Fall'),
-(237, 2, 'Tuesday', '09:00:00', 16, 17, '1', '1', '10:15:00', 'Fall'),
-(238, 3, 'Wednesday', '12:21:00', 29, 17, '1', '1', '14:00:00', 'Fall'),
-(239, 4, 'Saturday', '09:00:00', 16, 19, '1', '1', '10:15:00', 'Fall'),
-(240, 4, 'Tuesday', '11:31:00', 16, 19, '1', '1', '12:45:00', 'Fall'),
-(241, 5, 'Wednesday', '09:00:00', 29, 19, '1', '1', '10:40:00', 'Fall'),
+(236, 2, 'Saturday', '11:31:00', 16, 13, '1', '1', '12:45:00', 'Fall'),
+(237, 2, 'Tuesday', '09:00:00', 16, 13, '1', '1', '10:15:00', 'Fall'),
+(238, 3, 'Wednesday', '12:21:00', 29, 13, '1', '1', '14:00:00', 'Fall'),
+(239, 4, 'Saturday', '09:00:00', 16, 22, '1', '1', '10:15:00', 'Fall'),
+(240, 4, 'Tuesday', '11:31:00', 16, 22, '1', '1', '12:45:00', 'Fall'),
+(241, 5, 'Wednesday', '09:00:00', 29, 22, '1', '1', '10:40:00', 'Fall'),
 (242, 6, 'Tuesday', '12:46:00', 16, 23, '1', '1', '14:00:00', 'Fall'),
 (243, 6, 'Thursday', '10:16:00', 16, 23, '1', '1', '11:30:00', 'Fall'),
 (244, 7, 'Thursday', '11:31:00', 16, 30, '1', '1', '12:45:00', 'Fall'),
 (245, 8, 'Wednesday', '10:41:00', 29, 29, '1', '1', '12:20:00', 'Fall'),
-(246, 9, 'Saturday', '10:16:00', 16, 32, '1', '1', '11:30:00', 'Fall'),
-(247, 9, 'Tuesday', '10:16:00', 16, 32, '1', '1', '11:30:00', 'Fall'),
+(246, 9, 'Saturday', '10:16:00', 16, 34, '1', '1', '11:30:00', 'Fall'),
+(247, 9, 'Tuesday', '10:16:00', 16, 34, '1', '1', '11:30:00', 'Fall'),
 (249, 2, 'Friday', '14:00:00', 16, 17, '1', '1', '23:00:00', 'Fall'),
 (250, 10, 'Saturday', '09:00:00', 15, 27, '2', '2', '10:15:00', 'Fall'),
 (251, 11, 'Thursday', '09:00:00', 27, 27, '2', '2', '10:40:00', 'Fall'),
@@ -301,14 +301,14 @@ INSERT INTO `routine` (`routine_id`, `course_id`, `day`, `start_time`, `room_id`
 (291, 45, 'Sunday', '12:21:00', 27, 20, '6', '6', '14:00:00', 'Fall'),
 (292, 52, 'Saturday', '10:16:00', 21, 27, '15', '7', '11:30:00', 'Fall'),
 (293, 53, 'Monday', '09:00:00', 27, 27, '15', '7', '10:40:00', 'Fall'),
-(294, 55, 'Monday', '10:41:00', 27, 24, '15', '7', '12:20:00', 'Fall'),
+(294, 55, 'Monday', '10:41:00', 27, 41, '15', '7', '12:20:00', 'Fall'),
 (295, 56, 'Tuesday', '09:00:00', 21, 15, '15', '7', '10:15:00', 'Fall'),
 (296, 57, 'Monday', '12:21:00', 27, 15, '15', '7', '14:00:00', 'Fall'),
 (297, 59, 'Thursday', '09:00:00', 27, 33, '15', '7', '10:40:00', 'Fall'),
 (298, 60, 'Saturday', '12:46:00', 21, 18, '15', '7', '14:00:00', 'Fall'),
 (299, 60, 'Tuesday', '10:16:00', 14, 18, '15', '7', '11:30:00', 'Fall'),
 (300, 61, 'Tuesday', '11:31:00', 14, 15, '15', '7', '12:45:00', 'Fall'),
-(301, 54, 'Saturday', '09:00:00', 21, 24, '15', '7', '10:15:00', 'Fall'),
+(301, 54, 'Saturday', '09:00:00', 21, 41, '15', '7', '10:15:00', 'Fall'),
 (302, 56, 'Saturday', '11:31:00', 14, 15, '15', '7', '12:45:00', 'Fall'),
 (303, 62, 'Saturday', '09:00:00', 20, 31, '16', '8', '10:15:00', 'Fall'),
 (304, 63, 'Sunday', '10:16:00', 20, 31, '16', '8', '11:30:00', 'Fall'),
@@ -317,7 +317,12 @@ INSERT INTO `routine` (`routine_id`, `course_id`, `day`, `start_time`, `room_id`
 (307, 67, 'Wednesday', '09:00:00', 14, 27, '16', '8', '10:15:00', 'Fall'),
 (308, 64, 'Saturday', '11:31:00', 20, 32, '16', '8', '12:45:00', 'Fall'),
 (309, 63, 'Sunday', '14:00:00', 16, 31, '16', '8', '23:00:00', 'Fall'),
-(310, 67, 'Friday', '09:00:00', 14, 37, '18', '8', '10:15:00', 'Fall');
+(310, 67, 'Friday', '09:00:00', 14, 37, '18', '8', '10:15:00', 'Fall'),
+(311, 25, 'Monday', '12:46:00', 14, 14, '5', '4', '14:00:00', 'Fall'),
+(312, 25, 'Wednesday', '11:31:00', 14, 14, '5', '4', '12:45:00', 'Fall'),
+(313, 25, 'Friday', '11:31:00', 18, 14, '5', '4', '12:45:00', 'Fall'),
+(314, 26, 'Tuesday', '09:00:00', 27, 14, '5', '4', '10:40:00', 'Fall'),
+(315, 28, 'Friday', '09:00:00', 27, 22, '5', '4', '10:40:00', 'Fall');
 
 -- --------------------------------------------------------
 
@@ -329,7 +334,7 @@ CREATE TABLE `semester` (
   `semester_id` int(11) NOT NULL,
   `semester_name` varchar(50) NOT NULL,
   `department_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `semester`
@@ -363,7 +368,7 @@ CREATE TABLE `teachercourses` (
   `id` int(11) NOT NULL,
   `teacher_id` int(11) NOT NULL,
   `course_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `teachercourses`
@@ -744,7 +749,7 @@ CREATE TABLE `teachers` (
   `password` varchar(255) NOT NULL,
   `token` varchar(255) DEFAULT NULL,
   `expiry` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `teachers`
@@ -790,7 +795,7 @@ CREATE TABLE `timeslot` (
   `start_time` time DEFAULT NULL,
   `end_time` time DEFAULT NULL,
   `class_type` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `timeslot`
@@ -919,13 +924,13 @@ ALTER TABLE `room`
 -- AUTO_INCREMENT for table `routine`
 --
 ALTER TABLE `routine`
-  MODIFY `routine_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=311;
+  MODIFY `routine_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=316;
 
 --
 -- AUTO_INCREMENT for table `semester`
 --
 ALTER TABLE `semester`
-  MODIFY `semester_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `semester_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `teachercourses`

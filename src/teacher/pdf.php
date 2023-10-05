@@ -73,7 +73,7 @@ if (isset($_GET['teacher_id'])) {
               </thead>
               <tbody>';
 
-              $days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+              $days = ['Saturday','Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
               foreach ($days as $day) {
                   $html .= "<tr>";
                   $html .= "<td style='border: 1px solid #000; padding: 8px; text-align: center;'>{$day}</td>";
