@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 6.0.0-dev+20230929.1cde51cf70
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 03, 2023 at 05:59 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.4
+-- Generation Time: Oct 05, 2023 at 09:30 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,7 +33,7 @@ CREATE TABLE `admins` (
   `password` varchar(255) NOT NULL,
   `token` varchar(255) DEFAULT NULL,
   `expiry` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `admins`
@@ -53,7 +53,7 @@ CREATE TABLE `batch` (
   `batch_number` varchar(10) NOT NULL,
   `department_id` int(11) NOT NULL,
   `batch_shift` enum('day','evening') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `batch`
@@ -88,7 +88,7 @@ CREATE TABLE `course` (
   `credits` float NOT NULL,
   `course_code` varchar(100) NOT NULL,
   `department_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `course`
@@ -171,7 +171,7 @@ INSERT INTO `course` (`course_id`, `course_name`, `semester_id`, `course_type`, 
 CREATE TABLE `department` (
   `department_id` int(11) NOT NULL,
   `department_name` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `department`
@@ -199,7 +199,7 @@ CREATE TABLE `room` (
   `room_id` int(11) NOT NULL,
   `room_number` varchar(50) NOT NULL,
   `room_type` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `room`
@@ -237,7 +237,7 @@ CREATE TABLE `routine` (
   `semester` varchar(50) DEFAULT NULL,
   `end_time` time DEFAULT NULL,
   `session` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `routine`
@@ -316,7 +316,8 @@ INSERT INTO `routine` (`routine_id`, `course_id`, `day`, `start_time`, `room_id`
 (306, 67, 'Sunday', '11:31:00', 14, 27, '16', '8', '12:45:00', 'Fall'),
 (307, 67, 'Wednesday', '09:00:00', 14, 27, '16', '8', '10:15:00', 'Fall'),
 (308, 64, 'Saturday', '11:31:00', 20, 32, '16', '8', '12:45:00', 'Fall'),
-(309, 63, 'Sunday', '14:00:00', 16, 31, '16', '8', '23:00:00', 'Fall');
+(309, 63, 'Sunday', '14:00:00', 16, 31, '16', '8', '23:00:00', 'Fall'),
+(310, 67, 'Friday', '09:00:00', 14, 37, '18', '8', '10:15:00', 'Fall');
 
 -- --------------------------------------------------------
 
@@ -328,7 +329,7 @@ CREATE TABLE `semester` (
   `semester_id` int(11) NOT NULL,
   `semester_name` varchar(50) NOT NULL,
   `department_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `semester`
@@ -362,7 +363,7 @@ CREATE TABLE `teachercourses` (
   `id` int(11) NOT NULL,
   `teacher_id` int(11) NOT NULL,
   `course_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `teachercourses`
@@ -446,12 +447,6 @@ INSERT INTO `teachercourses` (`id`, `teacher_id`, `course_id`) VALUES
 (294, 26, 16),
 (295, 26, 41),
 (296, 26, 66),
-(311, 28, 7),
-(312, 28, 23),
-(313, 28, 32),
-(314, 28, 33),
-(315, 28, 48),
-(316, 28, 51),
 (499, 34, 9),
 (500, 34, 16),
 (501, 34, 24),
@@ -459,20 +454,6 @@ INSERT INTO `teachercourses` (`id`, `teacher_id`, `course_id`) VALUES
 (503, 34, 35),
 (504, 34, 58),
 (505, 34, 59),
-(506, 13, 2),
-(507, 13, 3),
-(508, 13, 12),
-(509, 13, 20),
-(510, 13, 21),
-(511, 13, 30),
-(512, 13, 31),
-(513, 13, 36),
-(514, 13, 37),
-(515, 13, 38),
-(516, 13, 39),
-(517, 13, 40),
-(518, 13, 42),
-(519, 13, 43),
 (520, 37, 17),
 (521, 37, 18),
 (522, 37, 37),
@@ -611,72 +592,6 @@ INSERT INTO `teachercourses` (`id`, `teacher_id`, `course_id`) VALUES
 (716, 29, 64),
 (717, 29, 65),
 (721, 29, 66),
-(722, 30, 7),
-(723, 30, 8),
-(724, 30, 14),
-(725, 30, 23),
-(726, 30, 27),
-(727, 30, 28),
-(728, 30, 32),
-(729, 31, 9),
-(730, 31, 40),
-(731, 31, 42),
-(732, 31, 43),
-(733, 31, 49),
-(734, 31, 50),
-(735, 31, 56),
-(736, 31, 57),
-(737, 31, 60),
-(738, 31, 62),
-(739, 31, 63),
-(740, 31, 64),
-(741, 31, 65),
-(745, 31, 62),
-(746, 31, 63),
-(747, 31, 64),
-(748, 31, 65),
-(752, 31, 62),
-(753, 31, 63),
-(754, 31, 64),
-(755, 31, 65),
-(759, 31, 62),
-(760, 31, 63),
-(761, 31, 64),
-(762, 31, 65),
-(779, 32, 9),
-(780, 32, 16),
-(781, 32, 41),
-(782, 32, 50),
-(783, 32, 54),
-(784, 32, 55),
-(785, 32, 60),
-(786, 32, 62),
-(787, 32, 63),
-(788, 32, 64),
-(789, 32, 65),
-(793, 32, 62),
-(794, 32, 63),
-(795, 32, 64),
-(796, 32, 65),
-(800, 32, 62),
-(801, 32, 63),
-(802, 32, 64),
-(803, 32, 65),
-(807, 32, 62),
-(808, 32, 63),
-(809, 32, 64),
-(810, 32, 65),
-(814, 36, 17),
-(815, 36, 18),
-(816, 36, 22),
-(817, 36, 23),
-(818, 36, 25),
-(819, 36, 26),
-(820, 36, 29),
-(821, 36, 30),
-(822, 36, 34),
-(823, 36, 35),
-(824, 36, 51),
 (825, 38, 19),
 (826, 38, 23),
 (827, 38, 25),
@@ -687,32 +602,130 @@ INSERT INTO `teachercourses` (`id`, `teacher_id`, `course_id`) VALUES
 (832, 38, 36),
 (833, 38, 44),
 (834, 38, 45),
-(835, 27, 10),
-(836, 27, 11),
-(837, 27, 27),
-(838, 27, 28),
-(839, 27, 48),
-(840, 27, 49),
-(841, 27, 50),
-(842, 27, 52),
-(843, 27, 53),
-(844, 27, 56),
-(845, 27, 57),
-(846, 27, 61),
-(847, 27, 67),
-(849, 27, 61),
-(850, 27, 67),
-(852, 35, 9),
-(853, 35, 16),
-(854, 35, 33),
-(855, 35, 41),
-(856, 35, 44),
-(857, 35, 45),
-(858, 35, 50),
-(859, 35, 52),
-(860, 35, 53),
-(861, 35, 61),
-(862, 35, 67);
+(863, 27, 10),
+(864, 27, 11),
+(865, 27, 27),
+(866, 27, 28),
+(867, 27, 48),
+(868, 27, 49),
+(869, 27, 50),
+(870, 27, 52),
+(871, 27, 53),
+(872, 27, 56),
+(873, 27, 57),
+(874, 27, 61),
+(875, 27, 67),
+(877, 27, 61),
+(878, 27, 67),
+(880, 41, 19),
+(881, 41, 36),
+(882, 41, 44),
+(883, 41, 45),
+(884, 41, 52),
+(885, 41, 53),
+(886, 41, 54),
+(887, 41, 55),
+(888, 41, 61),
+(889, 41, 67),
+(891, 13, 2),
+(892, 13, 3),
+(893, 13, 12),
+(894, 13, 20),
+(895, 13, 21),
+(896, 13, 30),
+(897, 13, 31),
+(898, 13, 36),
+(899, 13, 37),
+(900, 13, 38),
+(901, 13, 39),
+(902, 13, 40),
+(903, 13, 42),
+(904, 13, 43),
+(905, 35, 9),
+(906, 35, 16),
+(907, 35, 33),
+(908, 35, 41),
+(909, 35, 44),
+(910, 35, 45),
+(911, 35, 50),
+(912, 35, 52),
+(913, 35, 53),
+(914, 35, 61),
+(915, 35, 67),
+(917, 35, 61),
+(918, 35, 67),
+(920, 30, 7),
+(921, 30, 8),
+(922, 30, 14),
+(923, 30, 23),
+(924, 30, 27),
+(925, 30, 28),
+(926, 30, 32),
+(927, 36, 17),
+(928, 36, 18),
+(929, 36, 22),
+(930, 36, 23),
+(931, 36, 25),
+(932, 36, 26),
+(933, 36, 29),
+(934, 36, 30),
+(935, 36, 34),
+(936, 36, 35),
+(937, 36, 51),
+(938, 32, 9),
+(939, 32, 16),
+(940, 32, 41),
+(941, 32, 50),
+(942, 32, 54),
+(943, 32, 55),
+(944, 32, 60),
+(945, 32, 62),
+(946, 32, 63),
+(947, 32, 64),
+(948, 32, 65),
+(952, 32, 62),
+(953, 32, 63),
+(954, 32, 64),
+(955, 32, 65),
+(959, 32, 62),
+(960, 32, 63),
+(961, 32, 64),
+(962, 32, 65),
+(966, 32, 62),
+(967, 32, 63),
+(968, 32, 64),
+(969, 32, 65),
+(973, 28, 7),
+(974, 28, 23),
+(975, 28, 32),
+(976, 28, 33),
+(977, 28, 48),
+(978, 28, 51),
+(979, 31, 9),
+(980, 31, 40),
+(981, 31, 42),
+(982, 31, 43),
+(983, 31, 49),
+(984, 31, 50),
+(985, 31, 56),
+(986, 31, 57),
+(987, 31, 60),
+(988, 31, 62),
+(989, 31, 63),
+(990, 31, 64),
+(991, 31, 65),
+(995, 31, 62),
+(996, 31, 63),
+(997, 31, 64),
+(998, 31, 65),
+(1002, 31, 62),
+(1003, 31, 63),
+(1004, 31, 64),
+(1005, 31, 65),
+(1009, 31, 62),
+(1010, 31, 63),
+(1011, 31, 64),
+(1012, 31, 65);
 
 -- --------------------------------------------------------
 
@@ -731,14 +744,14 @@ CREATE TABLE `teachers` (
   `password` varchar(255) NOT NULL,
   `token` varchar(255) DEFAULT NULL,
   `expiry` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `teachers`
 --
 
 INSERT INTO `teachers` (`teacher_id`, `name`, `mobile`, `department_id`, `position`, `mail`, `picture`, `password`, `token`, `expiry`) VALUES
-(13, 'Khandaker Mohammad Mohi Uddin', '018212345**', 1, 'Professor', 'user2@gmail.com', 'uploads/jialni.jpg', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL),
+(13, 'Khandaker Mohammad Mohi Uddin', '018212345**', 1, 'Assistant Professor', 'user2@gmail.com', 'uploads/jialni.jpg', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL),
 (14, 'Md. Tahzib Ul Islam', '015512345**', 1, 'Associate Professor', 'user4@gmail.com', 'uploads/thazib.jpg', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL),
 (15, 'Md. Habibullah Belali', '013712345**', 1, 'Assistant Professor', 'user7@gmail.com', 'uploads/bilali.jpg', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL),
 (16, 'Mahmudul Hasan', '014812345**', 1, 'Lecturer', 'user11@gmail.com', 'uploads/hasan.jpg', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL),
@@ -752,18 +765,19 @@ INSERT INTO `teachers` (`teacher_id`, `name`, `mobile`, `department_id`, `positi
 (24, 'Md. Humaun Kabir', '016712345**', 1, 'Lecturer', 'user15@gmail.com', 'uploads/humaiun.jpg', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL),
 (25, 'Mohammad Asraful Hasnat', '013812345**', 1, 'Lecturer', 'user16@gmail.com', 'uploads/dum.png', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL),
 (26, 'Md. Abir Mahmud', '014912345**', 1, 'Lecturer', 'user17@gmail.com', 'uploads/dum.png', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL),
-(27, 'Md. Nur -a-Alam', '016612345**', 1, 'Assistant Professor', 'user5@gmail.com', 'uploads/nur.jpg', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL),
-(28, 'Rashed Mahmud', '011112345**', 1, 'Lecturer', 'user18@gmail.com', 'uploads/dum.png', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL),
+(27, 'Md. Nur -a-Alam', '016612345**', 1, 'Lecturer', 'user5@gmail.com', 'uploads/361927014_1245435162800813_7322469978061923892_n-removebg-preview.png', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL),
+(28, 'Rashed Mahmud', '011112345**', 1, 'Lecturer', 'user18@gmail.com', 'uploads/rashed.jpg', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL),
 (29, 'Sayma Sultana', '019512345**', 1, 'Lecturer', 'user20@gmail.com', 'uploads/sayma.jpeg', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL),
-(30, 'Sajia Akhter Airin', '017312345**', 1, 'Lecturer', 'user21@gmail.com', 'uploads/dum.png', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL),
-(31, 'Md. Tipu Sultan', '014912345**', 1, 'Lecturer', 'user22@gmail.com', 'uploads/dum.png', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL),
-(32, 'Hemonta Kumar Barman', '019412394**', 1, 'Lecturer', 'user23@gmail.com', 'uploads/dum.png', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL),
+(30, 'Sajia Akhter Airin', '017312345**', 1, 'Lecturer', 'user21@gmail.com', 'uploads/airin.jpg', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL),
+(31, 'Md. Tipu Sultan', '014912345**', 1, 'Lecturer', 'user22@gmail.com', 'uploads/tipu.jpg', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL),
+(32, 'Hemonta Kumar Barman', '019412394**', 1, 'Lecturer', 'user23@gmail.com', 'uploads/hemonto.jpg', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL),
 (33, 'Md. Sifuzzaman', '010312345**', 1, 'Associate Professor', 'user6@gmail.com', 'uploads/jaman.jpg', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL),
 (34, 'Dr. A.T.M. Mahbubur Rahman Sarker', '017112345**', 1, 'Dean', 'user1@gmail.com', 'uploads/dean.jpg', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL),
-(35, 'Md. Anisur Rahman Pramanik', '019412345**', 1, 'Associate Professor', 'user19@gmail.com', 'uploads/dum.png', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL),
-(36, 'Md. Rezaul Islam', '019912345**', 1, 'Lecturer', 'user25@gmail.com', 'uploads/dum.png', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL),
+(35, 'Md. Anisur Rahman Pramanik', '019412345**', 1, 'Associate Professor', 'user19@gmail.com', 'uploads/anisur.jpg', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL),
+(36, 'Md. Rezaul Islam', '019912345**', 1, 'Lecturer', 'user25@gmail.com', 'uploads/rezaul.jpeg', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL),
 (37, 'Md. Abdul Based', '019312345**', 1, 'Professor', 'user3@gmail.com', 'uploads/based.jpg', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL),
-(38, 'MD. SHARIFUL ISLAM', '014812345**', 1, 'Lecturer', 'user26@gmail.com', 'uploads/shariful.jpg', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL);
+(38, 'MD. SHARIFUL ISLAM', '014812345**', 1, 'Lecturer', 'user26@gmail.com', 'uploads/shariful.jpg', '$2y$10$bPPPAH0w6yQb/RWHPpSPce2VZ84iglR7yfKNcclEEc47aIDZNPWUW', '', NULL),
+(41, 'Mst. Jahanara Akhtar', '019000000**', 1, 'Professor', 'user35@gmail.com', 'uploads/jahanara.jpg', '$2y$10$UQYMFdlB.OkUl/ge50l/Q.6LhhC3AwkT4ti0R5XNmyznFU0bipn0a', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -776,7 +790,7 @@ CREATE TABLE `timeslot` (
   `start_time` time DEFAULT NULL,
   `end_time` time DEFAULT NULL,
   `class_type` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `timeslot`
@@ -905,7 +919,7 @@ ALTER TABLE `room`
 -- AUTO_INCREMENT for table `routine`
 --
 ALTER TABLE `routine`
-  MODIFY `routine_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=310;
+  MODIFY `routine_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=311;
 
 --
 -- AUTO_INCREMENT for table `semester`
@@ -917,13 +931,13 @@ ALTER TABLE `semester`
 -- AUTO_INCREMENT for table `teachercourses`
 --
 ALTER TABLE `teachercourses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=863;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1013;
 
 --
 -- AUTO_INCREMENT for table `teachers`
 --
 ALTER TABLE `teachers`
-  MODIFY `teacher_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `teacher_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `timeslot`
