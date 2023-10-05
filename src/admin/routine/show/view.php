@@ -3,11 +3,11 @@ session_start();
 include("../../../../database/config.php");
 include("../../../include/adminNavbar.php");
 ?>
-<style>
+<!-- <style>
 .nav-container {
   flex: 0 0 99px;
 }
-</style>
+</style> -->
 <div class="flex flex-col min-h-screen w-full">
 
 
@@ -110,6 +110,7 @@ include("../../../include/adminNavbar.php");
 
             <th class="px-4 py-2 border">Session</th>
             <th class="px-4 py-2 border">Course Name</th>
+            <th class="px-4 py-2 border">Credits</th>
             <th class="px-4 py-2 border">Teacher Name</th>
             <th class="px-4 py-2 border">Day</th>
             <th class="px-10 py-2 border">Time</th>
@@ -153,7 +154,7 @@ if (!empty($batch_id)) { // No need to change this line
 }
 
 
-        $sql = "SELECT r.`routine_id`, c.`course_name`, r.`day`, r.`start_time`, 
+        $sql = "SELECT r.`routine_id`, c.`course_name`,c.`credits`, r.`day`, r.`start_time`, 
         ro.`room_number`, t.`name` AS 'name', ba.`batch_number`, 
         se.`semester_name`, r.`end_time`, r.`session`, 
         tea.`mobile`, tea.`department_id`, tea.`position`, tea.`mail`, tea.`picture`
@@ -178,6 +179,7 @@ if (!empty($batch_id)) { // No need to change this line
 
             <td class="border px-4 py-2"><?php echo $row['session'] ?> </td>
             <td class="border px-4 py-2"><?php echo $row['course_name'] ?> </td>
+            <td class="border px-4 py-2 text-center"><?php echo $row['credits'] ?> </td>
             <td class="border px-4 py-2"><?php echo $row['name'] ?> </td>
             <td class="border px-4 py-2"><?php echo $row['day'] ?> </td>
             <td class="border px-3 py-2">
