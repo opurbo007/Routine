@@ -26,11 +26,11 @@ $semesterRow = $semesterResult->fetch_assoc();
 $selectedSemesterName = $semesterRow['semester_name'];
 
 ?>
-<style>
+<!-- <style>
 .nav-container {
   flex: 0 0 99px;
 }
-</style>
+</style> -->
 <div class="flex flex-col min-h-screen w-full">
   <div class="flex justify-between mt-4">
     <div>

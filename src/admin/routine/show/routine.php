@@ -28,11 +28,11 @@ $selectedSemesterName = $semesterRow['semester_name'];
 
 ?>
 
-<style>
+<!-- <style>
   .nav-container {
     flex: 0 0 99px;
 }
-</style>
+</style> -->
 <div class="flex flex-col min-h-screen w-full">
   <div class="flex justify-between mt-4">
     <div>
@@ -117,8 +117,8 @@ $selectedSemesterName = $semesterRow['semester_name'];
           }
         }
     ?>
-  </tr>
-</thead>
+        </tr>
+      </thead>
 
 
       <tbody>
@@ -134,9 +134,9 @@ $selectedSemesterName = $semesterRow['semester_name'];
 
           foreach ($timeSlotsToShow as $timeSlot) { ?>
 
-            <td colspan='3' class='border px-4 py-4'>
+        <td colspan='3' class='border px-4 py-4'>
 
-              <?php
+          <?php
               $routineResult->data_seek(0);
               $found = false;
               while ($row = $routineResult->fetch_assoc()) {

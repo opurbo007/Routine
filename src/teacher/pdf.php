@@ -30,13 +30,15 @@ if (isset($_GET['teacher_id'])) {
       </head>
       <body>';
 
-  // Modify the routineQuery to use $teacherId
-  $routineQuery = "SELECT day, TIME_FORMAT(start_time, '%h:%i %p') AS start_time, TIME_FORMAT(end_time, '%h:%i %p') AS end_time, course_code, course_name, room_number
-                       FROM routine
-                       INNER JOIN course ON routine.course_id = course.course_id
-                       INNER JOIN room ON routine.room_id = room.room_id
-                       WHERE teacher_id = ?
-                       ORDER BY FIELD(day, 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'), start_time";
+      $routineQuery = "SELECT routine.day, TIME_FORMAT(routine.start_time, '%h:%i %p') AS start_time, TIME_FORMAT(routine.end_time, '%h:%i %p') AS end_time, course.course_code, course.course_name, room.room_number, batch.batch_number, semester.semester_name, course.course_id, course.course_type
+      FROM routine
+      INNER JOIN course ON routine.course_id = course.course_id
+      INNER JOIN room ON routine.room_id = room.room_id
+      INNER JOIN batch ON routine.batch = batch.batch_id
+      INNER JOIN semester ON routine.semester = semester.semester_id
+      WHERE routine.teacher_id = ?
+      ORDER BY FIELD(routine.day,'Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'), routine.start_time";
+    
 
   $routineStmt = $conn->prepare($routineQuery);
   $routineStmt->bind_param("i", $teacherId);
@@ -71,33 +73,40 @@ if (isset($_GET['teacher_id'])) {
               </thead>
               <tbody>';
 
-  $days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  foreach ($days as $day) {
-    $html .= "<tr>";
-    $html .= "<td style='border: 1px solid #000; padding: 8px;'>{$day}</td>";
-
-    foreach ($columnsToDisplay as $timeSlot) {
-      $classes = [];
-      $routineResult->data_seek(0);
-      while ($row = $routineResult->fetch_assoc()) {
-        if ($row['day'] == $day && "{$row['start_time']} - {$row['end_time']}" == $timeSlot) {
-          $classes[] = "{$row['course_code']}<br>{$row['course_name']}<br>{$row['room_number']}";
-        }
-      }
-
-      $html .= "<td style='border: 1px solid #000; padding: 8px;'>";
-      if (empty($classes)) {
-        $html .= "Off day";
-      } else {
-        foreach ($classes as $class) {
-          $html .= "{$class}<br>";
-        }
-      }
-      $html .= "</td>";
-    }
-
-    $html .= "</tr>";
-  }
+              $days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+              foreach ($days as $day) {
+                  $html .= "<tr>";
+                  $html .= "<td style='border: 1px solid #000; padding: 8px; text-align: center;'>{$day}</td>";
+              
+                  foreach ($columnsToDisplay as $timeSlot) {
+                      $classes = [];
+                      $cellStyle = "padding: 8px; text-align: center;"; 
+                       
+                      $routineResult->data_seek(0);
+                      while ($row = $routineResult->fetch_assoc()) {
+                          if ($row['day'] == $day && "{$row['start_time']} - {$row['end_time']}" == $timeSlot) {
+                              // Check if the course type is "Lab" and set the background color to blue
+                              if ($row['course_type'] == 'lab') {
+                                  $cellStyle .= "background-color: #00d2ff;";
+                              }
+              
+                              $classes[] = "<div style='{$cellStyle}'>{$row['course_code']}<br>{$row['course_name']}<br>{$row['room_number']}</div>";
+                          }
+                      }
+              
+                      $html .= "<td style='{$cellStyle} border: 1px solid #000;'>";
+                      if (empty($classes)) {
+                          $html .= "X";
+                      } else {
+                          foreach ($classes as $class) {
+                              $html .= "{$class}<br>";
+                          }
+                      }
+                      $html .= "</td>";
+                  }
+              
+                  $html .= "</tr>";
+              }
 
   $html .= '</tbody>
             </table>

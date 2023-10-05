@@ -14,14 +14,15 @@ while ($row = $timeSlotsResult->fetch_assoc()) {
 // Fetch and display the teacher's routine
 if (isset($_SESSION["teacher_id"])) {
   $teacherId = $_SESSION["teacher_id"];
-  $routineQuery = "SELECT routine.day, TIME_FORMAT(routine.start_time, '%h:%i %p') AS start_time, TIME_FORMAT(routine.end_time, '%h:%i %p') AS end_time, course.course_code, course.course_name, room.room_number, batch.batch_number,semester.semester_name
+  $routineQuery = "SELECT routine.day, TIME_FORMAT(routine.start_time, '%h:%i %p') AS start_time, TIME_FORMAT(routine.end_time, '%h:%i %p') AS end_time, course.course_code, course.course_name, room.room_number, batch.batch_number, semester.semester_name, course.course_id
                  FROM routine
                  INNER JOIN course ON routine.course_id = course.course_id
                  INNER JOIN room ON routine.room_id = room.room_id
                  INNER JOIN batch ON routine.batch = batch.batch_id
                  INNER JOIN semester ON routine.semester = semester.semester_id
                  WHERE routine.teacher_id = ?
-                 ORDER BY FIELD(routine.day, 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'), routine.start_time";
+                 ORDER BY FIELD(routine.day,'Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'), routine.start_time";
+
 
   $routineStmt = $conn->prepare($routineQuery);
   $routineStmt->bind_param("i", $teacherId);
@@ -59,33 +60,50 @@ if (isset($_SESSION["teacher_id"])) {
     </thead>
     <tbody>
       <?php
-        $days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        $days = ['Saturday','Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
 
         foreach ($days as $day) {
           echo "<tr>";
           echo "<td class='border px-4 py-2'>{$day}</td>";
-
           foreach ($columnsToDisplay as $timeSlot) {
             $classes = [];
-
+            $hasLab = false; // Flag to track if there's a lab class in this time slot
+        
             $routineResult->data_seek(0);
             while ($row = $routineResult->fetch_assoc()) {
-              if ($row['day'] == $day && "{$row['start_time']} - {$row['end_time']}" == $timeSlot) {
-                $classes[] = "<div class='text-center'><span class='font-bold'>{$row['course_code']}</span><br> {$row['course_name']}<br><span class='font-bold'>{$row['room_number']} </span> <br><span>[{$row['batch_number']} ({$row['semester_name']})] </span> </div>";
-              }
+                if ($row['day'] == $day && "{$row['start_time']} - {$row['end_time']}" == $timeSlot) {
+                    // Fetch the course_type from the course table based on the course_id
+                    $courseId = $row['course_id'];
+                    $courseTypeQuery = "SELECT course_type FROM course WHERE course_id = ?";
+                    $courseTypeStmt = $conn->prepare($courseTypeQuery);
+                    $courseTypeStmt->bind_param("i", $courseId);
+                    $courseTypeStmt->execute();
+                    $courseTypeResult = $courseTypeStmt->get_result();
+        
+                    if ($courseTypeRow = $courseTypeResult->fetch_assoc()) {
+                        if ($courseTypeRow['course_type'] == 'lab') {
+                            $hasLab = true; // Set the flag if a lab class is found
+                        }
+                    }
+        
+                    $classes[] = "<div class='text-center'><span class='font-bold'>{$row['course_code']}</span><br>{$row['course_name']}<br><span class='font-bold'>{$row['room_number']}</span><br><span>[{$row['batch_number']} ({$row['semester_name']})]</span></div>";
+                }
             }
-
-            echo "<td class='border px-4 py-2'>";
+        
+            // Determine the background color based on the flag
+            $cellBackgroundColor = $hasLab ? "background-color: #00d2ff;" : "";
+        
+            echo "<td class='border px-4 py-2' style='{$cellBackgroundColor}'>";
             if (empty($classes)) {
-              echo "<div class='text-center'>✘</div>";
+                echo "<div class='text-center'>✘</div>";
             } else {
-              foreach ($classes as $class) {
-                echo "{$class}<br>";
-              }
+                foreach ($classes as $class) {
+                    echo "{$class}<br>";
+                }
             }
             echo "</td>";
-          }
-
+        }
+        
           echo "</tr>";
         }
         ?>
